@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Dorado del Mar Golf Club</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Cinzel:wght@500;600;700&family=Marcellus&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -283,6 +285,17 @@ tr.lead td{font-weight:700}
 .login .wave{position:absolute;left:0;bottom:0;width:100%;max-width:none;height:110px}
 .lgcard{position:relative}
 .lglang{position:absolute;top:14px;right:14px;border:1px solid #D6E0EB;background:#fff;color:#034587;border-radius:999px;padding:6px 12px;font-weight:700;font-size:.82rem;min-height:34px}
+.satslot{width:100%;height:100%}
+.satmap{width:100%;height:100%;background:#1d2b22}
+.hv-map.sat{background:#1d2b22}
+.hv-map .hv-top,.hv-map .hv-dist{z-index:1000}
+.hv-map.calib{height:min(62vh,540px)}
+.satlbl{background:rgba(3,69,135,.9)!important;color:#fff!important;border:0!important;font:800 12px Figtree,sans-serif!important;padding:2px 7px!important;border-radius:7px!important;box-shadow:none!important}
+.satlbl::before{display:none!important}
+.satlbl.gold{background:rgba(242,183,5,.95)!important;color:#13261E!important}
+.satflag{font-size:22px;line-height:1;filter:drop-shadow(0 1px 1px rgba(0,0,0,.5))}
+.satme{width:18px;height:18px;border-radius:50%;background:#35B3E8;border:3px solid #fff;box-shadow:0 0 0 6px rgba(53,179,232,.35)}
+.leaflet-container{font-family:Figtree,system-ui,sans-serif}
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;z-index:60;font-weight:600;max-width:90vw;font-size:.92rem}
 .splash{min-height:70vh;display:grid;place-items:center;text-align:center;color:var(--muted)}
 .empty{text-align:center;padding:26px 16px;color:var(--muted)}
@@ -428,7 +441,7 @@ const EN={
 'No tienes permiso para hacer este cambio. Pide a la administración que te dé acceso.':'You don\u2019t have permission to make this change. Ask an admin for access.',
 'Se llenó el espacio de datos. Borra registros viejos en Administración.':'Data storage is full. Delete old records in Admin.','No se pudo guardar. Revisa la conexión e inténtalo otra vez.':'Couldn\u2019t save. Check your connection and try again.',
 '¿Borrar este torneo? Las rondas jugadas se quedan en el perfil de cada jugador.':'Delete this tournament? Rounds played stay in each player\u2019s profile.','Nuevo artículo':'New item',
-'Ronda en curso':'Round in progress','. Los jugadores te ven en el mapa.':'. Players can see you on the map.','la casa club':'the clubhouse','el hoyo':'the hole','Tu ID de usuario':'Your user ID','Tu ID de usuario (eres administrador)':'Your user ID (you\u2019re an admin)','Casual':'Casual'
+'Ronda en curso':'Round in progress','Ubicar los hoyos en el mapa':'Place the holes on the map','Ver dibujo del hoyo':'Show hole drawing','Ver foto satelital':'Show satellite photo','Este hoyo todavía no está ubicado en el mapa satelital.':'This hole isn\u2019t placed on the satellite map yet.','Sin ubicar todavía.':'Not placed yet.','No se pudo cargar el mapa satelital. Revisa la conexión.':'Couldn\u2019t load the satellite map. Check your connection.','Escoge un hoyo, toca «Tee» y luego toca en la foto el centro del tee azul. Después toca «Green» y toca el centro del green. Al terminar pulsa «Guardar campo».':'Pick a hole, tap \u201cTee\u201d and then tap the center of the blue tee on the photo. Then tap \u201cGreen\u201d and tap the center of the green. When you finish, tap \u201cSave course\u201d.','. Los jugadores te ven en el mapa.':'. Players can see you on the map.','la casa club':'the clubhouse','el hoyo':'the hole','Tu ID de usuario':'Your user ID','Tu ID de usuario (eres administrador)':'Your user ID (you\u2019re an admin)','Casual':'Casual'
 };
 const EN_TEE={Doradas:'Gold',Azules:'Blue',Blancas:'White',Rojas:'Red',doradas:'gold',azules:'blue',blancas:'white',rojas:'red'};
 const enPlace=s=>{let m;if((m=s.match(/^(?:el )?hoyo (\d+)$/i)))return 'hole '+m[1];if(/^(?:la )?casa club$/i.test(s))return 'the clubhouse';return s};
@@ -546,6 +559,7 @@ const EN_RULES=[
  [/^(.+), (hoyo \d+|casa club)$/,m=>`${m[1]}, ${enPlace(m[2]).replace(/^the /,'')}`],
  [/^(.+) ya tiene una ronda en juego\. Quítalo del grupo o pídele que la termine\.$/,m=>`${m[1]} already has a round in play. Remove them from the group or ask them to finish it.`],
  [/^Versión (.+)$/,m=>`Version ${m[1]}`],
+ [/^Distancia en el mapa: (\d+) yd\. La tarjeta dice (\d+) yd desde azules\.$/,m=>`Distance on the map: ${m[1]} yd. The scorecard says ${m[2]} yd from the blue tees.`],
  [/^© (\d+) LL Technology Service\. Todos los derechos reservados\.$/,m=>`© ${m[1]} LL Technology Service. All rights reserved.`],
  [/^Vista del hoyo (\d+)\. Toca el mapa para (marcar un tiro o medir|medir) distancias\.$/,m=>`View of hole ${m[1]}. Tap the map to ${m[2]==='medir'?'measure':'mark a shot or measure'} distances.`],
  [/^(.+), (\d+) jugados?$/,m=>`${m[1]}, ${m[2]} played`]
@@ -626,7 +640,7 @@ const parSum=arr=>arr.reduce((a,_,i)=>a+holes()[i].par,0);
 /* ============ Estado ============ */
 const S={mode:'player',tab:'home',uid:null,meName:'',canEdit:false,demo:false,userApi:null,
  players:{},tee:[],orders:[],rounds:[],runners:[],tournaments:[],entries:[],course:null,menu:null,
- cart:{},teeDate:todayStr(),draft:null,sheet:null,lbT:null,adminDate:todayStr(),menuDraft:null,courseDraft:null,profiles:{},deliverTo:null,note:'',cHole:1,cSeg:'hole',cTee:null,hvMode:'measure',ball:{},target:null,pSeg:'stats',members:{},staff:{},alerts:[],alertsOn:false,gps:null,gpsErr:null,gpsWatch:null,lastPos:null};
+ cart:{},teeDate:todayStr(),draft:null,sheet:null,lbT:null,adminDate:todayStr(),menuDraft:null,courseDraft:null,profiles:{},deliverTo:null,note:'',cHole:1,cSeg:'hole',cTee:null,hvMode:'measure',ball:{},target:null,pSeg:'stats',calibHole:1,calibPick:'tee',satTarget:null,satBall:null,drawMode:false,members:{},staff:{},alerts:[],alertsOn:false,gps:null,gpsErr:null,gpsWatch:null,lastPos:null};
 
 /* ============ Almacenamiento: base de datos compartida o modo demo en memoria ============ */
 const Store={db:null,mem:new Map(),ml:new Map(),dl:new Map(),
@@ -723,7 +737,7 @@ function renderLogin(){const L=LOGIN;if(!L)return;const m=L.mode;const app=$('#a
    </form>
    <p class="lgerr" id="lgErr" role="alert"></p>
    <p style="text-align:center">${m==='login'?'<button type="button" class="link" data-act="lgMode" data-v="forgot">¿Olvidaste tu contraseña?</button>':m!=='signup'&&m!=='reset'?'<button type="button" class="link" data-act="lgMode" data-v="login">Volver a iniciar sesión</button>':''}</p>
-  </div><p class="lgfoot">© 2026 LL Technology Service. Todos los derechos reservados.<br><span style="opacity:.7">Versión 2.2</span></p></div>
+  </div><p class="lgfoot">© 2026 LL Technology Service. Todos los derechos reservados.<br><span style="opacity:.7">Versión 2.3</span></p></div>
   <svg class="wave" viewBox="0 0 400 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50C60 20 120 80 200 50S330 20 400 45V110H0Z" fill="#0AA7E5" opacity=".55"/><path d="M0 75C70 50 130 100 210 75S340 55 400 72V110H0Z" fill="#BEE8F8" opacity=".5"/></svg></div>`;
   if(LANG==='en')trNode(app);
   const f=$(m==='signup'?'#lgN':m==='reset'?'#lgP':'#lgE');if(f&&window.innerWidth>700)f.focus()}
@@ -757,6 +771,7 @@ async function bootSupabase(){
   const u=session.user;S.uid=u.id;S.email=u.email||'';S.meName=(u.user_metadata&&u.user_metadata.nombre)||'';
   S.sbMode=true;S.demo=false;Object.assign(Store,SBStore);
   try{const a=await SB.rpc('es_admin');S.canEdit=!!a.data}catch(e){S.canEdit=false}
+  if(S.canEdit){S.mode='admin';S.tab='alive';S.roleApplied=true}
   // crear el perfil del jugador con su nombre si todavía no existe
   try{if(S.meName){const ex=await SB.from('jugadores').select('id').eq('id',S.uid).maybeSingle();if(!ex.error&&!ex.data)await SB.from('jugadores').upsert({id:S.uid,uid:S.uid,nombre:S.meName,salida:'white'})}}catch(e){}
 }
@@ -804,6 +819,77 @@ function onGps(){if(S.mode==='runner'){const n=detectHole(S.gps);const now=Date.
   const r=myRound();if(r){const n=detectHole(S.gps)||r.currentHole;const hp=llToHole(n,S.gps);if(hp&&hp.off<150){const now=Date.now(),lp=S.lastPos;
   if(!lp||lp.hole!==n||Math.hypot(lp.x-hp.x,lp.y-hp.y)>15||now-lp.at>90000){S.lastPos={hole:n,x:hp.x,y:hp.y,at:now};Store.update('rounds/'+r.id,{pos:{hole:n,x:hp.x,y:hp.y,rem:hp.rem,at:now,src:'gps'}}).catch(()=>{})}}}
   scheduleRender()}
+
+/* ============ Mapa satelital (Leaflet + imágenes Esri) ============ */
+const COURSE_CENTER=[18.4767,-66.2722];
+const SAT={map:null,el:null,layer:null,key:''};
+const LLa=o=>[o.lat,o.lon];
+function hav(a,b){const R=6371000,t=Math.PI/180;const dLat=(b.lat-a.lat)*t,dLon=(b.lon-a.lon)*t;const x=Math.sin(dLat/2)**2+Math.cos(a.lat*t)*Math.cos(b.lat*t)*Math.sin(dLon/2)**2;return Math.round(2*R*Math.asin(Math.sqrt(x))*1.0936)}
+const satAvail=n=>{const h=holes()[n-1];return !!(window.L&&h&&h.teeGps&&h.greenGps)};
+function holeToLl(n,x,y){const h=holes()[n-1];const T=h.teeGps,G=h.greenGps;const kx=Math.cos(T.lat*Math.PI/180)*111320,ky=110540;
+  const g=[(G.lon-T.lon)*kx,(G.lat-T.lat)*ky];const len=Math.hypot(g[0],g[1]);const u=[g[0]/len,g[1]/len],pp=[u[1],-u[0]];
+  const L0=Math.max(h.gold,h.yards);const sc=h.yards/(len*1.0936);const geo=holeGeo(n);
+  const along=(y-(L0-h.yards))/sc/1.0936,cross=(x-geo.at(y)[0])/sc/1.0936;const q=[u[0]*along+pp[0]*cross,u[1]*along+pp[1]*cross];
+  return {lat:T.lat+q[1]/ky,lon:T.lon+q[0]/kx}}
+function satBall(n,play){const h=holes()[n-1];const r=myRound();
+  if(play){if(S.gps&&Date.now()-S.gps.at<60000){const hp=llToHole(n,S.gps);if(hp&&hp.off<150)return {lat:S.gps.lat,lon:S.gps.lon,live:true}}
+    const sh=r&&r.shots&&r.shots[n];if(sh&&sh.length){const q=sh[sh.length-1];return holeToLl(n,q[0],q[1])}}
+  else if(S.satBall&&S.satBall.n===n)return S.satBall;
+  const tee=(play&&r&&r.tee)||S.cTee||myTee();const t=holeGeo(n).tees[tee];return holeToLl(n,t[0],t[1])}
+function satEnsure(){if(SAT.map)return true;if(!window.L)return false;
+  SAT.el=document.createElement('div');SAT.el.className='satmap';
+  SAT.map=L.map(SAT.el,{zoomControl:true,attributionControl:true}).setView(COURSE_CENTER,16);
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:21,maxNativeZoom:19,attribution:'Imágenes © Esri, Maxar, Earthstar Geographics'}).addTo(SAT.map);
+  SAT.layer=L.layerGroup().addTo(SAT.map);SAT.map.on('click',e=>satClick({lat:e.latlng.lat,lon:e.latlng.lng}));return true}
+function satMount(){const slot=document.querySelector('.satslot');if(!slot)return;if(!satEnsure()){slot.innerHTML='<p class="empty">No se pudo cargar el mapa satelital. Revisa la conexión.</p>';return}
+  if(SAT.el.parentNode!==slot)slot.appendChild(SAT.el);SAT.map.invalidateSize();satDraw(slot.dataset)}
+const satLbl=(m,txt,gold)=>m.bindTooltip(txt,{permanent:true,direction:'center',className:'satlbl'+(gold?' gold':''),opacity:1});
+function satLine(a,b,label,opt){const ln=L.polyline([LLa(a),LLa(b)],Object.assign({color:'#fff',weight:2.5,dashArray:'6 6',interactive:false},opt||{})).addTo(SAT.layer);
+  if(label){const mid=[(a.lat+b.lat)/2,(a.lon+b.lon)/2];satLbl(L.circleMarker(mid,{radius:0,opacity:0,fillOpacity:0,interactive:false}).addTo(SAT.layer),label)}return ln}
+function satDraw(ds){const n=+ds.n;const kind=ds.kind;SAT.layer.clearLayers();const key=kind+':'+n;
+  if(kind==='calib'){const H=(S.courseDraft&&S.courseDraft.holes[n-1])||{};const t=H.teeGps,g=H.greenGps;
+    if(SAT.key!==key){SAT.key=key;if(t&&g)SAT.map.fitBounds([LLa(t),LLa(g)],{padding:[50,50],maxZoom:19});else if(t||g)SAT.map.setView(LLa(t||g),18);
+      else{const prev=S.courseDraft&&S.courseDraft.holes[n-2];const pg=prev&&(prev.greenGps||prev.teeGps);SAT.map.setView(pg?LLa(pg):COURSE_CENTER,pg?17:16)}}
+    if(t)satLbl(L.circleMarker(LLa(t),{radius:8,color:'#fff',weight:2,fillColor:'#2563A8',fillOpacity:1}).addTo(SAT.layer),'Tee');
+    if(g)L.marker(LLa(g),{icon:L.divIcon({className:'satflag',html:'⛳',iconSize:[24,24],iconAnchor:[6,22]})}).addTo(SAT.layer);
+    if(t&&g)satLine(t,g,hav(t,g)+' yd');return}
+  const h=holes()[n-1];if(!h.teeGps||!h.greenGps)return;const play=ds.play==='1';const G=h.greenGps;
+  if(SAT.key!==key){SAT.key=key;SAT.map.fitBounds([LLa(h.teeGps),LLa(G)],{padding:[40,40],maxZoom:19})}
+  const r=myRound();const tee=(play&&r&&r.tee)||S.cTee||myTee();const t0=holeGeo(n).tees[tee];const teeLL=holeToLl(n,t0[0],t0[1]);
+  L.circleMarker(LLa(teeLL),{radius:6,color:'#fff',weight:2,fillColor:TEES[tee].color==='#FFFFFF'?'#e8e8e8':TEES[tee].color,fillOpacity:1,interactive:false}).addTo(SAT.layer);
+  L.circleMarker(LLa(G),{radius:10,color:'#fff',weight:2,fillColor:'#3F9A5C',fillOpacity:.55,interactive:false}).addTo(SAT.layer);
+  L.marker(LLa(G),{icon:L.divIcon({className:'satflag',html:'⛳',iconSize:[24,24],iconAnchor:[6,22]}),interactive:false}).addTo(SAT.layer);
+  const shots=play&&r&&r.shots&&r.shots[n]?r.shots[n].map(q=>holeToLl(n,q[0],q[1])):[];
+  if(shots.length){L.polyline([teeLL,...shots].map(LLa),{color:'#F2B705',weight:3,interactive:false}).addTo(SAT.layer);let prev=teeLL;
+    shots.forEach((p,i)=>{const m=L.circleMarker(LLa(p),{radius:6,color:'#13261E',weight:1.5,fillColor:'#F2B705',fillOpacity:1,interactive:false}).addTo(SAT.layer);satLbl(m,(i+1)+': '+hav(prev,p)+' yd',true);prev=p})}
+  const b=satBall(n,play);
+  if(b.live)L.marker(LLa(b),{icon:L.divIcon({className:'',html:'<div class="satme"></div>',iconSize:[18,18],iconAnchor:[9,9]}),interactive:false}).addTo(SAT.layer);
+  else L.circleMarker(LLa(b),{radius:7,color:'#13261E',weight:2,fillColor:'#fff',fillOpacity:1,interactive:false}).addTo(SAT.layer);
+  const tg=S.satTarget&&S.satTarget.n===n?S.satTarget:null;
+  if(tg){L.circleMarker(LLa(tg),{radius:9,color:'#fff',weight:3,fillOpacity:0,interactive:false}).addTo(SAT.layer);satLine(b,tg,hav(b,tg)+' yd');satLine(tg,G,hav(tg,G)+' yd')}
+  else satLine(b,G,hav(b,G)+' yd')}
+function satClick(ll){const slot=document.querySelector('.satslot');if(!slot)return;const n=+slot.dataset.n;ll={lat:+ll.lat.toFixed(6),lon:+ll.lon.toFixed(6)};
+  if(slot.dataset.kind==='calib'){const H=S.courseDraft.holes[n-1];H[S.calibPick+'Gps']=ll;delete H[S.calibPick+'GpsRaw'];if(S.calibPick==='tee')S.calibPick='green';render();return}
+  const play=slot.dataset.play==='1';
+  if(play&&S.hvMode!=='measure'){const hp=llToHole(n,ll);if(hp)A.markShot([hp.x,hp.y],hp.rem);return}
+  if(!play&&S.hvMode==='ball'){S.satBall={n,...ll};S.satTarget=null;render();return}
+  S.satTarget={n,...ll};render()}
+function holeViewSat(n,playing){
+  const r=myRound();const tee=(playing&&r&&r.tee)||S.cTee||myTee();const h=holes()[n-1];const g=holeGeo(n);
+  const shots=playing&&r&&r.shots&&r.shots[n]?r.shots[n]:[];const b=satBall(n,playing);const mid=hav(b,h.greenGps);
+  const modes=playing?[['shot','Marcar tiro'],['measure','Medir']]:[['measure','Medir distancia'],['ball','Mover mi bola']];
+  const cur=playing?(S.hvMode==='measure'?'measure':'shot'):(S.hvMode==='ball'?'ball':'measure');
+  const help=playing?(cur==='shot'?'Cuando llegues a tu bola, toca en el mapa dónde quedó. Se guarda el tiro y ves cuánto te falta.':'Toca un punto para medir hasta ahí y de ahí al green.'):(cur==='ball'?'Toca el mapa donde quedó tu bola.':'Toca cualquier punto del hoyo para ver la distancia.');
+  let list='';if(playing&&shots.length){let prev=g.tees[tee];list=`<div class="card shotlist" style="padding:4px 14px"><div class="hz" style="border-top:0"><b class="small">Tus tiros en este hoyo</b><span class="small muted">Distancia / quedan</span></div>${shots.map((p,i)=>{const a=holeToLl(n,prev[0],prev[1]),c=holeToLl(n,p[0],p[1]);prev=p;return `<div class="hz"><span>Tiro ${i+1}</span><b>${hav(a,c)} / ${hav(c,h.greenGps)} yd</b></div>`}).join('')}</div>`}
+  const gpsFresh=S.gps&&Date.now()-S.gps.at<60000;
+  return `<div class="hv-map sat ${playing?'compact':''}"><div class="satslot" data-kind="hole" data-n="${n}" data-play="${playing?1:0}"></div>
+   <div class="hv-top"><b class="hv-n">${n}</b><div><b>Par ${h.par}</b><span>${yd(n-1,tee)} yd, hcp ${hcpOf(n-1,tee)}</span></div></div>
+   <div class="hv-dist" aria-live="polite"><div class="fb">${mid+14}</div><small>Fondo</small><div class="c">${mid}</div><small>${b.live?'Desde ti':'Centro'}</small><div class="fb">${Math.max(0,mid-14)}</div><small style="margin-bottom:0">Frente</small></div></div>
+  <div class="seg" style="margin-top:10px">${modes.map(([k,l])=>`<button class="${cur===k?'on':''}" data-act="hvMode" data-v="${k}">${l}</button>`).join('')}${playing?`<button data-act="shotUndo" ${shots.length?'':'disabled'}>Deshacer tiro</button>`:`<button data-act="hvReset" data-v="${n}">Reiniciar</button>`}</div>
+  <p class="small muted" style="margin-top:6px">${help}</p>
+  ${playing?`<div class="gpsbar"><span class="gpsdot ${gpsFresh?'on':''}"></span><div class="grow">${gpsFresh?`GPS activo (±${Math.round(S.gps.acc*1.0936)} yd)`:(S.gpsErr?esc(S.gpsErr):'Con GPS, la distancia se mide desde donde estás')}</div>${gpsFresh?`<button class="btn sm" data-act="shotGps">Marcar tiro aquí</button>`:`<button class="btn ghost sm" data-act="gpsOn">Activar GPS</button>`}</div>`:''}
+  ${list}<p style="margin-top:8px"><button class="link" data-act="drawToggle">Ver dibujo del hoyo</button></p>`;
+}
 
 /* ============ Grupo: invitados y jugadores con la app ============ */
 const inTee=(p,uid)=>p.uid===uid||(p.buddies||[]).includes(uid);
@@ -876,6 +962,7 @@ function render(){
   <nav class="nav" aria-label="Secciones"><div class="nav-in n${NAVS[S.mode].length}">${NAVS[S.mode].map(([k,l,i])=>`<button class="${S.tab===k?'on':''}" data-act="tab" data-v="${k}" ${S.tab===k?'aria-current="page"':''}>${ic(i)}${l}</button>`).join('')}</div></nav>
   ${S.sheet?`<div class="scrim" data-act="closeSheet"></div><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>${SHEETS[S.sheet.k](S.sheet.v)}</div>`:''}`;
   if(LANG==='en')trNode(app);
+  satMount();
   window.scrollTo(0,y);
 }
 
@@ -1015,6 +1102,7 @@ function holeSvg(n,tee,play,b,shots){const g=holeGeo(n);const top=g.L+40,Hh=top+
   s+=`<circle cx="${X(b[0])}" cy="${Y(b[1])}" r="${(6.5*k).toFixed(1)}" fill="#fff" stroke="#13261E" stroke-width="${(1.6*k).toFixed(1)}"/>`;
   return s+'</svg>'}
 function holeView(n,playing){
+  if(satAvail(n)&&!S.drawMode)return holeViewSat(n,playing);
   const r=myRound();const tee=(playing&&r&&r.tee)||S.cTee||myTee();const h=holes()[n-1];const g=holeGeo(n);
   const shots=(r&&liveHole(r)===n||playing)&&r&&r.shots&&r.shots[n]?r.shots[n]:[];
   const gp=playing?gpsHere(n):null;
@@ -1034,7 +1122,7 @@ function holeView(n,playing){
   <p class="small muted" style="margin-top:6px">${help}</p>
   ${playing?`<div class="gpsbar"><span class="gpsdot ${gpsFresh?'on':''}"></span><div class="grow">${gpsFresh?(gp?`GPS activo (±${Math.round(S.gps.acc*1.0936)} yd)`:'GPS activo, pero este hoyo no tiene coordenadas todavía'):(S.gpsErr?esc(S.gpsErr):'Con GPS, la distancia se mide desde donde estás')}</div>${gpsFresh&&gp?`<button class="btn sm" data-act="shotGps">Marcar tiro aquí</button>`:gpsFresh?'':`<button class="btn ghost sm" data-act="gpsOn">Activar GPS</button>`}</div>`:''}
   ${list}
-  ${haz.length?`<div class="card" style="margin-top:10px;padding:4px 14px"><div class="hz" style="border-top:0"><b class="small">Obstáculos</b><span class="small muted">Llegar / pasar (yd)</span></div>${haz.map(z=>`<div class="hz"><span><i class="hzdot ${z.type}"></i>${z.name}</span><b>${z.reach} / ${z.carry}</b></div>`).join('')}</div>`:''}`;
+  ${haz.length?`<div class="card" style="margin-top:10px;padding:4px 14px"><div class="hz" style="border-top:0"><b class="small">Obstáculos</b><span class="small muted">Llegar / pasar (yd)</span></div>${haz.map(z=>`<div class="hz"><span><i class="hzdot ${z.type}"></i>${z.name}</span><b>${z.reach} / ${z.carry}</b></div>`).join('')}</div>`:''}${satAvail(n)?`<p style="margin-top:8px"><button class="link" data-act="drawToggle">Ver foto satelital</button></p>`:`<p class="small muted" style="margin-top:8px">Este hoyo todavía no está ubicado en el mapa satelital.</p>`}`;
 }
 
 /* ============ Campo (estilo guía de campo) ============ */
@@ -1262,6 +1350,11 @@ function adminCourse(){
   return `<h2>Datos del campo</h2><p class="muted small" style="margin:4px 0 12px">Par ${tp}. Datos de la tarjeta oficial de marzo de 2026. Actualízalos aquí si el club imprime una nueva.</p>
   <div class="tbl-wrap"><table><thead><tr><th>Hoyo</th><th>Par</th><th>Hcp cab.</th><th>Hcp damas</th><th>Doradas</th><th>Azules</th><th>Blancas</th><th>Rojas</th></tr></thead><tbody>${D.holes.map((h,i)=>`<tr><td class="pos">${i+1}</td><td><select class="input" style="min-width:62px" data-input="cPar" data-v="${i}">${[3,4,5].map(p=>`<option ${+h.par===p?'selected':''}>${p}</option>`).join('')}</select></td>${['hcp','hcpRed','gold','yards','white','red'].map(f=>`<td><input class="input" type="number" min="1" style="min-width:${f.startsWith('hcp')?62:78}px" value="${h[f]}" data-input="cF" data-f="${f}" data-v="${i}" aria-label="Hoyo ${i+1} ${f}"></td>`).join('')}</tr>`).join('')}</tbody></table></div>
   <h3 style="margin:18px 0 8px">Rating y slope</h3><div class="list">${Object.entries(TEES).map(([k,t])=>`<div class="li"><i class="teedot" style="background:${t.color}"></i><b style="width:64px">${t.name}</b><input class="input" type="number" step="0.1" value="${D.ratings[k].rating}" data-input="rF" data-f="rating" data-v="${k}" aria-label="Rating ${t.name}"><input class="input" type="number" value="${D.ratings[k].slope}" data-input="rF" data-f="slope" data-v="${k}" aria-label="Slope ${t.name}"></div>`).join('')}</div>
+  <h3 style="margin:20px 0 4px">Ubicar los hoyos en el mapa</h3><p class="small muted" style="margin-bottom:8px">Escoge un hoyo, toca «Tee» y luego toca en la foto el centro del tee azul. Después toca «Green» y toca el centro del green. Al terminar pulsa «Guardar campo».</p>
+  ${(()=>{const n=S.calibHole;const H=D.holes[n-1];const t=H.teeGps,g=H.greenGps;return `<div class="chips holechips" style="margin-bottom:8px">${D.holes.map((x,i)=>`<button class="dchip ${n===i+1?'on':''}" style="min-width:48px" data-act="calibHole" data-v="${i+1}">${i+1}${x.teeGps&&x.greenGps?' ✓':''}</button>`).join('')}</div>
+   <div class="seg" style="margin-bottom:8px">${[['tee','Tee'],['green','Green']].map(([k,l])=>`<button class="${S.calibPick===k?'on':''}" data-act="calibPick" data-v="${k}">${l}</button>`).join('')}</div>
+   <div class="hv-map sat calib"><div class="satslot" data-kind="calib" data-n="${n}"></div></div>
+   <p class="small" style="margin-top:8px">${t&&g?`Distancia en el mapa: ${hav(t,g)} yd. La tarjeta dice ${H.yards} yd desde azules.`:'Sin ubicar todavía.'}</p>`})()}
   <h3 style="margin:20px 0 4px">Coordenadas GPS</h3><p class="small muted" style="margin-bottom:8px">Con esto la app mide desde la ubicación del jugador y sabe solo en qué hoyo está. Pega el centro del tee azul y el centro del green desde Google Maps (clic derecho sobre el punto), o párate ahí y toca Aquí.</p>
   <div class="list">${D.holes.map((h,i)=>`<div class="li" style="flex-wrap:wrap;gap:8px"><b style="width:26px">${i+1}</b>${['teeGps','greenGps'].map(f=>`<div class="row" style="flex:1 1 230px;gap:6px"><input class="input" placeholder="${f==='teeGps'?'Tee':'Green'}: 18.4735, -66.2651" value="${esc(h[f+'Raw']!==undefined?h[f+'Raw']:(h[f]?h[f].lat+', '+h[f].lon:''))}" data-input="gF" data-f="${f}" data-v="${i}" aria-label="Hoyo ${i+1} ${f==='teeGps'?'tee':'green'}"><button class="btn ghost sm" data-act="gpsHere" data-v="${i}|${f}">Aquí</button></div>`).join('')}</div>`).join('')}</div>
   <button class="btn full" style="margin-top:12px" data-act="courseSave">Guardar campo</button>`;
@@ -1377,13 +1470,16 @@ const openSheet=(k,v)=>{S.sheet={k,v};render()};
 const A={
  tab(v){S.tab=v;S.sheet=null;window.scrollTo(0,0);render()},
  modes(){openSheet('modes')}, profile(){openSheet('editProfile')},
- hvMode(v){S.hvMode=v;render()}, hvReset(v){delete S.ball[+v];S.target=null;render()},
+ hvMode(v){S.hvMode=v;render()}, hvReset(v){delete S.ball[+v];S.target=null;S.satTarget=null;S.satBall=null;render()},
+ calibHole(v){S.calibHole=+v;S.calibPick='tee';render()},
+ calibPick(v){S.calibPick=v;render()},
+ drawToggle(){S.drawMode=!S.drawMode;render()},
  cSeg(v){S.cSeg=v;render()}, cTee(v){S.cTee=v;S.ball={};S.target=null;render()},
  cHole(v){S.cHole=+v;S.target=null;render();const c=document.querySelector('.holechips .on');if(c)c.scrollIntoView({inline:'center',block:'nearest'})},
  pSeg(v){S.pSeg=v;render()}, roundOpen(v){openSheet('round',v)}, useIdx(v){const i=$('#pH');if(i)i.value=v},
  async markShot(pos,rem){const r=myRound();if(!r)return;const n=r.currentHole;const g=holeGeo(n);const all={...(r.shots||{})};const arr=[...(all[n]||[]),pos];all[n]=arr;
    const prev=arr.length>1?arr[arr.length-2]:g.tees[r.tee||'white'];const left=rem!=null?rem:dist(pos,[g.gx,g.gy]);
-   if(await write(()=>Store.update('rounds/'+r.id,{shots:all,pos:{hole:n,x:pos[0],y:pos[1],rem:left,at:Date.now(),src:rem!=null?'gps':'mapa'}}))){delete S.ball[n];S.target=null;if(S.draft&&S.draft.hole===n)S.draft.s=arr.length+S.draft.p;toast(`Tiro ${arr.length}: ${dist(prev,pos)} yd. Te faltan ${left} yd.`);render()}},
+   if(await write(()=>Store.update('rounds/'+r.id,{shots:all,pos:{hole:n,x:pos[0],y:pos[1],rem:left,at:Date.now(),src:rem!=null?'gps':'mapa'}}))){delete S.ball[n];S.target=null;if(S.draft&&S.draft.hole===n)S.draft.s=arr.length+S.draft.p;toast(`Tiro ${arr.length}: ${satAvail(n)?hav(holeToLl(n,prev[0],prev[1]),holeToLl(n,pos[0],pos[1])):dist(prev,pos)} yd. Te faltan ${left} yd.`);render()}},
  async shotGps(){const r=myRound();if(!r)return;const gp=gpsHere(r.currentHole);if(!gp){toast('No hay GPS para este hoyo. Toca el mapa donde quedó la bola.');S.hvMode='shot';render();return}A.markShot([gp.x,gp.y],gp.rem)},
  async shotUndo(){const r=myRound();if(!r)return;const n=r.currentHole;const all={...(r.shots||{})};const arr=[...(all[n]||[])];if(!arr.length)return;arr.pop();all[n]=arr;
    await write(()=>Store.update('rounds/'+r.id,{shots:all}),'Tiro borrado');if(S.draft&&S.draft.hole===n&&arr.length)S.draft.s=arr.length+S.draft.p;render()},
@@ -1535,7 +1631,9 @@ function seedDemo(){
   Store.sub('teetimes',a=>{S.tee=a.filter(t=>t.date>=today);changed()},q=>q.where('date','>=',today));
   const wk=new Date();wk.setDate(wk.getDate()-7);const weekAgo=todayStr(wk);
   Store.sub('orders',onOrders,q=>q.where('day','>=',weekAgo));
-  Store.sub('data/admin/staff',a=>{S.staff=Object.fromEntries(a.map(m=>[m.id,m]));changed()});
+  Store.sub('data/admin/staff',a=>{S.staff=Object.fromEntries(a.map(m=>[m.id,m]));
+    if(S.sbMode&&!S.roleApplied){S.roleApplied=true;const rr=staffRole();if(rr==='cocina'){S.mode='kitchen';S.tab='kds'}else if(rr==='carrito'){S.mode='runner';S.tab='runner'}}
+    changed()});
   Store.sub('data/admin/members',a=>{S.members=Object.fromEntries(a.map(m=>[m.id,m]));changed()});
   Store.sub('rounds',a=>{S.rounds=a;changed()});
   Store.sub('runners',a=>{S.runners=a;changed()});
