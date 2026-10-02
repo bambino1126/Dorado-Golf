@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dorado del Mar Golf Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Cinzel:wght@500;600;700&family=Marcellus&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F7FB;--card:#FFFFFF;--ink:#0F2346;--muted:#56657A;--line:#D6E0EB;
+  --deep:#034587;--fair:#2F7FC1;--fair-soft:#E2F0FA;--sea:#1E7589;--sea-soft:#D8ECF1;
+  --sand:#EBDDBB;--flag:#F2B705;--cart:#D2462C;--danger:#B3261E;--sky:#35B3E8;--brandtxt:#034587;
+  --rough:#CFE2C7;--fw:#9CCB8A;--gr:#3F9A5C;--tree:#6FA465;--on-deep:#F3F7FB;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0A1322;--card:#101D33;--ink:#E4ECF6;--muted:#93A3B8;--line:#213350;
+  --deep:#1E4D94;--fair:#6AB4E6;--fair-soft:#132B48;--sea:#2D8EA3;--sea-soft:#10303A;
+  --sand:#6B5F45;--flag:#F2C230;--cart:#F06A4F;--danger:#F2766B;--sky:#35B3E8;--brandtxt:#A9DAF3;
+  --rough:#1B3326;--fw:#2F5E3C;--gr:#4C9C66;--tree:#264A31;--on-deep:#EEF4FB;
+}}
+:root[data-theme="dark"]{
+  --bg:#0A1322;--card:#101D33;--ink:#E4ECF6;--muted:#93A3B8;--line:#213350;
+  --deep:#1E4D94;--fair:#6AB4E6;--fair-soft:#132B48;--sea:#2D8EA3;--sea-soft:#10303A;
+  --sand:#6B5F45;--flag:#F2C230;--cart:#F06A4F;--danger:#F2766B;--sky:#35B3E8;--brandtxt:#A9DAF3;
+  --rough:#1B3326;--fw:#2F5E3C;--gr:#4C9C66;--tree:#264A31;--on-deep:#EEF4FB;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Figtree,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Marcellus,Georgia,"Times New Roman",serif;font-weight:400;line-height:1.15;margin:0;letter-spacing:0}
+h2{font-size:1.45rem;font-weight:400}
+h3{font-size:1.12rem;font-weight:400}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+img,svg{max-width:100%}
+
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top-in{max-width:620px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:10px 16px}
+.brand{display:flex;align-items:center;gap:8px;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.05rem;flex:1;min-width:0}
+.brand span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:.85rem;font-weight:600}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--deep);color:var(--on-deep);border:0;font-weight:700;font-size:.85rem;flex:none}
+
+main{max-width:620px;margin:0 auto;padding:16px 16px 110px}
+.stack>*+*{margin-top:14px}
+.demo{background:var(--sea-soft);color:var(--ink);border-radius:12px;padding:10px 12px;font-size:.88rem}
+
+.hero{background:var(--deep);color:var(--on-deep);border-radius:22px;padding:22px 20px 0;overflow:hidden;position:relative}
+.hero{background:linear-gradient(140deg,#034587 0%,#022E5C 100%)!important}
+.hero h1{font-size:clamp(1.7rem,7vw,2.3rem);font-weight:400;margin-top:6px}
+.hero .wm{font-family:Cinzel,Georgia,serif;font-weight:600;letter-spacing:.06em;font-size:.95rem;color:var(--sky);opacity:1}
+.hero .bird{position:absolute;right:14px;top:16px;width:112px;height:auto;opacity:.95;pointer-events:none}
+.brand{font-family:Cinzel,Georgia,serif!important;font-weight:700!important;letter-spacing:.03em;color:var(--brandtxt)}
+.brand img{width:34px;height:auto;flex:none}
+.stat b,.big,.holenum,.stepper .v,.hv-dist .c,.idx{font-family:"Bricolage Grotesque",Figtree,sans-serif}
+.hero p{opacity:.85}
+.hero svg{display:block;margin:18px -20px 0;width:calc(100% + 40px);max-width:none;height:44px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.card.tint{background:var(--fair-soft);border-color:transparent}
+.card.sea{background:var(--sea-soft);border-color:transparent}
+.row{display:flex;align-items:center;gap:12px}
+.row.between{justify-content:space-between}
+.grow{flex:1;min-width:0}
+.muted{color:var(--muted)}
+.small{font-size:.86rem}
+.big{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:2.2rem;line-height:1}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;margin:22px 0 10px}
+
+.btn{border:0;border-radius:12px;padding:12px 16px;font-weight:700;background:var(--deep);color:var(--on-deep);display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px}
+.btn.full{width:100%}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.soft{background:var(--fair-soft);color:var(--ink)}
+.btn.warn{background:transparent;color:var(--danger);border:1px solid var(--line)}
+.btn.sm{padding:7px 12px;min-height:36px;font-size:.88rem;border-radius:10px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.link{background:none;border:0;color:var(--sea);font-weight:700;padding:4px 0}
+
+.list{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.li{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line)}
+.li:first-child{border-top:0}
+
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.dchip{flex:none;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:8px 12px;text-align:center;min-width:64px;line-height:1.2}
+.dchip b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.2rem}
+.dchip.on{background:var(--deep);color:var(--on-deep);border-color:var(--deep)}
+
+.slot{display:flex;align-items:center;gap:12px;padding:10px 14px;border-top:1px solid var(--line)}
+.slot:first-child{border-top:0}
+.slot .t{font-weight:700;width:76px;font-variant-numeric:tabular-nums}
+.dots{display:flex;gap:4px;flex:1}
+.dots i{width:12px;height:12px;border-radius:50%;border:2px solid var(--fair)}
+.dots i.f{background:var(--fair)}
+.dots i.me{background:var(--flag);border-color:var(--flag)}
+
+.field{display:block;margin-top:12px}
+.field span{display:block;font-size:.85rem;color:var(--muted);margin-bottom:4px;font-weight:600}
+.input{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 12px;min-height:44px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* scoring */
+.holehead{display:flex;align-items:flex-end;gap:14px}
+.holenum{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:4.2rem;line-height:.85;color:var(--fair)}
+.stepper{display:flex;align-items:center;justify-content:space-between;background:var(--bg);border-radius:14px;padding:8px}
+.stepper button{width:52px;height:52px;border-radius:12px;border:1px solid var(--line);background:var(--card);font-size:1.6rem;font-weight:700}
+.stepper .v{font-family:"Bricolage Grotesque",sans-serif;font-size:2.4rem;font-weight:800;min-width:60px;text-align:center}
+.sc{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;text-align:center;font-size:.8rem}
+.sc div{padding:5px 0;border-radius:8px}
+.sc .h{color:var(--muted);font-weight:600}
+.sc .s{background:var(--bg);font-weight:700;font-variant-numeric:tabular-nums;border:2px solid transparent}
+.sc .s.cur{border-color:var(--flag)}
+.sc .eagle{background:var(--sea);color:#fff}
+.sc .birdie{background:var(--sea-soft);color:var(--sea)}
+.sc .bogey{background:var(--sand)}
+.sc .dbl{background:var(--cart);color:#fff}
+
+/* food */
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--card);font-weight:700;font-size:1.1rem}
+.cartbar{position:sticky;bottom:calc(76px + env(safe-area-inset-bottom,0px));margin-top:16px;background:var(--deep);color:var(--on-deep);border-radius:18px;padding:14px}
+.cartbar .input{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:var(--on-deep)}
+.cartbar select option{color:#13261E}
+.track{display:flex;gap:6px;margin:12px 0 6px}
+.track i{flex:1;height:6px;border-radius:3px;background:var(--line)}
+.track i.on{background:var(--fair)}
+
+/* map */
+.mapwrap{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:6px;overflow:hidden}
+.map{display:block;width:100%;height:auto}
+.map .hole{cursor:pointer}
+.map .hole:hover line.fwl{stroke:var(--gr)}
+.map-t{font:700 9px Figtree,sans-serif;fill:var(--ink)}
+.map-sea{font:600 11px Figtree,sans-serif;fill:#fff;opacity:.9}
+.mk{font:800 7px Figtree,sans-serif;fill:#fff}
+.mk.me{fill:#13261E}
+.pulse{animation:pulse 1.8s ease-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes pulse{0%{opacity:.6;transform:scale(1)}100%{opacity:0;transform:scale(2.4)}}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none;opacity:0}}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.84rem;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.holegrid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.holegrid button{min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-weight:700}
+.holegrid button.on{background:var(--cart);color:#fff;border-color:var(--cart)}
+.holegrid button.wide{grid-column:span 6}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{padding:10px 10px;text-align:left;border-top:1px solid var(--line);white-space:nowrap}
+thead th{border-top:0;color:var(--muted);font-weight:600;font-size:.82rem}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.lead td{font-weight:700}
+.pos{font-family:"Bricolage Grotesque",sans-serif;font-weight:800}
+.under{color:var(--sea);font-weight:700}
+.over{color:var(--cart);font-weight:700}
+
+.badge{display:inline-block;border-radius:999px;padding:3px 10px;font-size:.78rem;font-weight:700;background:var(--bg);border:1px solid var(--line)}
+.badge.live{background:var(--cart);color:#fff;border-color:var(--cart)}
+.badge.ok{background:var(--fair-soft);border-color:transparent;color:var(--fair)}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.card .stat,.sheet .stat{background:var(--bg);border-color:transparent}
+.stat b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.6rem;font-weight:800;line-height:1.1}
+.stat span{font-size:.8rem;color:var(--muted)}
+
+/* nav */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.nav-in{max-width:620px;margin:0 auto;display:flex}
+.nav button{flex:1;border:0;background:none;padding:9px 1px 10px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.68rem;font-weight:600;color:var(--muted);min-height:58px}
+.nav button svg{width:23px;height:23px}
+.nav button.on{color:var(--deep)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .nav button.on{color:var(--fair)}}
+:root[data-theme="dark"] .nav button.on{color:var(--fair)}
+.nav button.on svg{stroke-width:2.4}
+
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(6,14,30,.5);z-index:40}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;background:var(--card);border-radius:22px 22px 0 0;max-height:88vh;max-height:88dvh;overflow-y:auto;padding:10px 18px calc(22px + env(safe-area-inset-bottom,0px));max-width:620px;margin:0 auto;animation:up .22s ease-out}
+@keyframes up{from{transform:translateY(30px);opacity:.4}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.grab{width:40px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 14px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:14px;padding:14px;margin-top:8px}
+.opt.on{border-color:var(--deep);box-shadow:inset 0 0 0 1px var(--deep)}
+
+.seg{display:flex;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:3px;gap:3px}
+.seg button{flex:1;border:0;background:none;border-radius:9px;padding:8px 6px;font-weight:600;font-size:.86rem;color:var(--muted);min-height:38px}
+.seg button.on{background:var(--deep);color:var(--on-deep)}
+.hv-map{position:relative;height:min(64vh,560px);background:var(--rough);border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.hv-map.compact{height:min(50vh,420px)}
+.hv{display:block;width:100%;height:100%;cursor:crosshair;touch-action:manipulation}
+.hv-l{fill:#fff;paint-order:stroke;stroke:#12305F;font-weight:800;font-family:Figtree,sans-serif}
+.hv-top{position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.93);color:#13261E;border-radius:12px;padding:6px 10px 6px 6px;pointer-events:none;line-height:1.15}
+.hv-top .hv-n{background:#034587;color:#fff;border-radius:9px;min-width:36px;height:36px;display:grid;place-items:center;font-family:"Bricolage Grotesque",sans-serif;font-size:1.25rem}
+.hv-top span{display:block;font-size:.76rem;color:#44574D}
+.hv-dist{position:absolute;top:10px;right:10px;background:rgba(18,48,95,.92);color:#fff;border-radius:14px;padding:10px 14px;text-align:center;min-width:86px;pointer-events:none;line-height:1.1}
+.hv-dist small{display:block;font-size:.7rem;opacity:.75;margin-bottom:6px}
+.hv-dist .c{font-family:"Bricolage Grotesque",sans-serif;font-size:2.3rem;font-weight:800;color:var(--sky)}
+.hv-dist .fb{font-weight:700;font-size:1.05rem}
+.hz{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:.92rem}
+.hzdot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.hzdot.bunker{background:var(--sand)}.hzdot.agua{background:var(--sea)}
+.teedot{display:inline-block;width:12px;height:12px;border-radius:50%;border:1px solid #6b7a72;vertical-align:-1px;margin-right:6px}
+.sctbl th,.sctbl td{padding:7px 8px;text-align:center}
+.sctbl td:first-child,.sctbl th:first-child{text-align:left;position:sticky;left:0;background:var(--card)}
+.sctbl tr.parrow td{background:var(--fair-soft);font-weight:700}
+.avatar.lg{width:58px;height:58px;font-size:1.25rem;display:grid;place-items:center}
+.idx{font-size:2.3rem!important}
+.distbar{display:flex;height:16px;border-radius:8px;overflow:hidden;margin-top:8px}
+.distleg{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:8px;font-size:.76rem;color:var(--muted);text-align:center}
+.distleg b{display:block;color:var(--ink);font-size:.95rem}
+.badges{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bdg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;gap:10px;align-items:flex-start}
+.bdg .ico{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--flag);color:#13261E}
+.bdg.off{opacity:.5}.bdg.off .ico{background:var(--line);color:var(--muted)}
+.gpsbar{display:flex;align-items:center;gap:10px;margin-top:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:.9rem}
+.gpsdot{width:10px;height:10px;border-radius:50%;background:var(--muted);flex:none}.gpsdot.on{background:#2FB36B;box-shadow:0 0 0 4px rgba(47,179,107,.2)}
+.shotlist{margin-top:10px}.shotlist .hz b{font-variant-numeric:tabular-nums}
+.alert{background:var(--flag);color:#13261E;border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:10px;margin-bottom:10px;font-weight:600}
+.wide main,.wide .top-in,.wide .nav-in{max-width:1180px}
+.dash{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+.stats.six{grid-template-columns:repeat(3,1fr)}
+@media(min-width:880px){.dash{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.dash .span2{grid-column:span 2}.wide .stats.six{grid-template-columns:repeat(6,1fr)}}
+.mapbox svg{display:block;width:100%;height:min(560px,70vh)}
+.kind{display:inline-block;border-radius:999px;padding:2px 8px;font-size:.72rem;font-weight:700;margin-left:6px;vertical-align:1px}
+.kind.socio{background:var(--fair-soft);color:var(--fair)}.kind.visitante{background:var(--sea-soft);color:var(--sea)}.kind.invitado{background:var(--sand);color:#13261E}
+.hbar{display:grid;grid-template-columns:minmax(110px,1fr) 2fr 52px;align-items:center;gap:10px;padding:6px 0;font-size:.9rem}
+.hbar i{display:block;height:12px;border-radius:6px;background:var(--fair)}
+.legend2{display:flex;flex-wrap:wrap;gap:12px;font-size:.85rem;color:var(--muted);margin-top:8px}
+.legend2 i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.kds{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:760px){.kds{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.kds section{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;min-height:120px}
+.kds h3{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.ticket{background:#FFFEF7;color:#161616;font-family:"Courier New",Courier,monospace;border:1px dashed #9aa3ad;border-radius:6px;padding:12px 12px 10px;margin-bottom:12px;box-shadow:0 1px 0 #e6e0cf;line-height:1.35}
+.ticket.late{border:2px solid var(--cart)}
+.ticket .t-h{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dashed #9aa3ad;padding-bottom:6px;margin-bottom:6px}
+.ticket .t-h b{font-size:1.4rem}
+.ticket .t-where{font-weight:700;font-size:1.05rem}
+.ticket .t-it{font-size:1.05rem;padding:2px 0}
+.ticket .t-note{background:#FFF1B8;padding:4px 6px;margin-top:6px;font-weight:700}
+.ticket .t-foot{border-top:1px dashed #9aa3ad;margin-top:8px;padding-top:6px;font-size:.85rem;color:#555}
+.ticket .btn{font-family:Figtree,sans-serif;width:100%;margin-top:10px}
+.st{display:inline-block;border-radius:999px;padding:2px 9px;font-size:.75rem;font-weight:700;background:var(--bg);border:1px solid var(--line)}
+.st.cook{background:#FFF1B8;border-color:#F2D46B;color:#6b5200}.st.ready{background:#D9F5E3;border-color:#8FD5A8;color:#1D6B3A}
+.nav-in.n7 button{font-size:.6rem}
+.alertbar .grow{min-width:190px}
+.alertbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:10px 0 14px;font-size:.9rem}
+.tablet .btn{min-height:52px;font-size:1.02rem;border-radius:14px}
+.tablet .btn.sm{min-height:48px;font-size:.98rem;padding:10px 16px}
+.tablet .holegrid button{min-height:56px;font-size:1.15rem}
+.tablet .nav button{min-height:64px;font-size:.8rem}
+.tablet .ticket .t-it{font-size:1.2rem}.tablet .ticket .t-where{font-size:1.2rem}
+.devbar{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.devbar button{display:inline-flex;align-items:center;gap:8px}
+.devbar .on{background:var(--fair-soft);border-color:var(--fair);color:var(--ink)}
+.runner-grid{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+.tab-only{display:none}
+@media(min-width:900px){.runner-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:start}.runner-grid>.left{position:sticky;top:calc(env(safe-area-inset-top,0px) + 70px)}.tab-only{display:block}.tab-only svg{display:block;width:100%;height:min(52vh,520px)}}
+:root.sun{--ink:#000;--muted:#25303d;--line:#8a9bb0;--bg:#FFFFFF;--card:#FFFFFF}
+:root.sun .card,:root.sun .list,:root.sun .kds section{border-width:2px}
+:root.sun .btn{box-shadow:0 0 0 2px #000 inset}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;z-index:60;font-weight:600;max-width:90vw;font-size:.92rem}
+.splash{min-height:70vh;display:grid;place-items:center;text-align:center;color:var(--muted)}
+.empty{text-align:center;padding:26px 16px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div id="app"><div class="splash"><div><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 21V3"/><path d="M6 3l12 4.5L6 12"/></svg><p style="font-family:Cinzel,Georgia,serif;color:#034587;letter-spacing:.05em">Dorado del Mar Club</p></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* =====================================================================
+   CONFIGURACIÓN DE SUPABASE
+   Pega aquí los datos de tu proyecto (Supabase > Project Settings > API):
+   - SUPABASE_URL: la "Project URL"
+   - SUPABASE_ANON_KEY: la clave pública "anon" / "publishable"
+   Si se dejan vacíos, la app abre en modo demostración.
+   © 2026 LL Technology Service
+   ===================================================================== */
+const SUPABASE_URL = 'https://ngqxhevroifquvmcxsdk.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_EtQrfUloBeyMJatIJavWLg_JuNc5Inj';
+</script>
+<script>
+/* ============ Utilidades ============ */
+const BIRD="data:image/png;base64,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";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const gid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const z=n=>String(n).padStart(2,'0');
+const todayStr=(d=new Date())=>d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate());
+const safe=id=>String(id||'x').replace(/[^A-Za-z0-9_\-.~:@+]/g,'-');
+const money=n=>'$'+Number(n||0).toFixed(2);
+const parseD=ds=>{const [y,m,d]=ds.split('-').map(Number);return new Date(y,m-1,d)};
+const dLabel=ds=>parseD(ds).toLocaleDateString('es-PR',{weekday:'long',day:'numeric',month:'short'});
+const tLabel=hm=>{const h=+hm.slice(0,2),m=hm.slice(2);return `${((h+11)%12)+1}:${m} ${h>=12?'pm':'am'}`};
+const ago=ts=>{const m=Math.round((Date.now()-ts)/60000);return m<1?'ahora mismo':m<60?`hace ${m} min`:`hace ${Math.round(m/60)} h`};
+const toPar=n=>n===0?'E':(n>0?'+'+n:String(n));
+const parCls=n=>n<0?'under':n>0?'over':'';
+const withTimeout=(p,ms)=>Promise.race([p,new Promise(r=>setTimeout(()=>r(null),ms))]);
+function toast(msg){const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2600)}
+
+/* ============ Datos del campo (editables en Administración) ============ */
+// Tarjeta oficial Dorado del Mar (Golf ScoreCards, 3/2026): par, doradas, azules, blancas, rojas, hcp caballeros, hcp damas
+const DEFAULT_HOLES=[[4,356,336,312,291,13,9],[3,152,142,125,111,17,15],[5,575,544,514,420,5,7],[4,374,359,335,318,3,3],[4,370,345,327,306,11,11],[4,400,360,330,256,7,13],[3,178,157,131,103,15,17],[5,568,538,521,501,9,1],[4,435,415,368,325,1,5],
+ [5,525,510,484,449,10,8],[4,453,431,401,352,4,4],[4,410,366,336,261,8,14],[3,187,158,133,89,16,16],[4,445,424,394,347,6,6],[4,368,337,313,275,14,10],[3,191,160,142,88,12,18],[4,443,421,390,341,2,2],[5,510,497,477,412,18,12]]
+ .map(([par,gold,yards,white,red,hcp,hcpRed])=>({par,gold,yards,white,red,hcp,hcpRed}));
+const DEFAULT_MENU=[
+ {id:'m1',cat:'Comida',station:'cocina',name:'Mofongo con pollo',price:14},
+ {id:'m2',cat:'Comida',station:'cocina',name:'Sándwich cubano',price:12},
+ {id:'m3',cat:'Comida',station:'cocina',name:'Wrap de pollo a la parrilla',price:11},
+ {id:'m4',cat:'Comida',station:'cocina',name:'Empanadillas de carne (3)',price:8},
+ {id:'m5',cat:'Comida',station:'cocina',name:'Hot dog del hoyo 9',price:6},
+ {id:'m6',cat:'Bebidas',station:'carrito',name:'Agua',price:2},
+ {id:'m7',cat:'Bebidas',station:'carrito',name:'Bebida deportiva',price:3.5},
+ {id:'m8',cat:'Bebidas',station:'carrito',name:'Cerveza local',price:4.5},
+ {id:'m9',cat:'Bebidas',station:'carrito',name:'Café con leche',price:2.5},
+ {id:'m10',cat:'Bebidas',station:'carrito',name:'Piña colada sin alcohol',price:7}];
+// Geometría del mapa: [teeX, teeY, greenX, greenY] por hoyo
+const H=[[160,545,60,500],[45,480,40,390],[50,370,45,280],[40,260,55,170],[60,150,90,88],[110,82,150,118],[140,140,130,230],[135,250,120,350],[125,372,155,500],
+[200,540,230,450],[225,430,240,340],[235,320,225,230],[230,210,215,132],[222,110,270,82],[290,86,320,160],[320,180,315,280],[320,300,305,390],[315,412,230,540]];
+const CLUB=[180,576];
+const holes=()=>{const b=(S.course&&Array.isArray(S.course.holes)&&S.course.holes.length===18)?S.course.holes:DEFAULT_HOLES;return b.map((h,i)=>{const d=DEFAULT_HOLES[i];return {par:+h.par||d.par,gold:+h.gold||d.gold,yards:+h.yards||d.yards,white:+h.white||d.white,red:+h.red||d.red,hcp:+h.hcp||d.hcp,hcpRed:+h.hcpRed||d.hcpRed,teeGps:h.teeGps||null,greenGps:h.greenGps||null}})};
+const TEES={gold:{name:'Doradas',key:'gold',color:'#D4A017'},blue:{name:'Azules',key:'yards',color:'#2563A8'},white:{name:'Blancas',key:'white',color:'#FFFFFF'},red:{name:'Rojas',key:'red',color:'#C8372D'}};
+const DEFAULT_RATINGS={gold:{rating:75.2,slope:138},blue:{rating:73.1,slope:131},white:{rating:71.0,slope:126},red:{rating:70.2,slope:121}};
+const hcpOf=(i,tee)=>{const h=holes()[i];return tee==='red'?h.hcpRed:h.hcp};
+const ratings=()=>{const r=(S.course&&S.course.ratings)||{};const o={};for(const k in DEFAULT_RATINGS)o[k]=Object.assign({},DEFAULT_RATINGS[k],r[k]||{});return o};
+const myTee=()=>((S.players[safe(S.uid)]||{}).tee)||'white';
+const yd=(i,tee)=>holes()[i][TEES[tee||'white'].key];
+const teeTotal=tee=>holes().reduce((a,h)=>a+h[TEES[tee].key],0);
+const coursePar=()=>holes().reduce((a,h)=>a+h.par,0);
+const menu=()=>((S.menu&&Array.isArray(S.menu.items))?S.menu.items:DEFAULT_MENU).map(i=>({...i,station:i.station||(/bebida/i.test(i.cat||'')?'carrito':'cocina')}));
+const stationOf=it=>it.station||((DEFAULT_MENU.find(m=>m.name===it.name)||{}).station)||'cocina';
+const foodItems=o=>(o.items||[]).filter(i=>stationOf(i)==='cocina');
+const drinkItems=o=>(o.items||[]).filter(i=>stationOf(i)!=='cocina');
+const itemsTxt=a=>a.map(x=>`${x.qty} ${esc(x.name)}`).join(', ');
+function ordNum(o){const t=S.orders.filter(x=>x.day===o.day).sort((a,b)=>a.createdAt-b.createdAt);const i=t.findIndex(x=>x.id===o.id);return i>=0?i+1:'?'}
+const KSTATE={nuevo:['En cola en cocina','cook'],preparando:['Cocinando','cook'],listo:['Lista para recoger','ready']};
+const parSum=arr=>arr.reduce((a,_,i)=>a+holes()[i].par,0);
+
+/* ============ Estado ============ */
+const S={mode:'player',tab:'home',uid:null,meName:'',canEdit:false,demo:false,userApi:null,
+ players:{},tee:[],orders:[],rounds:[],runners:[],tournaments:[],entries:[],course:null,menu:null,
+ cart:{},teeDate:todayStr(),draft:null,sheet:null,lbT:null,adminDate:todayStr(),menuDraft:null,courseDraft:null,profiles:{},deliverTo:null,note:'',cHole:1,cSeg:'hole',cTee:null,hvMode:'measure',ball:{},target:null,pSeg:'stats',members:{},staff:{},alerts:[],alertsOn:false,gps:null,gpsErr:null,gpsWatch:null,lastPos:null};
+
+/* ============ Almacenamiento: base de datos compartida o modo demo en memoria ============ */
+const Store={db:null,mem:new Map(),ml:new Map(),dl:new Map(),
+ _col(c){if(!this.mem.has(c))this.mem.set(c,new Map());return this.mem.get(c)},
+ _split(p){const a=p.split('/');return [a.slice(0,-1).join('/'),a[a.length-1]]},
+ _emit(c){const docs=[...this._col(c).entries()].map(([id,d])=>({id,...d}));(this.ml.get(c)||[]).forEach(f=>f(docs));
+   for(const [id,d] of this._col(c)){(this.dl.get(c+'/'+id)||[]).forEach(f=>f(d))}
+   (this.dl.get('*'+c)||[]).forEach(f=>f())},
+ sub(c,cb,q){
+  if(this.db){let ref=this.db.collection(c);if(q)ref=q(ref);
+    return ref.onSnapshot(s=>cb(s.docs.map(d=>({id:d.id,...d.data()}))),e=>{console.warn(c,e);if(e&&e.code==='revoked')toast('Se perdió el acceso a los datos del club.')})}
+  if(!this.ml.has(c))this.ml.set(c,[]);this.ml.get(c).push(cb);cb([...this._col(c).entries()].map(([id,d])=>({id,...d})))},
+ subDoc(p,cb){
+  if(this.db){return this.db.doc(p).onSnapshot(s=>cb(s.exists?s.data():null),e=>console.warn(p,e))}
+  const [c,id]=this._split(p);const k='*'+c;if(!this.dl.has(k))this.dl.set(k,[]);
+  this.dl.get(k).push(()=>cb(this._col(c).get(id)||null));cb(this._col(c).get(id)||null)},
+ async set(p,d){if(this.db)return this.db.doc(p).set(d);const [c,id]=this._split(p);this._col(c).set(id,JSON.parse(JSON.stringify(d)));this._emit(c)},
+ async update(p,d){if(this.db)return this.db.doc(p).update(d);const [c,id]=this._split(p);const cur=this._col(c).get(id);if(!cur)throw{code:'invalid_argument'};this._col(c).set(id,{...cur,...JSON.parse(JSON.stringify(d))});this._emit(c)},
+ async del(p){if(this.db)return this.db.doc(p).delete();const [c,id]=this._split(p);this._col(c).delete(id);this._emit(c)},
+ async get(p){if(this.db){const s=await this.db.doc(p).get();return s.exists?s.data():null}const [c,id]=this._split(p);return this._col(c).get(id)||null},
+ async lock(p){if(!this.db)return true;try{const r=await this.db.doc(p).acquire({holder:S.uid,ttlMs:4000});return r.acquired}catch(e){return true}}
+};
+/* ============ Adaptador Supabase (SQL) ============ */
+let SB=null;
+const SBMAP={
+ 'players':{t:'jugadores',f:[['uid','uid'],['name','nombre'],['handicap','handicap'],['tee','salida']],n:['handicap']},
+ 'data/admin/members':{t:'socios',f:[['uid','uid'],['member','es_socio'],['at','actualizado']]},
+ 'data/admin/staff':{t:'empleados',f:[['uid','uid'],['role','rol'],['at','creado']]},
+ 'teetimes':{t:'reservas',f:[['date','fecha'],['time','hora'],['players','jugadores']]},
+ 'rounds':{t:'rondas',f:[['uid','uid'],['date','fecha'],['tournamentId','torneo_id'],['startHole','hoyo_inicio'],['currentHole','hoyo_actual'],['tee','salida'],['scores','golpes'],['putts','putts'],['fw','fairway'],['shots','tiros'],['group','grupo'],['pos','posicion'],['status','estado'],['recordedBy','anotado_por'],['groupOf','grupo_de'],['startedAt','inicio'],['endedAt','fin']]},
+ 'orders':{t:'pedidos',f:[['uid','uid'],['items','articulos'],['total','total'],['hole','hoyo'],['note','nota'],['status','estado'],['kitchen','estado_cocina'],['day','dia'],['createdAt','creado'],['runner','carrito'],['cookAt','cocinando'],['readyAt','lista'],['deliveredAt','entregado']],n:['total']},
+ 'runners':{t:'carritos',f:[['uid','uid'],['hole','hoyo'],['lat','lat'],['lon','lon'],['updatedAt','actualizado'],['src','fuente']]},
+ 'entries':{t:'inscripciones',f:[['tid','torneo_id'],['uid','uid'],['at','creado']]},
+ 'data/admin/tournaments':{t:'torneos',f:[['name','nombre'],['date','fecha'],['max','maximo'],['format','formato'],['status','estado'],['createdAt','creado']]}
+};
+const toRow=(m,d)=>{const r={};for(const [a,c] of m.f)if(a in d)r[c]=d[a]===undefined?null:d[a];return r};
+const fromRow=(m,r)=>{const o={id:r.id};for(const [a,c] of m.f){const v=r[c];if(v!==null&&v!==undefined)o[a]=(m.n&&m.n.includes(a))?Number(v):v}return o};
+function chk(res){if(res&&res.error){const e=res.error;console.warn(e);throw (e.code==='42501'||/row-level security/i.test(e.message||''))?{code:'invalid_argument'}:e}return res}
+function sbWatch(tables,load){let tm=null;const re=()=>{clearTimeout(tm);tm=setTimeout(load,150)};const ch=SB.channel('rt-'+tables.join('-')+'-'+Math.random().toString(36).slice(2,6));
+  tables.forEach(t=>ch.on('postgres_changes',{event:'*',schema:'public',table:t},re));ch.subscribe();load()}
+const TEE_NAMES={gold:'Doradas',blue:'Azules',white:'Blancas',red:'Rojas'};
+const SBStore={
+ sub(c,cb){const m=SBMAP[c];if(!m){console.warn('Sin tabla para',c);cb([]);return}
+  sbWatch([m.t],async()=>{let q=SB.from(m.t).select('*');if(m.t==='pedidos'){const d=new Date();d.setDate(d.getDate()-7);q=q.gte('dia',todayStr(d))}if(m.t==='reservas')q=q.gte('fecha',todayStr());
+   const res=await q;if(res.error){console.warn(res.error);return}cb(res.data.map(r=>fromRow(m,r)))})},
+ subDoc(p,cb){
+  if(p==='data/admin/config/course')return sbWatch(['hoyos','salidas'],async()=>{const [h,s]=await Promise.all([SB.from('hoyos').select('*').order('numero'),SB.from('salidas').select('*')]);if(h.error||s.error)return;
+   const ratings={};s.data.forEach(r=>{ratings[r.codigo]={rating:Number(r.rating),slope:Number(r.slope)}});
+   const holes=h.data.map(r=>({par:r.par,gold:r.yardas_doradas,yards:r.yardas_azules,white:r.yardas_blancas,red:r.yardas_rojas,hcp:r.hcp_caballeros,hcpRed:r.hcp_damas,
+     teeGps:r.tee_lat!=null?{lat:Number(r.tee_lat),lon:Number(r.tee_lon)}:null,greenGps:r.green_lat!=null?{lat:Number(r.green_lat),lon:Number(r.green_lon)}:null}));
+   cb(holes.length===18?{holes,ratings}:(s.data.length?{ratings}:null))});
+  if(p==='data/admin/config/menu')return sbWatch(['menu'],async()=>{const r=await SB.from('menu').select('*').order('orden');if(r.error)return;
+   cb(r.data.length?{items:r.data.map(x=>({id:x.id,cat:x.categoria,station:x.estacion,name:x.nombre,price:Number(x.precio)}))}:null)});
+  console.warn('Sin tabla para',p);cb(null)},
+ async set(p,d){
+  if(p==='data/admin/config/course'){chk(await SB.from('hoyos').upsert(d.holes.map((h,i)=>({numero:i+1,par:h.par,yardas_doradas:h.gold,yardas_azules:h.yards,yardas_blancas:h.white,yardas_rojas:h.red,hcp_caballeros:h.hcp,hcp_damas:h.hcpRed,
+     tee_lat:h.teeGps?h.teeGps.lat:null,tee_lon:h.teeGps?h.teeGps.lon:null,green_lat:h.greenGps?h.greenGps.lat:null,green_lon:h.greenGps?h.greenGps.lon:null}))));
+   const rr=Object.entries(d.ratings||{}).map(([k,v])=>({codigo:k,nombre:TEE_NAMES[k]||k,rating:v.rating,slope:v.slope,orden:Object.keys(TEE_NAMES).indexOf(k)}));if(rr.length)chk(await SB.from('salidas').upsert(rr));return}
+  if(p==='data/admin/config/menu'){const rows=(d.items||[]).map((it,i)=>({id:it.id,categoria:it.cat,estacion:it.station,nombre:it.name,precio:it.price,orden:i}));const ids=rows.map(r=>r.id);
+   const cur=chk(await SB.from('menu').select('id'));const gone=cur.data.map(r=>r.id).filter(id=>!ids.includes(id));if(gone.length)chk(await SB.from('menu').delete().in('id',gone));if(rows.length)chk(await SB.from('menu').upsert(rows));return}
+  const [c,id]=Store._split(p);const m=SBMAP[c];chk(await SB.from(m.t).upsert({id,...toRow(m,d)}))},
+ async update(p,d){const [c,id]=Store._split(p);const m=SBMAP[c];chk(await SB.from(m.t).update(toRow(m,d)).eq('id',id))},
+ async del(p){const [c,id]=Store._split(p);const m=SBMAP[c];chk(await SB.from(m.t).delete().eq('id',id))},
+ async get(p){const [c,id]=Store._split(p);const m=SBMAP[c];const r=chk(await SB.from(m.t).select('*').eq('id',id).maybeSingle());return r.data?fromRow(m,r.data):null},
+ async lock(){return true}
+};
+async function bootSupabase(){
+  SB=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+  let {data:{session}}=await SB.auth.getSession();
+  if(!session){const r=await SB.auth.signInAnonymously();if(r.error)throw r.error;session=r.data.session}
+  S.uid=session.user.id;S.sbMode=true;S.demo=false;Object.assign(Store,SBStore);
+  try{const a=await SB.rpc('es_admin');S.canEdit=!!a.data}catch(e){S.canEdit=false}
+}
+
+async function write(fn,okMsg){try{await fn();if(okMsg)toast(okMsg);return true}catch(e){console.warn(e);
+  toast(e&&e.code==='invalid_argument'?'No tienes permiso para hacer este cambio. Pide a la administración que te dé acceso.':e&&e.code==='quota_exceeded'?'Se llenó el espacio de datos. Borra registros viejos en Administración.':'No se pudo guardar. Revisa la conexión e inténtalo otra vez.');return false}}
+
+/* ============ Nombres ============ */
+function nameOf(id){if(!id)return 'Jugador';const p=S.players[safe(id)];return (p&&p.name)||S.profiles[id]||(id===S.uid?(S.meName||'Tú'):'Jugador')}
+function initials(id){return nameOf(id).split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase()||'?'}
+async function resolveNames(){if(!S.userApi)return;const ids=new Set();
+  S.rounds.forEach(r=>ids.add(r.uid));S.orders.forEach(o=>ids.add(o.uid));S.tee.forEach(t=>(t.players||[]).forEach(p=>ids.add(p.uid)));S.entries.forEach(e=>ids.add(e.uid));
+  const need=[...ids].filter(i=>i&&!(S.players[safe(i)]&&S.players[safe(i)].name)&&!(i in S.profiles));if(!need.length)return;
+  need.forEach(i=>S.profiles[i]='');try{const ps=await S.userApi.profiles(need);need.forEach(i=>S.profiles[i]=(ps&&ps[i]&&ps[i].name)||'');scheduleRender()}catch(e){}}
+
+/* ============ Derivados ============ */
+const myRound=()=>S.rounds.find(r=>r.uid===S.uid&&r.status==='active');
+const activeRounds=()=>S.rounds.filter(r=>r.status==='active');
+const myOrders=()=>S.orders.filter(o=>o.uid===S.uid&&o.day===todayStr()).sort((a,b)=>b.createdAt-a.createdAt);
+const openOrders=()=>S.orders.filter(o=>o.day===todayStr()&&o.status!=='entregado').sort((a,b)=>a.createdAt-b.createdAt);
+const myRunnerHole=()=>{const r=S.runners.find(x=>x.id===safe(S.uid));return r?r.hole:0};
+const seqFrom=start=>start===10?[10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9]:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
+const played=r=>(r.scores||[]).filter(x=>x>0).length;
+function roundStats(r){const sc=r.scores||[];let g=0,p=0,n=0;sc.forEach((s,i)=>{if(s>0){g+=s;p+=holes()[i].par;n++}});return {gross:g,toPar:g-p,thru:n}}
+function locPt(n,t=.5){if(!n)return CLUB;const h=H[n-1];return [h[0]+(h[2]-h[0])*t,h[1]+(h[3]-h[1])*t]}
+function etaMin(a,b){const [x1,y1]=locPt(a),[x2,y2]=locPt(b);return Math.max(2,Math.round(Math.hypot(x1-x2,y1-y2)/28)+1)}
+const holeName=n=>n?`hoyo ${n}`:'casa club';
+const enH=n=>n?`el hoyo ${n}`:'la casa club';const alH=n=>n?`al hoyo ${n}`:'a la casa club';
+const entered=tid=>S.entries.some(e=>e.tid===tid&&e.uid===S.uid);
+
+/* ============ Posición en vivo y GPS ============ */
+const freshPos=r=>r&&r.pos&&Date.now()-(r.pos.at||0)<20*60000?r.pos:null;
+const liveHole=r=>{const p=freshPos(r);return p?p.hole:r.currentHole};
+function posRem(p){if(p.rem!=null)return p.rem;const g=holeGeo(p.hole);return dist([p.x,p.y],[g.gx,g.gy])}
+const posText=r=>{const p=freshPos(r);return p?`a ${posRem(p)} yd del green (${ago(p.at)})`:''};
+function llToHole(n,ll){const h=holes()[n-1];if(!ll||!h.teeGps||!h.greenGps)return null;const T=h.teeGps,G=h.greenGps;const kx=Math.cos(T.lat*Math.PI/180)*111320,ky=110540;
+  const m=a=>[(a.lon-T.lon)*kx,(a.lat-T.lat)*ky];const g=m(G),q=m(ll);const len=Math.hypot(g[0],g[1]);if(len<20)return null;const u=[g[0]/len,g[1]/len];
+  const along=(q[0]*u[0]+q[1]*u[1])*1.0936,cross=(q[0]*u[1]-q[1]*u[0])*1.0936,lenY=len*1.0936;const L=Math.max(h.gold,h.yards);const sc=h.yards/lenY;const geo=holeGeo(n);const y=Math.round(L-h.yards+along*sc);
+  return {x:Math.round(geo.at(y)[0]+cross*sc),y,rem:Math.round(Math.hypot(q[0]-g[0],q[1]-g[1])*1.0936),off:Math.abs(cross),along,lenY}}
+function detectHole(ll){let best=null;for(let n=1;n<=18;n++){const hp=llToHole(n,ll);if(hp&&hp.along>-40&&hp.along<hp.lenY+35&&hp.off<70&&(!best||hp.off<best.off))best={n,off:hp.off}}return best?best.n:null}
+function gpsHere(n){if(!S.gps||Date.now()-S.gps.at>60000)return null;const hp=llToHole(n,S.gps);return hp&&hp.off<150?hp:null}
+function onGps(){if(S.mode==='runner'){const n=detectHole(S.gps);const now=Date.now(),lr=S.lastRun;
+    if(n&&(!lr||lr.hole!==n||now-lr.at>60000)){S.lastRun={hole:n,at:now};Store.set('runners/'+safe(S.uid),{uid:S.uid,hole:n,lat:S.gps.lat,lon:S.gps.lon,updatedAt:now,src:'gps'}).catch(()=>{})}
+    else if(!n&&!S.gpsWarned){S.gpsWarned=true;toast('El GPS funciona, pero el campo aún no tiene coordenadas. Marca el hoyo a mano.')}}
+  const r=myRound();if(r){const n=detectHole(S.gps)||r.currentHole;const hp=llToHole(n,S.gps);if(hp&&hp.off<150){const now=Date.now(),lp=S.lastPos;
+  if(!lp||lp.hole!==n||Math.hypot(lp.x-hp.x,lp.y-hp.y)>15||now-lp.at>90000){S.lastPos={hole:n,x:hp.x,y:hp.y,at:now};Store.update('rounds/'+r.id,{pos:{hole:n,x:hp.x,y:hp.y,rem:hp.rem,at:now,src:'gps'}}).catch(()=>{})}}}
+  scheduleRender()}
+
+/* ============ Grupo: invitados y jugadores con la app ============ */
+const inTee=(p,uid)=>p.uid===uid||(p.buddies||[]).includes(uid);
+const gkey=g=>g.type==='guest'?g.key:g.uid;
+const gname=g=>g.type==='guest'?g.name:nameOf(g.uid);
+const gScores=g=>{if(g.type==='guest')return g.scores||Array(18).fill(0);const lr=S.rounds.find(x=>x.id===g.rid);return (lr&&lr.scores)||Array(18).fill(0)};
+function memberRow(g,i,target){const guest=g.type==='guest';return `<div class="li"><span class="avatar" style="display:grid;place-items:center;${guest?'background:var(--sand);color:#13261E':''}">${esc((gname(g)||'?').split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase())}</span><div class="grow"><b>${esc(gname(g))}</b><p class="small muted">${guest?'Invitado sin la app'+(g.hcp!==''&&g.hcp!=null?', hcp '+esc(g.hcp):''):'Tiene la app. La ronda se guarda en su perfil'}</p></div>${target?`<button class="btn warn sm" data-act="grpDel" data-v="${target}|${i}">Quitar</button>`:''}</div>`}
+function groupEditor(list,target,max){return `<div class="list" style="margin-top:6px"><div class="li"><span class="avatar" style="display:grid;place-items:center;background:var(--flag);color:#13261E">${esc(initials(S.uid))}</span><div class="grow"><b>${esc(nameOf(S.uid))}</b><p class="small muted">Tú</p></div></div>${list.map((g,i)=>memberRow(g,i,target)).join('')}</div>
+  ${list.length<max?`<div class="row" style="gap:8px;margin-top:8px"><button class="btn ghost sm grow" data-act="grpGuest" data-v="${target}">Añadir invitado</button><button class="btn ghost sm grow" data-act="grpUser" data-v="${target}">Añadir jugador con la app</button></div>`:`<p class="small muted" style="margin-top:6px">Grupo completo.</p>`}`}
+const grpList=t=>t==='tee'?(S.teeGroup=S.teeGroup||[]):(S.groupDraft=S.groupDraft||[]);
+async function syncGroup(r,patch){for(const g of (r.group||[]).filter(x=>x.type==='user')){if(S.rounds.some(x=>x.id===g.rid))await Store.update('rounds/'+g.rid,patch).catch(()=>{})}}
+
+/* ============ Notificaciones ============ */
+function beep(){try{if(!S.ac)return;const ac=S.ac;[0,.22].forEach(t=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=t?1175:880;o.connect(g);g.connect(ac.destination);const t0=ac.currentTime+t;g.gain.setValueAtTime(.0001,t0);g.gain.exponentialRampToValueAtTime(.35,t0+.02);g.gain.exponentialRampToValueAtTime(.0001,t0+.18);o.start(t0);o.stop(t0+.2)})}catch(e){}}
+function notify(title,body){const id=gid();S.alerts.unshift({id,title,body});S.alerts=S.alerts.slice(0,4);beep();try{navigator.vibrate&&navigator.vibrate([180,80,180])}catch(e){}
+  try{if('Notification' in window&&Notification.permission==='granted'&&document.hidden)new Notification(title,{body})}catch(e){}
+  setTimeout(()=>{S.alerts=S.alerts.filter(a=>a.id!==id);scheduleRender()},45000)}
+let firstOrders=true;const LOAD_AT=Date.now();
+function onOrders(a){const prev=S.ordMap||{};const next={};a.forEach(o=>{next[o.id]=o});S.orders=a;
+  if(!firstOrders){const today=todayStr();for(const o of a){if(o.day!==today)continue;const p=prev[o.id];const who=nameOf(o.uid);const pr=S.rounds.find(r=>r.uid===o.uid&&r.status==='active');const hn=pr?liveHole(pr):o.hole;const wh=hn?`hoyo ${hn}`:'casa club';
+    if(!p&&o.createdAt<LOAD_AT-60000)continue;
+    if(!p){if(S.mode==='runner')notify(`Nuevo pedido #${ordNum(o)}: ${who}`,`En ${enH(hn)}. ${drinkItems(o).length?'Bebidas: '+drinkItems(o).map(x=>x.qty+' '+x.name).join(', ')+'. ':''}${foodItems(o).length?'Comida en la cocina.':''}`);
+      if(S.mode==='kitchen'&&foodItems(o).length)notify(`Ticket nuevo #${ordNum(o)}`,`${foodItems(o).map(x=>x.qty+' '+x.name).join(', ')}. ${who}, ${wh}.`)}
+    else{if(S.mode==='runner'&&p.kitchen!=='listo'&&o.kitchen==='listo')notify(`Comida lista #${ordNum(o)}`,`Recoge en la cocina lo de ${who} y llévalo ${alH(hn)}.`);
+      if(o.uid===S.uid&&S.mode==='player'){if(p.status!=='en camino'&&o.status==='en camino')notify('Tu pedido va en camino','El carrito salió hacia tu hoyo.');
+        else if(p.status!=='entregado'&&o.status==='entregado')notify('Pedido entregado','¡Buen provecho!');else if(p.kitchen!=='listo'&&o.kitchen==='listo')toast('Tu comida está lista, el carrito la recoge')}}}}
+  firstOrders=false;S.ordMap=next;changed()}
+
+/* ============ Render ============ */
+let pending=false;
+function scheduleRender(){const a=document.activeElement;if(a&&/INPUT|TEXTAREA|SELECT/.test(a.tagName)&&a.type!=='checkbox'){pending=true;return}render()}
+document.addEventListener('focusout',()=>{if(pending)setTimeout(()=>{const a=document.activeElement;if(!(a&&/INPUT|TEXTAREA|SELECT/.test(a.tagName))){pending=false;render()}},60)});
+function changed(){scheduleRender();resolveNames()}
+
+const I={
+ home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+ cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+ flag:'<path d="M6 21V3"/><path d="M6 3l12 4.5L6 12"/><path d="M3 21h9"/>',
+ food:'<path d="M6 3v7a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3M8 12v9"/><path d="M17 21V3c-2.2 1-3.5 3.5-3.5 7 0 1.5.8 3 3.5 3"/>',
+ map:'<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',
+ list:'<path d="M9 6h12M9 12h12M9 18h12"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
+ trophy:'<path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 21h8M9 17h6"/>',
+ live:'<path d="M3 12h4l3-8 4 16 3-8h4"/>',
+ chart:'<path d="M4 20V11M10 20V5M16 20v-8M21 20H3"/>',
+ user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>'};
+const ic=(k,w=24)=>`<svg width="${w}" height="${w}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[k]}</svg>`;
+
+const NAVS={
+ player:[['home','Inicio','home'],['tee','Reservar','cal'],['play','Jugar','flag'],['food','Comida','food'],['course','Campo','map'],['profile','Perfil','user']],
+ runner:[['runner','Pedidos','list'],['map','Mapa','map']],
+ kitchen:[['kds','Tickets','food'],['kdone','Terminados','list']],
+ admin:[['alive','En vivo','live'],['atour','Torneos','trophy'],['ares','Resultados','chart'],['atee','Salidas','cal'],['amenu','Menú','food'],['acourse','Campo','flag'],['astaff','Empleados','user']]};
+const MODE_LABEL={player:'Jugador',runner:'Carrito',kitchen:'Cocina',admin:'Administración'};
+const ROLE_LABEL={cocina:'Cocina',carrito:'Carrito'};
+const staffRole=uid=>{const st=S.staff[safe(uid||S.uid)];return st&&st.role||null};
+function allowedModes(){const r=staffRole();const m=['player'];if(S.demo||r==='carrito')m.push('runner');if(S.demo||r==='cocina')m.push('kitchen');if(S.canEdit)m.push('admin');return m}
+
+function render(){
+  const app=$('#app');const y=window.scrollY;
+  const views={kds:kdsView,kdone:kdoneView,astaff:adminStaff,alive:adminLive,home,tee:teeView,play:playView,food:foodView,map:mapView,course:courseView,profile:profileView,runner:runnerView,atour:adminTour,ares:adminRes,atee:adminTee,amenu:adminMenu,acourse:adminCourse};
+  const v=(views[S.tab]||home)();
+  if(!allowedModes().includes(S.mode)){S.mode='player';S.tab='home'}
+  app.className=(S.mode==='admin'||S.mode==='kitchen'||S.mode==='runner'?'wide':'')+(S.mode==='kitchen'||S.mode==='runner'?' tablet':'');
+  app.innerHTML=`<header class="top"><div class="top-in">
+    <div class="brand"><img src="${BIRD}" alt=""><span>Dorado del Mar</span></div>
+    <button class="chip" data-act="modes" aria-label="Cambiar modo">${MODE_LABEL[S.mode]}</button>
+    <button class="avatar" data-act="tab" data-v="profile" aria-label="Mi perfil">${esc(initials(S.uid))}</button></div></header>
+  <main id="main">${S.alerts.map(a=>`<div class="alert" role="status"><div class="grow"><b>${esc(a.title)}</b><br><span class="small" style="font-weight:500">${esc(a.body)}</span></div><button class="btn sm" data-act="alertDel" data-v="${a.id}">OK</button></div>`).join('')}${S.demo?`<p class="demo" style="margin-bottom:14px">Modo demostración: los datos se reinician al cerrar. Publicada en claude.ai, la app guarda todo y lo comparte entre jugadores, empleados y administración.</p>`:''}${v}</main>
+  <nav class="nav" aria-label="Secciones"><div class="nav-in n${NAVS[S.mode].length}">${NAVS[S.mode].map(([k,l,i])=>`<button class="${S.tab===k?'on':''}" data-act="tab" data-v="${k}" ${S.tab===k?'aria-current="page"':''}>${ic(i)}${l}</button>`).join('')}</div></nav>
+  ${S.sheet?`<div class="scrim" data-act="closeSheet"></div><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>${SHEETS[S.sheet.k](S.sheet.v)}</div>`:''}`;
+  window.scrollTo(0,y);
+}
+
+/* ============ Inicio ============ */
+function home(){
+  const me=S.players[safe(S.uid)];const r=myRound();const hr=new Date().getHours();
+  const greet=hr<12?'Buenos días':hr<19?'Buenas tardes':'Buenas noches';
+  const first=(me&&me.name)?', '+me.name.split(' ')[0]:'';
+  let h=`<section class="hero"><img class="bird" src="${BIRD}" alt=""><p class="wm">Dorado del Mar Club</p><p style="margin-top:10px">${greet}${esc(first)}</p><h1>Tu día en el campo</h1><p class="small" style="margin-top:6px">18 hoyos frente al Atlántico en Dorado, Puerto Rico.</p>
+   <svg viewBox="0 0 400 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20C50 6 90 34 140 20S230 6 280 20 360 34 400 18V44H0Z" fill="#0AA7E5"/><path d="M0 30C50 18 90 42 140 30S230 18 280 30 360 42 400 28V44H0Z" fill="#BEE8F8"/></svg></section><div class="stack" style="margin-top:14px">`;
+  if(!(me&&me.name))h+=`<div class="card tint row"><div class="grow"><h3>Completa tu perfil</h3><p class="small muted">Tu nombre y hándicap aparecen en reservas, pedidos y torneos.</p></div><button class="btn sm" data-act="profile">Completar</button></div>`;
+  if(r){const st=roundStats(r);h+=`<div class="card row"><div class="grow"><p class="small muted">Ronda en curso</p><h3>Hoyo ${r.currentHole}, ${st.thru} hoyos jugados</h3><p class="${parCls(st.toPar)}">${toPar(st.toPar)} (${st.gross} golpes)</p></div><button class="btn" data-act="tab" data-v="play">Seguir</button></div>`}
+  const mine=S.tee.filter(t=>t.date>=todayStr()&&(t.players||[]).some(p=>inTee(p,S.uid))).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+  if(mine.length){const t=mine[0];const p=t.players.find(x=>inTee(x,S.uid));h+=`<div class="card row"><div class="grow"><p class="small muted">Tu próxima salida</p><h3>${dLabel(t.date)}, ${tLabel(t.time)}</h3><p class="small muted">${p.count} jugador${p.count>1?'es':''}${p.cart?', con carrito':''}</p></div><button class="btn ghost sm" data-act="tab" data-v="tee">Ver</button></div>`}
+  else h+=`<div class="card row"><div class="grow"><h3>Reserva tu salida</h3><p class="small muted">Horarios cada 10 minutos, de 6:30 am a 3:30 pm.</p></div><button class="btn sm" data-act="tab" data-v="tee">Reservar</button></div>`;
+  const o=myOrders().find(x=>x.status!=='entregado');if(o)h+=orderTracker(o);
+  h+=`</div><div class="section-h"><h2>Torneos</h2></div>`;
+  const ts=S.tournaments.filter(t=>t.status!=='finalizado').sort((a,b)=>a.date.localeCompare(b.date));
+  const done=S.tournaments.filter(t=>t.status==='finalizado').sort((a,b)=>b.date.localeCompare(a.date)).slice(0,3);
+  if(!ts.length&&!done.length)h+=`<div class="card empty">No hay torneos programados todavía.</div>`;
+  h+=`<div class="stack">`+ts.map(t=>{const n=S.entries.filter(e=>e.tid===t.id).length;const inT=entered(t.id);
+    return `<div class="card"><div class="row between"><div class="grow"><h3>${esc(t.name)}</h3><p class="small muted">${dLabel(t.date)}. ${t.format==='neto'?'Juego por golpes neto':'Juego por golpes bruto'}. ${n}${t.max?' de '+t.max:''} inscritos.</p></div>${t.status==='en juego'?'<span class="badge live">En juego</span>':'<span class="badge ok">Abierto</span>'}</div>
+    <div class="row" style="margin-top:12px;gap:8px">${inT?`<button class="btn ghost sm" data-act="tLeave" data-v="${t.id}">Cancelar inscripción</button>`:`<button class="btn sm" data-act="tJoin" data-v="${t.id}" ${t.max&&n>=t.max?'disabled':''}>${t.max&&n>=t.max?'Completo':'Inscribirme'}</button>`}<button class="btn soft sm" data-act="lb" data-v="${t.id}">Ver resultados</button></div></div>`}).join('')
+   +done.map(t=>`<div class="card row"><div class="grow"><h3>${esc(t.name)}</h3><p class="small muted">Finalizado el ${dLabel(t.date)}</p></div><button class="btn soft sm" data-act="lb" data-v="${t.id}">Resultados</button></div>`).join('')+`</div>`;
+  return h;
+}
+function orderTracker(o){
+  const food=foodItems(o).length>0;const r=myRound();const target=r?liveHole(r):o.hole;
+  const steps=food?['Recibido','En cocina','En camino','Entregado']:['Recibido','En camino','Entregado'];
+  let i=0;if(o.status==='entregado')i=steps.length-1;else if(o.status==='en camino')i=steps.length-2;else if(food&&(o.kitchen==='preparando'||o.kitchen==='listo'))i=1;
+  const run=o.runner?S.runners.find(x=>x.id===safe(o.runner)):null;let where='';
+  if(o.status==='en camino'&&run)where=`<p style="margin-top:8px"><b>El carrito está en ${enH(run.hole)}.</b> Llega en unos ${etaMin(run.hole,target)} min ${alH(target)}.</p>`;
+  else if(o.status==='en camino')where=`<p style="margin-top:8px">El carrito va en camino.</p>`;
+  else if(food&&o.kitchen==='listo')where=`<p style="margin-top:8px">Tu comida está lista. El carrito la recoge y sale para tu hoyo.</p>`;
+  else if(food&&o.kitchen==='preparando')where=`<p style="margin-top:8px">La cocina está preparando tu comida.</p>`;
+  else where=`<p style="margin-top:8px">Recibimos tu pedido${food?'. Ya está en la cocina.':'. El carrito lo prepara.'}</p>`;
+  return `<div class="card sea"><div class="row between"><h3>Tu pedido #${ordNum(o)}</h3><span class="small muted">${ago(o.createdAt)}</span></div>
+   <div class="track">${steps.map((s,k)=>`<i class="${k<=i?'on':''}"></i>`).join('')}</div>
+   <p class="small muted">${steps[i]}. Entrega en ${enH(target)}${r&&target!==o.hole?' (te seguimos mientras avanzas)':''}.</p>${where}
+   <p class="small muted" style="margin-top:6px">${itemsTxt(o.items)}. Total ${money(o.total)}</p></div>`;
+}
+
+/* ============ Tee times ============ */
+const SLOTS=(()=>{const a=[];for(let m=6*60+30;m<=15*60+30;m+=10)a.push(z(Math.floor(m/60))+z(m%60));return a})();
+function teeView(){
+  const days=[...Array(8)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()+i);return todayStr(d)});
+  const now=new Date();const nowHM=z(now.getHours())+z(now.getMinutes());
+  const byId=Object.fromEntries(S.tee.map(t=>[t.id,t]));
+  const mine=S.tee.filter(t=>t.date>=todayStr()&&(t.players||[]).some(p=>inTee(p,S.uid))).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+  let h=`<h2>Reservar salida</h2><p class="muted small" style="margin:4px 0 14px">Hasta 4 jugadores por grupo. Toca un horario para reservar.</p>`;
+  if(mine.length)h+=`<div class="list" style="margin-bottom:16px">${mine.map(t=>{const p=t.players.find(x=>inTee(x,S.uid));const own=p.uid===S.uid;const names=[...(p.buddies||[]).filter(u=>u!==S.uid).map(nameOf),...(own?[]:[nameOf(p.uid)]),...(p.guests||[]).map(g=>g+' (invitado)')];return `<div class="li"><div class="grow"><b>${dLabel(t.date)}, ${tLabel(t.time)}</b><p class="small muted">${own?'':'Te añadió '+esc(nameOf(p.uid))+'. '}${p.count} jugador${p.count>1?'es':''}${p.cart?', con carrito':''}</p>${names.length?`<p class="small">Con ${esc(names.join(', '))}</p>`:''}</div><button class="btn warn sm" data-act="teeCancel" data-v="${t.id}">${own?'Cancelar':'Salir'}</button></div>`}).join('')}</div>`;
+  h+=`<div class="chips" role="tablist">${days.map(d=>{const dt=parseD(d);return `<button class="dchip ${S.teeDate===d?'on':''}" data-act="teeDate" data-v="${d}" role="tab" aria-selected="${S.teeDate===d}">${dt.toLocaleDateString('es-PR',{weekday:'short'})}<b>${dt.getDate()}</b></button>`}).join('')}</div>`;
+  const list=SLOTS.filter(s=>S.teeDate!==todayStr()||s>nowHM);
+  if(!list.length)return h+`<div class="card empty" style="margin-top:14px">Ya no quedan salidas hoy. Escoge otro día.</div>`;
+  h+=`<div class="list" style="margin-top:12px">`+list.map(s=>{const t=byId[S.teeDate+'_'+s];const ps=(t&&t.players)||[];const taken=ps.reduce((a,p)=>a+p.count,0);const meIn=ps.find(p=>p.uid===S.uid);
+    const dots=[];ps.forEach(p=>{for(let k=0;k<p.count;k++)dots.push(p.uid===S.uid?'me':'f')});while(dots.length<4)dots.push('');
+    return `<div class="slot"><span class="t">${tLabel(s)}</span><span class="dots" aria-label="${taken} de 4 lugares ocupados">${dots.map(c=>`<i class="${c}"></i>`).join('')}</span>${meIn?'<span class="badge ok">Reservado</span>':taken>=4?'<span class="small muted">Lleno</span>':`<button class="btn sm" data-act="teeBook" data-v="${s}">Reservar</button>`}</div>`}).join('')+`</div>`;
+  return h;
+}
+
+/* ============ Jugar ============ */
+function playView(){
+  const r=myRound();
+  if(!r){
+    if(S.groupDraft==null){const tt=S.tee.find(t=>t.date===todayStr()&&(t.players||[]).some(p=>p.uid===S.uid));const pp=tt&&tt.players.find(p=>p.uid===S.uid);S.groupDraft=pp?[...(pp.buddies||[]).map(u=>({type:'user',uid:u})),...(pp.guests||[]).map(n=>({type:'guest',key:gid(),name:n,hcp:''}))]:[]}
+    const avail=S.tournaments.filter(t=>t.status!=='finalizado'&&entered(t.id));
+    const past=doneRounds(S.uid).slice().reverse().slice(0,5);
+    return `<h2>Jugar una ronda</h2><p class="muted small" style="margin:4px 0 14px">Distancias al green en cada hoyo y tarjeta golpe a golpe. Tu hoyo actual se ve en el mapa y el carrito de comida te encuentra.</p>
+    <div class="card"><label class="field" style="margin-top:0"><span>Tipo de ronda</span><select class="input" id="rT"><option value="">Ronda casual</option>${avail.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('')}</select></label>
+    ${avail.length?'':'<p class="small muted" style="margin-top:6px">Para jugar un torneo, inscríbete desde Inicio.</p>'}
+    <div class="grid2"><label class="field"><span>Salidas</span><select class="input" id="rTee">${Object.entries(TEES).map(([k,t])=>`<option value="${k}" ${myTee()===k?'selected':''}>${t.name} (${teeTotal(k).toLocaleString('es-PR')} yd)</option>`).join('')}</select></label>
+    <label class="field"><span>Empiezo en</span><select class="input" id="rS"><option value="1">Hoyo 1</option><option value="10">Hoyo 10</option></select></label></div>
+    <p class="small muted" style="margin-top:14px"><b>Con quién juegas</b></p>${groupEditor(grpList('round'),'round',3)}
+    <button class="btn full" style="margin-top:16px" data-act="startRound">Empezar ronda</button></div>
+    ${past.length?`<div class="section-h"><h2>Rondas recientes</h2></div><div class="list">${past.map(roundRow).join('')}</div>`:''}`;
+  }
+  const n=r.currentHole;const hd=holes()[n-1];
+  if(!S.draft||S.draft.rid!==r.id||S.draft.hole!==n){const ns=((r.shots||{})[n]||[]).length;S.draft={rid:r.id,hole:n,s:(r.scores||[])[n-1]||(ns?ns+2:hd.par),p:(r.putts||[])[n-1]||2,fw:(r.fw||[])[n-1]||0,o:Object.fromEntries((r.group||[]).map(g=>[gkey(g),gScores(g)[n-1]||hd.par]))}}
+  const st=roundStats(r);const t=r.tournamentId?S.tournaments.find(x=>x.id===r.tournamentId):null;
+  const seq=seqFrom(r.startHole||1);const last=seq[seq.length-1]===n;
+  const cell=(i)=>{const s=(r.scores||[])[i];const d=s?s-holes()[i].par:null;const c=d===null?'':d<=-2?'eagle':d===-1?'birdie':d===1?'bogey':d>=2?'dbl':'';return `<div class="s ${c} ${i+1===n?'cur':''}" data-act="holeGo" data-v="${i+1}" role="button" aria-label="Hoyo ${i+1}">${s||'–'}</div>`};
+  const det=S.gps?detectHole(S.gps):null;
+  return `${det&&det!==n?`<div class="alert"><span class="grow">Parece que estás en el hoyo ${det}.</span><button class="btn sm" data-act="moveHole" data-v="${det}">Cambiar</button></div>`:''}<div class="row between" style="margin-bottom:10px"><p class="muted small">${t?esc(t.name):'Ronda casual'}, salidas ${TEES[r.tee||'white'].name.toLowerCase()}</p><p class="${parCls(st.toPar)}"><b>${toPar(st.toPar)}</b> <span class="muted small">(${st.thru} hoyo${st.thru===1?'':'s'})</span></p></div>
+  ${holeView(n,true)}
+  <div class="card" style="margin-top:14px"><div class="row between"><h3>Anotar hoyo ${n}</h3><button class="btn soft sm" data-act="orderHere">${ic('food',18)}Pedir aquí</button></div>
+   <p class="small muted" style="margin:14px 0 6px">Golpes</p><div class="stepper"><button data-act="step" data-v="s-" aria-label="Menos golpes">−</button><span class="v" aria-live="polite">${S.draft.s}</span><button data-act="step" data-v="s+" aria-label="Más golpes">+</button></div>
+   <p class="small muted" style="margin:12px 0 6px">Putts</p><div class="stepper"><button data-act="step" data-v="p-" aria-label="Menos putts">−</button><span class="v">${S.draft.p}</span><button data-act="step" data-v="p+" aria-label="Más putts">+</button></div>
+   ${hd.par>=4?`<p class="small muted" style="margin:12px 0 6px">Golpe de salida</p><div class="seg">${[[1,'Izquierda'],[2,'Fairway'],[3,'Derecha']].map(([v,l])=>`<button class="${S.draft.fw===v?'on':''}" data-act="fw" data-v="${v}">${l}</button>`).join('')}</div>`:''}
+   ${(r.group||[]).length?`<p class="small muted" style="margin:16px 0 4px">Tu grupo</p>${r.group.map(g=>{const k=gkey(g);const gs=roundStats({scores:gScores(g)});return `<div class="row between" style="padding:7px 0;border-top:1px solid var(--line)"><div class="grow"><b>${esc(gname(g))}</b><p class="small muted">${g.type==='guest'?'Invitado':'Con la app'}, <span class="${parCls(gs.toPar)}">${gs.thru?toPar(gs.toPar):'sin empezar'}</span></p></div><div class="qty"><button data-act="ostep" data-v="${esc(k)}|-" aria-label="Menos golpes para ${esc(gname(g))}">−</button><b style="min-width:28px;text-align:center;font-size:1.35rem">${S.draft.o[k]}</b><button data-act="ostep" data-v="${esc(k)}|+" aria-label="Más golpes para ${esc(gname(g))}">+</button></div></div>`}).join('')}`:''}
+   <div class="row" style="margin-top:16px;gap:8px"><button class="btn ghost" data-act="holePrev" ${seq[0]===n?'disabled':''}>Anterior</button><button class="btn grow" data-act="holeSave">${last?'Guardar último hoyo':'Guardar y seguir al '+seq[seq.indexOf(n)+1]}</button></div></div>
+  ${r.recordedBy&&r.recordedBy!==S.uid?`<p class="demo" style="margin-top:14px">${esc(nameOf(r.recordedBy))} está llevando tu tarjeta. La ves aquí en vivo y se guarda en tu perfil.</p>`:''}
+  ${(r.group||[]).length?`<div class="section-h"><h2>Grupo</h2></div><div class="list">${[{self:true},...r.group].map(g=>{const sc=g.self?r.scores:gScores(g);const gs=roundStats({scores:sc});return `<div class="li"><b class="grow">${esc(g.self?nameOf(S.uid):gname(g))}${g.type==='guest'?' <span class="small muted">(invitado)</span>':''}</b><span class="small muted">${gs.thru} hoyos</span><b style="width:36px;text-align:right">${gs.gross}</b><b class="${parCls(gs.toPar)}" style="width:36px;text-align:right">${gs.thru?toPar(gs.toPar):'–'}</b></div>`}).join('')}</div>`:''}
+  <div class="section-h"><h2>Tarjeta</h2><span class="muted small">${st.gross} golpes</span></div>
+  <div class="card"><div class="sc">${[...Array(9)].map((_,i)=>`<div class="h">${i+1}</div>`).join('')}${[...Array(9)].map((_,i)=>cell(i)).join('')}</div>
+   <div class="sc" style="margin-top:10px">${[...Array(9)].map((_,i)=>`<div class="h">${i+10}</div>`).join('')}${[...Array(9)].map((_,i)=>cell(i+9)).join('')}</div>
+   <p class="small muted" style="margin-top:10px">Azul: birdie o mejor. Arena: bogey. Rojo: doble bogey o más.</p></div>
+  <div class="row" style="margin-top:14px;gap:8px"><button class="btn warn grow" data-act="abandonRound">Descartar</button><button class="btn grow" data-act="finishRound">Terminar ronda</button></div>`;
+}
+function roundRow(r){const st=roundStats(r);const t=r.tournamentId?S.tournaments.find(x=>x.id===r.tournamentId):null;
+  return `<div class="li" data-act="roundOpen" data-v="${r.id}" role="button" tabindex="0" style="cursor:pointer"><div class="grow"><b>${dLabel(r.date)}</b><p class="small muted">${t?esc(t.name):'Casual'}, ${st.thru} hoyos</p></div><div style="text-align:right"><b>${st.gross}</b><p class="small ${parCls(st.toPar)}">${toPar(st.toPar)}</p></div></div>`}
+
+/* ============ Vista de hoyo (distancias) ============ */
+const BEND=[0,-35,28,0,0,0,32,-30,22,26,-34,18,0,0,-24,30,-38,26];
+const dist=(a,b)=>Math.round(Math.hypot(a[0]-b[0],a[1]-b[1]));
+function tAtY(g,y){let lo=0,hi=1;for(let k=0;k<30;k++){const m=(lo+hi)/2;if(g.pt(m)[1]<y)lo=m;else hi=m}return (lo+hi)/2}
+function holeGeo(n){const h=holes()[n-1];const L=Math.max(h.gold,h.yards),par=h.par;const bend=par===3?0:BEND[n-1];
+  const cx=bend,cy=L*.58,gx=par===3?0:Math.round(bend*.55),gy=L;
+  const g={n,L,par,cx,cy,gx,gy,h};g.pt=t=>[2*(1-t)*t*cx+t*t*gx,2*(1-t)*t*cy+t*t*gy];g.at=y=>g.pt(tAtY(g,Math.max(0,Math.min(L,y))));
+  g.tees={};for(const k in TEES)g.tees[k]=g.at(L-h[TEES[k].key]).map(Math.round);
+  const hz=[];const sd=n%2?1:-1;
+  if(par>=4){const y=Math.min(245,L-150);const [x]=g.at(y);hz.push({type:'bunker',name:'Búnker de fairway',x:x+24*sd,y,rx:9,ry:6})}
+  if(par===5){const y=L-105;const [x]=g.at(y);hz.push({type:'bunker',name:'Búnker de fairway',x:x-24*sd,y,rx:9,ry:6})}
+  hz.push({type:'bunker',name:'Búnker del green',x:gx-20*sd,y:gy-8,rx:7,ry:5});
+  if(n%3===0)hz.push({type:'bunker',name:'Búnker detrás del green',x:gx+14*sd,y:gy+17,rx:7,ry:4});
+  if(n===1)hz.push({type:'agua',name:'Lago detrás del green',x:gx-8,y:gy+46,rx:62,ry:22});
+  if(n===2)hz.push({type:'agua',name:'Lago',x:gx+4,y:88,rx:46,ry:34});
+  g.hz=hz;return g}
+const ballPos=(n,tee)=>S.ball[n]||holeGeo(n).tees[tee];
+function holeSvg(n,tee,play,b,shots){const g=holeGeo(n);const top=g.L+40,Hh=top+30;const Wd=Hh*.72;const xs=[0,g.cx,g.gx];const mid=(Math.min(...xs)+Math.max(...xs))/2;const x0=mid-Wd/2;const k=Hh/480;
+  const Y=y=>(top-y).toFixed(1),X=x=>(+x).toFixed(1);
+  let s=`<svg class="hv" data-n="${n}" data-top="${top}" ${play?'data-play="1"':''} viewBox="${X(x0)} 0 ${X(Wd)} ${Hh}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Vista del hoyo ${n}. Toca el mapa para ${play?'marcar un tiro o medir':'medir'} distancias."><rect x="${X(x0)}" y="0" width="${X(Wd)}" height="${Hh}" fill="var(--rough)"/>`;
+  for(let i=0;i*38<=g.L+20;i++){const y=i*38;const [x]=g.at(y);[[-1,(i*23)%20],[1,(i*31)%18]].forEach(([sg,j])=>{const tx=x+sg*(60+j);s+=`<circle cx="${X(tx)}" cy="${Y(y)}" r="10" fill="var(--tree)"/><circle cx="${X(tx+7*sg)}" cy="${Y(y+7)}" r="8" fill="var(--tree)"/>`})}
+  g.hz.filter(z=>z.type==='agua').forEach(z=>{s+=`<ellipse cx="${X(z.x)}" cy="${Y(z.y)}" rx="${z.rx}" ry="${z.ry}" fill="var(--sea)"/>`});
+  if(g.par>=4){const y0=Math.min(150,g.L*.32),y1=g.L-28;let d='';for(let i=0;i<=24;i++){const [x,y]=g.at(y0+(y1-y0)*i/24);d+=(i?'L':'M')+X(x)+' '+Y(y)}s+=`<path d="${d}" fill="none" stroke="var(--fw)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>`}
+  [[100,'#C8372D'],[150,'#FFFFFF'],[200,'#2563A8']].forEach(([m,c])=>{if(g.par>=4&&m<g.L-60){const [x,y]=g.at(g.L-m);s+=`<circle cx="${X(x)}" cy="${Y(y)}" r="${(3*k).toFixed(2)}" fill="${c}" stroke="#13261E" stroke-width="${(.8*k).toFixed(2)}"/>`}});
+  for(const t in TEES){const [x,y]=g.tees[t];s+=`<rect x="${X(x-7)}" y="${Y(y+3)}" width="14" height="6" rx="1.5" fill="var(--fw)"/><circle cx="${X(x)}" cy="${Y(y)}" r="${(3*k).toFixed(2)}" fill="${TEES[t].color}" stroke="#13261E" stroke-width="${(.7*k).toFixed(2)}"/>`}
+  g.hz.filter(z=>z.type==='bunker').forEach(z=>{s+=`<ellipse cx="${X(z.x)}" cy="${Y(z.y)}" rx="${z.rx}" ry="${z.ry}" fill="var(--sand)"/>`});
+  s+=`<ellipse cx="${X(g.gx)}" cy="${Y(g.gy)}" rx="18" ry="20" fill="var(--fw)"/><ellipse cx="${X(g.gx)}" cy="${Y(g.gy)}" rx="14" ry="16" fill="var(--gr)"/>`;
+  const fh=18*k,fw=9*k;s+=`<line x1="${X(g.gx)}" y1="${Y(g.gy)}" x2="${X(g.gx)}" y2="${Y(g.gy+fh)}" stroke="#13261E" stroke-width="${(1.2*k).toFixed(2)}"/><path d="M${X(g.gx)} ${Y(g.gy+fh)}l${fw.toFixed(2)} ${(fw*.4).toFixed(2)}l${(-fw).toFixed(2)} ${(fw*.4).toFixed(2)}z" fill="var(--flag)"/>`;
+  const c=[g.gx,g.gy];const tg=S.target&&S.target.n===n?[S.target.x,S.target.y]:null;
+  const ln=(a,z)=>`<line x1="${X(a[0])}" y1="${Y(a[1])}" x2="${X(z[0])}" y2="${Y(z[1])}" stroke="#fff" stroke-width="${(2*k).toFixed(2)}" stroke-dasharray="${(6*k).toFixed(1)} ${(5*k).toFixed(1)}"/>`;
+  const lb=(a,z,col)=>{const d=dist(a,z);const px=(a[0]+z[0])/2+9*k,py=(a[1]+z[1])/2;return `<text x="${X(px)}" y="${Y(py)}" class="hv-l" style="font-size:${(15*k).toFixed(1)}px;stroke-width:${(4*k).toFixed(1)}px;${col?'fill:'+col:''}">${d} yd</text>`};
+  if(shots&&shots.length){let prev=g.tees[tee];let d='M'+X(prev[0])+' '+Y(prev[1]);shots.forEach(p=>{d+='L'+X(p[0])+' '+Y(p[1])});
+    s+=`<path d="${d}" fill="none" stroke="var(--flag)" stroke-width="${(2.6*k).toFixed(2)}" stroke-linejoin="round"/>`;
+    shots.forEach((p,i)=>{s+=lb(prev,p,'var(--flag)')+`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="${(5*k).toFixed(1)}" fill="var(--flag)" stroke="#13261E" stroke-width="${(1.2*k).toFixed(1)}"/><text x="${X(p[0])}" y="${Y(p[1]-1.8*k)}" text-anchor="middle" style="font:800 ${(6.5*k).toFixed(1)}px Figtree,sans-serif;fill:#13261E">${i+1}</text>`;prev=p})}
+  if(tg){s+=ln(b,tg)+ln(tg,c)+`<circle cx="${X(tg[0])}" cy="${Y(tg[1])}" r="${(8*k).toFixed(1)}" fill="none" stroke="#fff" stroke-width="${(2.8*k).toFixed(1)}"/>`+lb(b,tg)+lb(tg,c)}else s+=ln(b,c);
+  s+=`<circle cx="${X(b[0])}" cy="${Y(b[1])}" r="${(6.5*k).toFixed(1)}" fill="#fff" stroke="#13261E" stroke-width="${(1.6*k).toFixed(1)}"/>`;
+  return s+'</svg>'}
+function holeView(n,playing){
+  const r=myRound();const tee=(playing&&r&&r.tee)||S.cTee||myTee();const h=holes()[n-1];const g=holeGeo(n);
+  const shots=(r&&liveHole(r)===n||playing)&&r&&r.shots&&r.shots[n]?r.shots[n]:[];
+  const gp=playing?gpsHere(n):null;
+  const b=S.ball[n]||(gp?[gp.x,gp.y]:shots.length?shots[shots.length-1]:g.tees[tee]);
+  const mid=(gp&&!S.ball[n])?gp.rem:dist(b,[g.gx,g.gy]);
+  const haz=g.hz.filter(z=>z.y>b[1]+5).map(z=>{const c=dist(b,[z.x,z.y]);const e=Math.max(z.rx,z.ry)*.7;return {...z,reach:Math.max(0,Math.round(c-e)),carry:Math.round(c+e)}}).sort((a,c)=>a.reach-c.reach);
+  const modes=playing?[['shot','Marcar tiro'],['measure','Medir']]:[['measure','Medir distancia'],['ball','Mover mi bola']];
+  const cur=playing?(S.hvMode==='measure'?'measure':'shot'):(S.hvMode==='ball'?'ball':'measure');
+  const help=playing?(cur==='shot'?'Cuando llegues a tu bola, toca en el mapa dónde quedó. Se guarda el tiro y ves cuánto te falta.':'Toca un punto para medir hasta ahí y de ahí al green.'):(cur==='ball'?'Toca el mapa donde quedó tu bola.':'Toca cualquier punto del hoyo para ver la distancia.');
+  let list='';
+  if(playing&&shots.length){let prev=g.tees[tee];list=`<div class="card shotlist" style="padding:4px 14px"><div class="hz" style="border-top:0"><b class="small">Tus tiros en este hoyo</b><span class="small muted">Distancia / quedan</span></div>${shots.map((p,i)=>{const d=dist(prev,p);prev=p;return `<div class="hz"><span>Tiro ${i+1}</span><b>${d} / ${dist(p,[g.gx,g.gy])} yd</b></div>`}).join('')}</div>`}
+  const gpsFresh=S.gps&&Date.now()-S.gps.at<60000;
+  return `<div class="hv-map ${playing?'compact':''}">${holeSvg(n,tee,playing,b,shots)}
+   <div class="hv-top"><b class="hv-n">${n}</b><div><b>Par ${h.par}</b><span>${yd(n-1,tee)} yd, hcp ${hcpOf(n-1,tee)}</span></div></div>
+   <div class="hv-dist" aria-live="polite"><div class="fb">${mid+14}</div><small>Fondo</small><div class="c">${mid}</div><small>${gp&&!S.ball[n]?'Desde ti':'Centro'}</small><div class="fb">${Math.max(0,mid-14)}</div><small style="margin-bottom:0">Frente</small></div></div>
+  <div class="seg" style="margin-top:10px">${modes.map(([k,l])=>`<button class="${cur===k?'on':''}" data-act="hvMode" data-v="${k}">${l}</button>`).join('')}${playing?`<button data-act="shotUndo" ${shots.length?'':'disabled'}>Deshacer tiro</button>`:`<button data-act="hvReset" data-v="${n}">Reiniciar</button>`}</div>
+  <p class="small muted" style="margin-top:6px">${help}</p>
+  ${playing?`<div class="gpsbar"><span class="gpsdot ${gpsFresh?'on':''}"></span><div class="grow">${gpsFresh?(gp?`GPS activo (±${Math.round(S.gps.acc*1.0936)} yd)`:'GPS activo, pero este hoyo no tiene coordenadas todavía'):(S.gpsErr?esc(S.gpsErr):'Con GPS, la distancia se mide desde donde estás')}</div>${gpsFresh&&gp?`<button class="btn sm" data-act="shotGps">Marcar tiro aquí</button>`:gpsFresh?'':`<button class="btn ghost sm" data-act="gpsOn">Activar GPS</button>`}</div>`:''}
+  ${list}
+  ${haz.length?`<div class="card" style="margin-top:10px;padding:4px 14px"><div class="hz" style="border-top:0"><b class="small">Obstáculos</b><span class="small muted">Llegar / pasar (yd)</span></div>${haz.map(z=>`<div class="hz"><span><i class="hzdot ${z.type}"></i>${z.name}</span><b>${z.reach} / ${z.carry}</b></div>`).join('')}</div>`:''}`;
+}
+
+/* ============ Campo (estilo guía de campo) ============ */
+function courseView(){const tee=S.cTee||myTee();const rt=ratings()[tee];const seg=S.cSeg||'hole';
+  let h=`<h2>Dorado del Mar Golf Club</h2><p class="small muted" style="margin:4px 0 12px">Par ${coursePar()}, ${teeTotal(tee).toLocaleString('es-PR')} yardas desde ${TEES[tee].name.toLowerCase()}. Rating ${rt.rating}, slope ${rt.slope}.</p>
+  <div class="seg">${[['hole','Hoyo por hoyo'],['map','Vista general'],['card','Tarjeta']].map(([k,l])=>`<button class="${seg===k?'on':''}" data-act="cSeg" data-v="${k}">${l}</button>`).join('')}</div>`;
+  if(seg!=='map')h+=`<div class="chips" style="margin-top:12px">${Object.entries(TEES).map(([k,t])=>`<button class="dchip ${tee===k?'on':''}" style="min-width:auto" data-act="cTee" data-v="${k}"><i class="teedot" style="background:${t.color}"></i>${t.name}</button>`).join('')}</div>`;
+  if(seg==='hole'){const n=S.cHole||1;const r=myRound();
+    h+=`<div class="chips holechips" style="margin:10px 0">${Array.from({length:18},(_,i)=>`<button class="dchip ${n===i+1?'on':''}" style="min-width:44px" data-act="cHole" data-v="${i+1}" aria-label="Hoyo ${i+1}">${i+1}</button>`).join('')}</div>${holeView(n,false)}
+    ${r&&r.currentHole!==n?`<button class="btn soft full" style="margin-top:12px" data-act="moveHole" data-v="${n}">Estoy jugando este hoyo</button>`:''}
+    <div class="row" style="gap:8px;margin-top:12px"><button class="btn ghost grow" data-act="cHole" data-v="${n===1?18:n-1}">Hoyo ${n===1?18:n-1}</button><button class="btn grow" data-act="cHole" data-v="${n===18?1:n+1}">Hoyo ${n===18?1:n+1}</button></div>`}
+  else if(seg==='map')h+=`<div style="margin-top:4px">${mapView(true)}</div>`;
+  else h+=scorecardTable();
+  return h}
+function scorecardTable(){const hs=holes();const R=ratings();
+  const block=(a,label)=>{const sum=k=>a.reduce((x,i)=>x+hs[i][k],0);return `<div class="tbl-wrap" style="margin-top:12px"><table class="sctbl"><thead><tr><th>Hoyo</th>${a.map(i=>`<th>${i+1}</th>`).join('')}<th>${label}</th></tr></thead><tbody>
+   ${Object.entries(TEES).map(([k,t])=>`<tr><td><i class="teedot" style="background:${t.color}"></i>${t.name}</td>${a.map(i=>`<td>${hs[i][t.key]}</td>`).join('')}<td><b>${sum(t.key)}</b></td></tr>`).join('')}
+   <tr class="parrow"><td>Par</td>${a.map(i=>`<td>${hs[i].par}</td>`).join('')}<td>${sum('par')}</td></tr>
+   <tr><td>Hcp caballeros</td>${a.map(i=>`<td>${hs[i].hcp}</td>`).join('')}<td></td></tr><tr><td>Hcp damas</td>${a.map(i=>`<td>${hs[i].hcpRed}</td>`).join('')}<td></td></tr></tbody></table></div>`};
+  const f=[0,1,2,3,4,5,6,7,8],b=[9,10,11,12,13,14,15,16,17];
+  return block(f,'Ida')+block(b,'Vuelta')+`<div class="list" style="margin-top:12px">${Object.entries(TEES).map(([k,t])=>`<div class="li"><i class="teedot" style="background:${t.color}"></i><b class="grow">${t.name}</b><span class="small muted">${teeTotal(k).toLocaleString('es-PR')} yd, rating ${R[k].rating}, slope ${R[k].slope}</span></div>`).join('')}</div><p class="small muted" style="margin-top:8px">La administración del club puede actualizar estos datos en Administración, pestaña Campo.</p>`}
+
+/* ============ Perfil y estadísticas ============ */
+function doneRounds(uid){return S.rounds.filter(r=>r.uid===uid&&r.status==='done'&&played(r)===18).sort((a,b)=>a.startedAt-b.startedAt)}
+function courseHcp(idx,tee){const rt=ratings()[tee||'white'];return Math.round(idx*rt.slope/113+(rt.rating-coursePar()))}
+function differential(r,idx){const tee=r.tee||'white';const rt=ratings()[tee];const ch=Math.max(0,courseHcp(idx==null||idx===''?36:+idx,tee));const hs=holes();
+  const adj=r.scores.reduce((a,s,i)=>{const rec=Math.floor(ch/18)+(hcpOf(i,tee)<=ch%18?1:0);return a+Math.min(s,hs[i].par+2+rec)},0);return (adj-rt.rating)*113/rt.slope}
+function calcIndex(rs,manual){const last=rs.slice(-20);const n=last.length;if(n<3)return null;const d=last.map(r=>differential(r,manual)).sort((a,b)=>a-b);
+  const T={3:[1,-2],4:[1,-1],5:[1,0],6:[2,-1],7:[2,0],8:[2,0],9:[3,0],10:[3,0],11:[3,0],12:[4,0],13:[4,0],14:[4,0],15:[5,0],16:[5,0],17:[6,0],18:[6,0],19:[7,0],20:[8,0]};
+  const [k,a]=T[n];return Math.min(54,Math.round((d.slice(0,k).reduce((x,y)=>x+y,0)/k+a)*10)/10)}
+function pStats(rs){const hs=holes();const o={n:rs.length,avg:0,best:null,putts:0,fwHit:0,fwOpp:0,gir:0,holes:0,byPar:{3:[0,0],4:[0,0],5:[0,0]},dist:{eagle:0,birdie:0,par:0,bogey:0,dbl:0}};
+  rs.forEach(r=>{const g=r.scores.reduce((a,b)=>a+b,0);o.avg+=g;o.best=o.best===null?g:Math.min(o.best,g);
+    r.scores.forEach((s,i)=>{const par=hs[i].par,p=(r.putts||[])[i]||0,f=(r.fw||[])[i]||0;o.holes++;o.putts+=p;
+      if(par>=4&&f){o.fwOpp++;if(f===2)o.fwHit++}if(s-p<=par-2)o.gir++;o.byPar[par][0]+=s;o.byPar[par][1]++;
+      const d=s-par;o.dist[d<=-2?'eagle':d===-1?'birdie':d===0?'par':d===1?'bogey':'dbl']++})});
+  if(o.n){o.avg/=o.n;o.putts/=o.n}return o}
+const pct=(a,b)=>b?Math.round(a/b*100)+'%':'–';
+function badgeList(rs,st){const hs=holes();const b=st.best;return [
+  ['Primera ronda','Completa 18 hoyos',rs.length>=1],['Primer birdie','Un hoyo bajo par',st.dist.birdie+st.dist.eagle>0],
+  ['Águila','Dos bajo par en un hoyo',st.dist.eagle>0],['Rompiste 100','Menos de 100 golpes',b!==null&&b<100],
+  ['Rompiste 90','Menos de 90 golpes',b!==null&&b<90],['Rompiste 80','Menos de 80 golpes',b!==null&&b<80],
+  ['Sin tres putts','Una ronda sin 3 putts',rs.some(r=>(r.putts||[]).every(p=>p<3))],
+  ['Rey de los par 3','Par o mejor en todos los par 3',rs.some(r=>r.scores.every((s,i)=>hs[i].par!==3||s<=3))],
+  ['Constante','Juega 10 rondas',rs.length>=10]]}
+function trendSvg(rs){const last=rs.slice(-10);if(last.length<2)return '<p class="small muted">La tendencia aparece al completar dos rondas.</p>';
+  const v=last.map(r=>r.scores.reduce((a,b)=>a+b,0));const mx=Math.max(...v)+2,mn=Math.min(...v)-2;const W=320,Hh=130,px=i=>18+i*(W-36)/(v.length-1),py=x=>14+(mx-x)/(mx-mn)*(Hh-40);
+  return `<svg viewBox="0 0 ${W} ${Hh}" style="width:100%" role="img" aria-label="Golpes en las últimas ${v.length} rondas"><polyline points="${v.map((x,i)=>px(i)+','+py(x)).join(' ')}" fill="none" stroke="var(--fair)" stroke-width="2.5" stroke-linejoin="round"/>
+  ${v.map((x,i)=>`<circle cx="${px(i)}" cy="${py(x)}" r="4" fill="var(--card)" stroke="var(--fair)" stroke-width="2.5"/><text x="${px(i)}" y="${py(x)-9}" text-anchor="middle" style="font:700 10px Figtree,sans-serif;fill:var(--ink)">${x}</text><text x="${px(i)}" y="${Hh-6}" text-anchor="middle" style="font:500 9px Figtree,sans-serif;fill:var(--muted)">${parseD(last[i].date).getDate()}/${parseD(last[i].date).getMonth()+1}</text>`).join('')}</svg>`}
+function profileView(){
+  const p=S.players[safe(S.uid)]||{};const rs=doneRounds(S.uid);const idx=calcIndex(rs,p.handicap);const st=pStats(rs);const seg=S.pSeg||'stats';const cp=coursePar();
+  let h=`<section class="card"><div class="row"><span class="avatar lg">${esc(initials(S.uid))}</span><div class="grow"><h2>${esc(p.name||S.meName||'Jugador')}</h2><p class="small muted">Dorado del Mar Golf Club, salidas ${TEES[myTee()].name.toLowerCase()}</p></div><button class="btn ghost sm" data-act="profile">Editar</button></div>
+   <div class="grid2" style="margin-top:14px"><div class="stat"><b class="idx">${idx!==null?idx.toFixed(1):'–'}</b><span>Índice calculado${idx===null?', juega 3 rondas':''}</span></div><div class="stat"><b class="idx">${p.handicap!=null&&p.handicap!==''?(+p.handicap).toFixed(1):'–'}</b><span>Hándicap para torneos</span></div></div></section>
+  <div class="seg" style="margin-top:14px">${[['stats','Estadísticas'],['rounds','Rondas'],['badges','Logros']].map(([k,l])=>`<button class="${seg===k?'on':''}" data-act="pSeg" data-v="${k}">${l}</button>`).join('')}</div>`;
+  if(seg==='stats'){
+    if(!rs.length)return h+`<div class="card empty" style="margin-top:14px"><p>Termina una ronda de 18 hoyos para ver tus estadísticas.</p><button class="btn" style="margin-top:12px" data-act="tab" data-v="play">Jugar ahora</button></div>`;
+    const bp=k=>st.byPar[k][1]?(st.byPar[k][0]/st.byPar[k][1]):null;const D=st.dist,T=st.holes;
+    const cols=[['eagle','Águila o mejor','var(--sea)'],['birdie','Birdie','#6FB8C9'],['par','Par','var(--fair)'],['bogey','Bogey','var(--sand)'],['dbl','Doble o más','var(--cart)']];
+    h+=`<div class="stats" style="margin-top:14px"><div class="stat"><b>${st.avg.toFixed(1)}</b><span>Promedio (${toPar(Math.round(st.avg-cp))})</span></div><div class="stat"><b>${st.best}</b><span>Mejor ronda</span></div><div class="stat"><b>${st.n}</b><span>Rondas</span></div>
+     <div class="stat"><b>${pct(st.fwHit,st.fwOpp)}</b><span>Fairways</span></div><div class="stat"><b>${pct(st.gir,T)}</b><span>Greens en regulación</span></div><div class="stat"><b>${st.putts.toFixed(1)}</b><span>Putts por ronda</span></div></div>
+     <h3 style="margin:20px 0 8px">Promedio por tipo de hoyo</h3><div class="stats">${[3,4,5].map(k=>{const v=bp(k);return `<div class="stat"><b>${v===null?'–':v.toFixed(2)}</b><span>Par ${k}${v===null?'':' ('+(v-k>=0?'+':'')+(v-k).toFixed(2)+')'}</span></div>`}).join('')}</div>
+     <h3 style="margin:20px 0 0">Distribución de resultados</h3><div class="distbar" role="img" aria-label="Distribución por hoyo">${cols.map(([k,,c])=>D[k]?`<span style="flex:${D[k]};background:${c}"></span>`:'').join('')}</div>
+     <div class="distleg">${cols.map(([k,l,c])=>`<div><b><i class="hzdot" style="background:${c};margin-right:4px"></i>${pct(D[k],T)}</b>${l}</div>`).join('')}</div>
+     <h3 style="margin:20px 0 6px">Tendencia de golpes</h3><div class="card" style="padding:10px">${trendSvg(rs)}</div>`;
+  }else if(seg==='rounds'){h+=rs.length?`<div class="list" style="margin-top:14px">${rs.slice().reverse().map(roundRow).join('')}</div>`:`<div class="card empty" style="margin-top:14px">Todavía no tienes rondas completas.</div>`}
+  else{const bl=badgeList(rs,st);h+=`<p class="small muted" style="margin:14px 0 10px">${bl.filter(b=>b[2]).length} de ${bl.length} logros desbloqueados</p><div class="badges">${bl.map(([n,d,on])=>`<div class="bdg ${on?'':'off'}"><span class="ico">${ic(on?'trophy':'flag',18)}</span><div><b class="small">${n}</b><p class="small muted">${d}</p></div></div>`).join('')}</div>`}
+  return h;
+}
+
+/* ============ Comida ============ */
+function foodView(){
+  const r=myRound();const items=menu();const cats=[...new Set(items.map(i=>i.cat))];
+  const active=myOrders().filter(o=>o.status!=='entregado');
+  if(S.deliverTo===null)S.deliverTo=r?liveHole(r):0;
+  const count=Object.values(S.cart).reduce((a,b)=>a+b,0);
+  const total=items.reduce((a,i)=>a+(S.cart[i.id]||0)*i.price,0);
+  let h=`<h2>Comida al campo</h2><p class="muted small" style="margin:4px 0 14px">${r?`Estás en el hoyo ${liveHole(r)}. El carrito te encuentra aunque sigas jugando.`:'Recibe tu pedido en cualquier hoyo o en la casa club.'}</p>`;
+  if(active.length)h+=`<div class="stack" style="margin-bottom:16px">${active.map(orderTracker).join('')}</div>`;
+  h+=cats.map(c=>`<h3 style="margin:16px 0 8px">${esc(c)}</h3><div class="list">${items.filter(i=>i.cat===c).map(i=>`<div class="li"><div class="grow"><b>${esc(i.name)}</b><p class="small muted">${money(i.price)}</p></div>${S.cart[i.id]?`<div class="qty"><button data-act="cartSub" data-v="${i.id}" aria-label="Quitar ${esc(i.name)}">−</button><b>${S.cart[i.id]}</b><button data-act="cartAdd" data-v="${i.id}" aria-label="Añadir otro ${esc(i.name)}">+</button></div>`:`<button class="btn soft sm" data-act="cartAdd" data-v="${i.id}">Añadir</button>`}</div>`).join('')}</div>`).join('');
+  if(count)h+=`<div class="cartbar"><div class="row between"><b>${count} artículo${count>1?'s':''}</b><b>${money(total)}</b></div>
+   <div class="grid2" style="margin-top:10px"><select class="input" id="oHole" aria-label="Entregar en" data-change="deliver">${[0,...Array.from({length:18},(_,i)=>i+1)].map(n=>`<option value="${n}" ${+S.deliverTo===n?'selected':''}>${n?'Hoyo '+n:'Casa club'}</option>`).join('')}</select>
+   <input class="input" id="oNote" placeholder="Nota (sin hielo…)" value="${esc(S.note)}" data-input="note"></div>
+   <button class="btn full" style="margin-top:10px;background:var(--sky);color:#0F2346" data-act="orderSend">Enviar pedido</button></div>`;
+  return h;
+}
+
+/* ============ Mapa ============ */
+function mapSvg(){
+  const hs=holes();let s=`<svg class="map" viewBox="0 0 360 600" role="img" aria-label="Mapa del campo. Toca un hoyo para ver detalles."><rect width="360" height="600" fill="var(--rough)"/>
+  <path d="M0 0H360V50C320 64 290 42 245 56C200 70 165 46 120 58C80 68 40 48 0 60Z" fill="var(--sea)"/>
+  <path d="M0 60C40 48 80 68 120 58C165 46 200 70 245 56C290 42 320 64 360 50V62C320 76 290 54 245 68C200 82 165 58 120 70C80 80 40 60 0 72Z" fill="var(--sand)"/>
+  <text x="180" y="28" text-anchor="middle" class="map-sea">Océano Atlántico</text>
+  <ellipse cx="180" cy="300" rx="19" ry="46" fill="var(--sea)" opacity=".8"/>`;
+  [[18,120],[20,330],[90,300],[92,420],[180,112],[182,420],[180,215],[272,250],[276,385],[345,235],[344,450],[95,560],[268,566],[180,480],[345,120],[18,420]].forEach(([x,y])=>{s+=`<circle cx="${x}" cy="${y}" r="7" fill="var(--tree)"/><circle cx="${x+6}" cy="${y+5}" r="5" fill="var(--tree)"/>`});
+  H.forEach(([tx,ty,gx,gy],i)=>{const n=i+1;const bx=gx+(i%2?12:-12),by=gy+8;
+    s+=`<g class="hole" data-act="hole" data-v="${n}" aria-label="Hoyo ${n}, par ${hs[i].par}"><line class="fwl" x1="${tx}" y1="${ty}" x2="${gx}" y2="${gy}" stroke="var(--fw)" stroke-width="16" stroke-linecap="round"/>
+    ${i%3===0?`<ellipse cx="${bx}" cy="${by}" rx="6" ry="4" fill="var(--sand)"/>`:''}
+    <circle cx="${gx}" cy="${gy}" r="10" fill="var(--gr)"/><line x1="${gx}" y1="${gy}" x2="${gx}" y2="${gy-15}" stroke="var(--ink)" stroke-width="1.2"/><path d="M${gx} ${gy-15}l7 2.5-7 2.5z" fill="var(--flag)"/>
+    <circle cx="${tx}" cy="${ty}" r="8.5" fill="var(--card)" stroke="var(--deep)" stroke-width="1.5"/><text x="${tx}" y="${ty+3}" text-anchor="middle" class="map-t">${n}</text>
+    <line x1="${tx}" y1="${ty}" x2="${gx}" y2="${gy}" stroke="transparent" stroke-width="30"/></g>`});
+  s+=`<rect x="156" y="566" width="48" height="22" rx="4" fill="var(--deep)"/><text x="180" y="580" text-anchor="middle" style="font:700 7.5px Figtree,sans-serif;fill:#fff">Casa club</text>`;
+  const byHole={};activeRounds().forEach(r=>{const lh=liveHole(r);(byHole[lh]=byHole[lh]||[]).push(r)});
+  Object.entries(byHole).forEach(([hn,rs])=>{rs.forEach((r,k)=>{const fp=freshPos(r);const tt=fp?Math.min(.95,Math.max(.05,fp.y/holes()[hn-1].yards)):.35+(k%3)*.18;const [x,y]=locPt(+hn,tt);const off=(k>=3?10:0);const me=r.uid===S.uid;
+    s+=`<g pointer-events="none"><circle cx="${x+off}" cy="${y}" r="7.5" fill="${me?'var(--flag)':'var(--sea)'}" stroke="#fff" stroke-width="1.5"/><text x="${x+off}" y="${y+2.5}" text-anchor="middle" class="mk ${me?'me':''}">${esc(initials(r.uid))}</text></g>`})});
+  S.runners.filter(r=>Date.now()-(r.updatedAt||0)<6*3600e3).forEach((r,k)=>{const [x0,y0]=locPt(r.hole||0,.75);const x=x0+(r.hole?0:28+k*14),y=r.hole?y0:y0-18;
+    s+=`<g pointer-events="none"><circle cx="${x}" cy="${y}" r="9" fill="var(--cart)" class="pulse"/><rect x="${x-9}" y="${y-6}" width="18" height="11" rx="3" fill="var(--cart)" stroke="#fff" stroke-width="1.3"/><circle cx="${x-5}" cy="${y+6}" r="2.2" fill="var(--ink)"/><circle cx="${x+5}" cy="${y+6}" r="2.2" fill="var(--ink)"/></g>`});
+  return s+'</svg>';
+}
+function mapView(emb){
+  const ar=activeRounds();const runs=S.runners.filter(r=>Date.now()-(r.updatedAt||0)<6*3600e3);
+  return `${emb?'':'<h2>Mapa del campo</h2>'}<p class="muted small" style="margin:${emb?'12px':'4px'} 0 12px">Toca un hoyo para ${S.mode==='player'?'abrir su vista con distancias':'ver quién está jugando ahí'}.</p>
+  <div class="mapwrap">${mapSvg()}</div>
+  <div class="legend"><span><i style="background:var(--flag)"></i>Tú</span><span><i style="background:var(--sea)"></i>Otros jugadores</span><span><i style="background:var(--cart);border-radius:3px"></i>Carrito de comida</span></div>
+  <div class="section-h"><h2>En el campo ahora</h2><span class="muted small">${ar.length} jugando</span></div>
+  <div class="list">${ar.length||runs.length?'':'<div class="empty">Nadie está jugando en este momento.</div>'}
+  ${runs.map(r=>`<div class="li"><span class="avatar" style="background:var(--cart);display:grid;place-items:center">${ic('food',18)}</span><div class="grow"><b>Carrito de ${esc(nameOf(r.id===safe(S.uid)?S.uid:r.uid||r.id))}</b><p class="small muted">En ${enH(r.hole)}, ${ago(r.updatedAt)}</p></div></div>`).join('')}
+  ${ar.sort((a,b)=>liveHole(a)-liveHole(b)).map(r=>{const st=roundStats(r);return `<div class="li"><span class="avatar" style="display:grid;place-items:center;${r.uid===S.uid?'background:var(--flag);color:#13261E':''}">${esc(initials(r.uid))}</span><div class="grow"><b>${esc(nameOf(r.uid))}</b><p class="small muted">Hoyo ${liveHole(r)}${posText(r)?', '+posText(r):''}. ${st.thru} jugados</p></div><span class="${parCls(st.toPar)}">${toPar(st.toPar)}</span></div>`}).join('')}</div>`;
+}
+
+/* ============ Carrito ============ */
+function alertBar(){const gpsOk=S.gps&&Date.now()-S.gps.at<60000;
+  const b=(on,act,l1,l0,dis)=>`<button class="btn ghost sm ${on?'on':''}" data-act="${act}" ${dis?'disabled':''}><span class="gpsdot ${on?'on':''}"></span>${on?l1:l0}</button>`;
+  return `<div class="devbar">${b(S.alertsOn,'alertsOn','Alertas activas','Activar alertas',S.alertsOn)}${b(!!S.wake,'wakeOn','Pantalla siempre encendida','Mantener pantalla encendida')}${S.mode==='runner'?b(gpsOk,'gpsOn','GPS del carrito activo','Usar GPS del carrito',gpsOk):''}${b(S.sun,'sunMode','Modo sol','Modo sol (más contraste)')}${S.demo?'<button class="btn ghost sm" data-act="demoOrder">Simular pedido</button>':''}</div>${S.mode==='runner'&&S.gpsErr?`<p class="small" style="color:var(--danger);margin:-6px 0 10px">${esc(S.gpsErr)}</p>`:''}`}
+function runnerView(){
+  const here=myRunnerHole();const hasDoc=S.runners.some(x=>x.id===safe(S.uid));const q=openOrders();
+  const gpsOk=S.gps&&Date.now()-S.gps.at<60000;
+  return `<h2>Pedidos al carrito</h2>${alertBar()}<div class="runner-grid"><div class="left">
+  <div class="card"><p class="small muted" style="margin-bottom:8px">${gpsOk?'<b>El GPS marca tu hoyo solo.</b> ':''}${hasDoc?`Estás en <b>${enH(here)}</b>. Los jugadores te ven en el mapa.`:'Marca dónde estás para que los jugadores vean al carrito en el mapa.'}</p>
+   <div class="holegrid">${Array.from({length:18},(_,i)=>`<button class="${hasDoc&&here===i+1?'on':''}" data-act="runnerHere" data-v="${i+1}">${i+1}</button>`).join('')}<button class="wide ${hasDoc&&here===0?'on':''}" data-act="runnerHere" data-v="0">Casa club</button></div></div>
+  <div class="card tab-only" style="margin-top:14px;padding:8px">${mapSvg()}</div></div><div class="right">
+  <div class="section-h" style="margin-top:0"><h2>Por entregar</h2><span class="muted small">${q.length}</span></div>
+  ${q.length?`<div class="stack">${q.map(o=>{const pr=S.rounds.find(r=>r.uid===o.uid&&r.status==='active');const now=pr?liveHole(pr):o.hole;const mineRun=o.runner===S.uid;
+   const f=foodItems(o),d=drinkItems(o);const ks=f.length?KSTATE[o.kitchen||'nuevo']:null;const wait=f.length&&o.kitchen!=='listo';
+   return `<div class="card"><div class="row between"><h3>#${ordNum(o)} ${esc(nameOf(o.uid))}</h3><span class="badge ${o.status==='en camino'?'live':''}">${o.status==='en camino'?'En camino':'Nuevo'}</span></div>
+   <p style="margin-top:6px"><b>${pr?`Ahora en el hoyo ${now}`:`Entregar en ${enH(o.hole)}`}</b>${pr&&posText(pr)?`<br><span class="small">${posText(pr)}</span>`:''}${pr&&now!==o.hole?` <span class="small muted">(pidió desde ${enH(o.hole)})</span>`:''}</p>
+   ${hasDoc?`<p class="small muted">Desde tu ubicación: unos ${etaMin(here,now)} min</p>`:''}
+   ${d.length?`<p class="small" style="margin-top:8px"><b>Bebidas, las llevas tú:</b> ${itemsTxt(d)}</p>`:''}
+   ${f.length?`<p class="small" style="margin-top:6px"><b>Comida, sale de la cocina:</b> ${itemsTxt(f)} <span class="st ${ks[1]}">${ks[0]}</span></p>`:''}
+   ${o.note?`<p class="small muted">Nota: ${esc(o.note)}</p>`:''}<p class="small muted">${money(o.total)}, ${ago(o.createdAt)}</p>
+   <div class="row" style="gap:8px;margin-top:12px">${o.status!=='en camino'?(wait?`<button class="btn soft sm grow" disabled>Esperando a la cocina</button>`:`<button class="btn sm grow" data-act="oStatus" data-v="${o.id}|en camino">${f.length?'Recogí la comida, salir':'Salir a entregar'}</button>`):''}${o.status==='en camino'&&mineRun?`<button class="btn sm grow" data-act="oStatus" data-v="${o.id}|entregado">Marcar entregado</button>`:''}${o.status==='en camino'&&!mineRun?`<span class="small muted">Lo lleva ${esc(nameOf(o.runner))}</span>`:''}</div></div>`}).join('')}</div>`:`<div class="card empty">No hay pedidos pendientes.</div>`}</div></div>`;
+}
+
+/* ============ Cocina (impresora digital) ============ */
+function ticketHtml(o,actions){const f=foodItems(o),d=drinkItems(o);const mins=Math.round((Date.now()-o.createdAt)/60000);const late=o.kitchen!=='listo'&&mins>=15;
+  const pr=S.rounds.find(r=>r.uid===o.uid&&r.status==='active');const now=pr?liveHole(pr):o.hole;
+  return `<article class="ticket ${late?'late':''}"><div class="t-h"><b>#${ordNum(o)}</b><span>${new Date(o.createdAt).toLocaleTimeString('es-PR',{hour:'numeric',minute:'2-digit'})}, ${mins<1?'ahora':mins+' min'}</span></div>
+   <div class="t-where">${now?'HOYO '+now:'CASA CLUB'}${pr&&now!==o.hole?` <small>(pidió en el ${o.hole||'club'})</small>`:''}</div><div>${esc(nameOf(o.uid))}</div>
+   <div style="border-top:1px dashed #9aa3ad;margin-top:6px;padding-top:6px">${f.map(x=>`<div class="t-it"><b>${x.qty}x</b> ${esc(x.name)}</div>`).join('')}</div>
+   ${o.note?`<div class="t-note">NOTA: ${esc(o.note)}</div>`:''}
+   ${d.length?`<div class="t-foot">Bebidas (${itemsTxt(d)}): las lleva el carrito</div>`:''}
+   ${actions&&o.kitchen!=='listo'?`<button class="btn ${o.kitchen==='preparando'?'':'soft'}" data-act="kStatus" data-v="${o.id}|${o.kitchen==='preparando'?'listo':'preparando'}">${o.kitchen==='preparando'?'Lista, avisar al carrito':'Empezar a preparar'}</button>`:''}
+   ${actions&&o.kitchen==='listo'?`<div class="t-foot">${o.status==='en camino'?'El carrito ya la recogió':'Esperando al carrito'}</div>`:''}</article>`}
+function kdsView(){const today=todayStr();const t=S.orders.filter(o=>o.day===today&&foodItems(o).length&&o.status==='recibido').sort((a,b)=>a.createdAt-b.createdAt);
+  const cols=[['nuevo','Nuevos'],['preparando','Preparando'],['listo','Listos para recoger']];
+  return `<div class="row between" style="flex-wrap:wrap;gap:6px"><h2>Cocina</h2><span class="small muted">Solo llegan los pedidos que tienen comida. Las bebidas van directo al carrito.</span></div>${alertBar()}
+  <div class="kds">${cols.map(([k,l])=>{const list=t.filter(o=>(o.kitchen||'nuevo')===k);return `<section><h3>${l}<span class="badge">${list.length}</span></h3>${list.map(o=>ticketHtml(o,true)).join('')||'<p class="empty small">Nada por aquí.</p>'}</section>`}).join('')}</div>`}
+function kdoneView(){const today=todayStr();const t=S.orders.filter(o=>o.day===today&&foodItems(o).length&&o.status!=='recibido').sort((a,b)=>b.createdAt-a.createdAt);
+  return `<h2>Terminados hoy</h2><p class="small muted" style="margin:4px 0 12px">${t.length} tickets que ya salieron con el carrito.</p>${t.length?`<div class="kds">${t.map(o=>ticketHtml(o,false)).join('')}</div>`:'<div class="card empty">Todavía no ha salido ningún ticket hoy.</div>'}`}
+
+/* ============ Administración ============ */
+function adminTour(){
+  const ts=[...S.tournaments].sort((a,b)=>b.date.localeCompare(a.date));
+  const today=todayStr();const orders=S.orders.filter(o=>o.day===today);
+  const teeToday=S.tee.filter(t=>t.date===today).reduce((a,t)=>a+(t.players||[]).reduce((b,p)=>b+p.count,0),0);
+  return `<h2>Administración</h2>
+  <div class="stats" style="margin-top:12px"><div class="stat"><b>${teeToday}</b><span>Jugadores reservados hoy</span></div><div class="stat"><b>${activeRounds().length}</b><span>Rondas en juego</span></div><div class="stat"><b>${money(orders.reduce((a,o)=>a+o.total,0)).replace('.00','')}</b><span>${orders.length} pedidos hoy</span></div></div>
+  <div class="section-h"><h2>Crear torneo</h2></div>
+  <div class="card"><label class="field" style="margin-top:0"><span>Nombre</span><input class="input" id="tN" placeholder="Copa Dorado del Mar"></label>
+   <div class="grid2"><label class="field"><span>Fecha</span><input class="input" type="date" id="tD" value="${today}"></label><label class="field"><span>Máximo de jugadores</span><input class="input" type="number" id="tM" min="0" placeholder="Sin límite"></label></div>
+   <label class="field"><span>Formato</span><select class="input" id="tF"><option value="bruto">Juego por golpes bruto</option><option value="neto">Juego por golpes neto (con hándicap)</option></select></label>
+   <button class="btn full" style="margin-top:14px" data-act="tCreate">Crear torneo</button></div>
+  <div class="section-h"><h2>Torneos</h2></div>
+  ${ts.length?`<div class="stack">${ts.map(t=>`<div class="card"><div class="row between"><div class="grow"><h3>${esc(t.name)}</h3><p class="small muted">${dLabel(t.date)}. ${S.entries.filter(e=>e.tid===t.id).length} inscritos. ${t.format==='neto'?'Neto':'Bruto'}.</p></div></div>
+   <div class="row" style="gap:8px;margin-top:12px"><select class="input" style="flex:1" data-change="tStatus" data-v="${t.id}" aria-label="Estado del torneo">${['abierto','en juego','finalizado'].map(s=>`<option ${t.status===s?'selected':''} value="${s}">${s[0].toUpperCase()+s.slice(1)}</option>`).join('')}</select>
+   <button class="btn soft sm" data-act="lbAdmin" data-v="${t.id}">Resultados</button><button class="btn warn sm" data-act="tDelete" data-v="${t.id}">Borrar</button></div></div>`).join('')}</div>`:'<div class="card empty">Crea el primer torneo arriba.</div>'}`;
+}
+function leaderboard(tid){
+  const t=S.tournaments.find(x=>x.id===tid);if(!t)return '<p class="empty">Torneo no encontrado.</p>';
+  const net=t.format==='neto';
+  const rows=S.rounds.filter(r=>r.tournamentId===tid&&r.status!=='abandoned').map(r=>{const st=roundStats(r);const hcp=+((S.players[safe(r.uid)]||{}).handicap||0);const adj=Math.round(hcp*st.thru/18);return {r,...st,hcp,net:st.gross-adj,netPar:st.toPar-adj,done:r.status==='done'}});
+  const regs=S.entries.filter(e=>e.tid===tid&&!rows.some(x=>x.r.uid===e.uid));
+  rows.sort((a,b)=>(net?a.netPar-b.netPar:a.toPar-b.toPar)||b.thru-a.thru);
+  let pos=0,prev=null;
+  const body=rows.map((x,i)=>{const key=net?x.netPar:x.toPar;if(key!==prev){pos=i+1;prev=key}
+    return `<tr class="${pos===1?'lead':''}"><td class="pos">${pos}</td><td>${esc(nameOf(x.r.uid))}</td><td class="num">${x.done?'F':x.thru}</td><td class="num">${x.gross}</td><td class="num ${parCls(x.toPar)}">${toPar(x.toPar)}</td>${net?`<td class="num">${x.hcp}</td><td class="num ${parCls(x.netPar)}"><b>${toPar(x.netPar)}</b></td>`:''}</tr>`}).join('');
+  return `<h2>${esc(t.name)}</h2><p class="small muted" style="margin:4px 0 12px">${dLabel(t.date)}. ${net?'Clasificación neta':'Clasificación bruta'}. Se actualiza en vivo.</p>
+  ${rows.length?`<div class="tbl-wrap"><table><thead><tr><th>Pos</th><th>Jugador</th><th class="num">Hoyos</th><th class="num">Golpes</th><th class="num">Par</th>${net?'<th class="num">Hcp</th><th class="num">Neto</th>':''}</tr></thead><tbody>${body}</tbody></table></div>`:'<div class="card empty">Todavía nadie ha empezado a jugar.</div>'}
+  ${regs.length?`<p class="small muted" style="margin-top:10px">Inscritos sin empezar: ${regs.map(e=>esc(nameOf(e.uid))).join(', ')}</p>`:''}`;
+}
+function adminRes(){
+  const ts=[...S.tournaments].sort((a,b)=>b.date.localeCompare(a.date));
+  if(!ts.length)return `<h2>Resultados</h2><div class="card empty" style="margin-top:12px">No hay torneos. Créalos en la pestaña Torneos.</div>`;
+  if(!S.lbT||!ts.some(t=>t.id===S.lbT))S.lbT=(ts.find(t=>t.status==='en juego')||ts[0]).id;
+  return `<div class="chips" style="margin-bottom:14px">${ts.map(t=>`<button class="dchip ${S.lbT===t.id?'on':''}" style="min-width:auto" data-act="lbSel" data-v="${t.id}">${esc(t.name)}</button>`).join('')}</div>${leaderboard(S.lbT)}`;
+}
+function adminTee(){
+  const days=[...Array(8)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()+i);return todayStr(d)});
+  const list=S.tee.filter(t=>t.date===S.adminDate&&(t.players||[]).length).sort((a,b)=>a.time.localeCompare(b.time));
+  const tot=list.reduce((a,t)=>a+t.players.reduce((b,p)=>b+p.count,0),0);
+  return `<h2>Hoja de salidas</h2><p class="muted small" style="margin:4px 0 12px">${tot} jugador${tot===1?"":"es"} en ${list.length} grupo${list.length===1?"":"s"}.</p>
+  <div class="chips">${days.map(d=>{const dt=parseD(d);return `<button class="dchip ${S.adminDate===d?'on':''}" data-act="aDate" data-v="${d}">${dt.toLocaleDateString('es-PR',{weekday:'short'})}<b>${dt.getDate()}</b></button>`}).join('')}</div>
+  ${list.length?`<div class="list" style="margin-top:12px">${list.map(t=>`<div class="li"><b style="width:76px">${tLabel(t.time)}</b><div class="grow">${t.players.map(p=>{const extra=p.count-1-(p.buddies||[]).length-(p.guests||[]).length;return [nameOf(p.uid),...(p.buddies||[]).map(nameOf),...(p.guests||[]).map(g=>g+' (invitado)')].map(esc).join(', ')+(extra>0?' +'+extra:'')+(p.cart?' (carrito)':'')}).join('<br>')}</div><span class="badge">${t.players.reduce((a,p)=>a+p.count,0)}/4</span></div>`).join('')}</div>`:'<div class="card empty" style="margin-top:12px">No hay reservas este día.</div>'}`;
+}
+function adminMenu(){
+  if(!S.menuDraft)S.menuDraft=JSON.parse(JSON.stringify(menu()));
+  return `<h2>Menú del campo</h2><p class="muted small" style="margin:4px 0 12px">Los cambios se ven en la app de los jugadores al guardar. Lo que «va a la cocina» sale como ticket en la pantalla de cocina.</p>
+  <div class="list">${S.menuDraft.map((m,i)=>`<div class="li" style="flex-wrap:wrap"><input class="input" style="flex:2 1 160px" value="${esc(m.name)}" data-input="mName" data-v="${i}" aria-label="Nombre"><input class="input" style="flex:1 1 90px" value="${esc(m.cat)}" data-input="mCat" data-v="${i}" aria-label="Categoría"><input class="input" style="flex:0 1 90px" type="number" step="0.25" min="0" value="${m.price}" data-input="mPrice" data-v="${i}" aria-label="Precio"><select class="input" style="flex:1 1 130px" data-input="mSt" data-v="${i}" aria-label="Quién lo prepara"><option value="cocina" ${m.station!=='carrito'?'selected':''}>Va a la cocina</option><option value="carrito" ${m.station==='carrito'?'selected':''}>Lo lleva el carrito</option></select><button class="btn warn sm" data-act="menuDel" data-v="${i}">Quitar</button></div>`).join('')}</div>
+  <div class="row" style="gap:8px;margin-top:12px"><button class="btn ghost grow" data-act="menuAdd">Añadir artículo</button><button class="btn grow" data-act="menuSave">Guardar menú</button></div>`;
+}
+function adminStaff(){
+  const staff=Object.values(S.staff).filter(x=>x.role);const ids=new Set(staff.map(x=>x.uid));
+  const pl=Object.values(S.players).filter(p=>p.uid&&p.name&&!ids.has(p.uid)).sort((a,b)=>a.name.localeCompare(b.name));
+  return `<h2>Empleados</h2><p class="muted small" style="margin:4px 0 12px">Cada empleado entra con su propia cuenta y la app le muestra solo su área. Primero debe abrir la app y poner su nombre en el perfil.</p>
+  <div class="card"><h3>Añadir empleado</h3>${pl.length?`<div class="grid2"><label class="field"><span>Persona</span><select class="input" id="sfU">${pl.map(p=>`<option value="${esc(p.uid)}">${esc(p.name)}</option>`).join('')}</select></label>
+   <label class="field"><span>Rol</span><select class="input" id="sfR"><option value="carrito">Carrito</option><option value="cocina">Cocina</option></select></label></div><button class="btn full" style="margin-top:12px" data-act="staffAdd">Añadir empleado</button>`:'<p class="small muted" style="margin-top:6px">No hay más personas con perfil en la app.</p>'}</div>
+  <div class="section-h"><h2>Equipo</h2><span class="small muted">${staff.length}</span></div>
+  ${staff.length?`<div class="list">${staff.map(x=>`<div class="li" style="flex-wrap:wrap"><b class="grow">${esc(nameOf(x.uid))}</b><select class="input" style="width:auto" data-change="staffRole" data-v="${esc(x.uid)}" aria-label="Rol de ${esc(nameOf(x.uid))}">${Object.entries(ROLE_LABEL).map(([k,l])=>`<option value="${k}" ${x.role===k?'selected':''}>${l}</option>`).join('')}</select><button class="btn warn sm" data-act="staffDel" data-v="${esc(x.uid)}">Quitar</button></div>`).join('')}</div>`:'<div class="card empty">Todavía no hay empleados.</div>'}
+  <div class="card" style="margin-top:14px"><h3>Qué ve cada rol</h3>
+   <p class="small" style="margin-top:8px"><b>Cocina:</b> la pantalla de tickets con los pedidos que traen comida. Marca «Empezar» y «Lista», y el carrito recibe el aviso.</p>
+   <p class="small" style="margin-top:6px"><b>Carrito:</b> recibe cada pedido con el nombre del jugador y el hoyo donde está ahora, lleva las bebidas, recoge la comida lista y marca «Entregado». Su ubicación sale en el mapa.</p>
+   <p class="small" style="margin-top:6px"><b>Administración:</b> para dar acceso al panel, comparte la app con esa persona como Editor.</p></div>`;
+}
+function adminCourse(){
+  if(!S.courseDraft)S.courseDraft={holes:JSON.parse(JSON.stringify(holes())),ratings:JSON.parse(JSON.stringify(ratings()))};
+  const D=S.courseDraft;const tp=D.holes.reduce((a,h)=>a+(+h.par||0),0);
+  return `<h2>Datos del campo</h2><p class="muted small" style="margin:4px 0 12px">Par ${tp}. Datos de la tarjeta oficial de marzo de 2026. Actualízalos aquí si el club imprime una nueva.</p>
+  <div class="tbl-wrap"><table><thead><tr><th>Hoyo</th><th>Par</th><th>Hcp cab.</th><th>Hcp damas</th><th>Doradas</th><th>Azules</th><th>Blancas</th><th>Rojas</th></tr></thead><tbody>${D.holes.map((h,i)=>`<tr><td class="pos">${i+1}</td><td><select class="input" style="min-width:62px" data-input="cPar" data-v="${i}">${[3,4,5].map(p=>`<option ${+h.par===p?'selected':''}>${p}</option>`).join('')}</select></td>${['hcp','hcpRed','gold','yards','white','red'].map(f=>`<td><input class="input" type="number" min="1" style="min-width:${f.startsWith('hcp')?62:78}px" value="${h[f]}" data-input="cF" data-f="${f}" data-v="${i}" aria-label="Hoyo ${i+1} ${f}"></td>`).join('')}</tr>`).join('')}</tbody></table></div>
+  <h3 style="margin:18px 0 8px">Rating y slope</h3><div class="list">${Object.entries(TEES).map(([k,t])=>`<div class="li"><i class="teedot" style="background:${t.color}"></i><b style="width:64px">${t.name}</b><input class="input" type="number" step="0.1" value="${D.ratings[k].rating}" data-input="rF" data-f="rating" data-v="${k}" aria-label="Rating ${t.name}"><input class="input" type="number" value="${D.ratings[k].slope}" data-input="rF" data-f="slope" data-v="${k}" aria-label="Slope ${t.name}"></div>`).join('')}</div>
+  <h3 style="margin:20px 0 4px">Coordenadas GPS</h3><p class="small muted" style="margin-bottom:8px">Con esto la app mide desde la ubicación del jugador y sabe solo en qué hoyo está. Pega el centro del tee azul y el centro del green desde Google Maps (clic derecho sobre el punto), o párate ahí y toca Aquí.</p>
+  <div class="list">${D.holes.map((h,i)=>`<div class="li" style="flex-wrap:wrap;gap:8px"><b style="width:26px">${i+1}</b>${['teeGps','greenGps'].map(f=>`<div class="row" style="flex:1 1 230px;gap:6px"><input class="input" placeholder="${f==='teeGps'?'Tee':'Green'}: 18.4735, -66.2651" value="${esc(h[f+'Raw']!==undefined?h[f+'Raw']:(h[f]?h[f].lat+', '+h[f].lon:''))}" data-input="gF" data-f="${f}" data-v="${i}" aria-label="Hoyo ${i+1} ${f==='teeGps'?'tee':'green'}"><button class="btn ghost sm" data-act="gpsHere" data-v="${i}|${f}">Aquí</button></div>`).join('')}</div>`).join('')}</div>
+  <button class="btn full" style="margin-top:12px" data-act="courseSave">Guardar campo</button>`;
+}
+
+/* ============ Panel en vivo (administración) ============ */
+const isMember=uid=>!!(S.members[safe(uid)]&&S.members[safe(uid)].member);
+const KIND={socio:'Socio',visitante:'Visitante',invitado:'Invitado'};
+function onCourse(){const out=[];const today=todayStr();activeRounds().filter(r=>r.date===today).forEach(r=>{const h=liveHole(r);
+  out.push({uid:r.uid,name:nameOf(r.uid),kind:isMember(r.uid)?'socio':'visitante',hole:h,r,st:roundStats(r)});
+  (r.group||[]).filter(g=>g.type==='guest').forEach(g=>out.push({name:g.name,kind:'invitado',hole:h,r,host:r.uid,st:roundStats({scores:g.scores||[]})}))});return out}
+function peopleOfRound(r){return [isMember(r.uid)?'socio':'visitante',...(r.group||[]).filter(g=>g.type==='guest').map(()=>'invitado')]}
+function barsSvg(vals,labels,opt={}){const h=opt.h||140,n=vals.length,st=opt.stack||vals.map(()=>0);const W=Math.max(320,n*30),bw=W/n;const tot=vals.map((v,i)=>v+st[i]);const mx=Math.max(1,...tot);const f=opt.fmt||(v=>v);
+  let s=`<svg viewBox="0 0 ${W} ${h+36}" style="width:100%;height:auto;display:block" role="img" aria-label="${esc(opt.label||'Gráfica')}"><line x1="0" x2="${W}" y1="${h+14}" y2="${h+14}" stroke="var(--line)"/>`;
+  vals.forEach((v,i)=>{const x=i*bw+bw*.17,w=bw*.66,hv=v/mx*h,ht=st[i]/mx*h;
+    if(v)s+=`<rect x="${x.toFixed(1)}" y="${(h+14-hv).toFixed(1)}" width="${w.toFixed(1)}" height="${hv.toFixed(1)}" rx="3" fill="${opt.color||'var(--fair)'}"/>`;
+    if(st[i])s+=`<rect x="${x.toFixed(1)}" y="${(h+14-hv-ht).toFixed(1)}" width="${w.toFixed(1)}" height="${ht.toFixed(1)}" rx="3" fill="${opt.color2||'var(--sea)'}"/>`;
+    if(tot[i])s+=`<text x="${(x+w/2).toFixed(1)}" y="${(h+9-hv-ht).toFixed(1)}" text-anchor="middle" style="font:700 10px Figtree,sans-serif;fill:var(--ink)">${f(tot[i])}</text>`;
+    s+=`<text x="${(x+w/2).toFixed(1)}" y="${h+30}" text-anchor="middle" style="font:600 10px Figtree,sans-serif;fill:var(--muted)">${labels[i]}</text>`});return s+'</svg>'}
+function donutSvg(parts){const tot=parts.reduce((a,p)=>a+p[1],0);if(!tot)return '<p class="empty">Nadie en el campo ahora.</p>';const R=52,C=2*Math.PI*R;let off=0;
+  let s=`<svg viewBox="0 0 140 140" style="width:150px;height:150px" role="img" aria-label="Jugadores por tipo"><circle cx="70" cy="70" r="${R}" fill="none" stroke="var(--line)" stroke-width="20"/>`;
+  parts.forEach(([,v,c])=>{if(!v)return;const L=v/tot*C;s+=`<circle cx="70" cy="70" r="${R}" fill="none" stroke="${c}" stroke-width="20" stroke-dasharray="${L.toFixed(2)} ${(C-L).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 70 70)"/>`;off+=L});
+  return s+`<text x="70" y="68" text-anchor="middle" style="font:800 26px 'Bricolage Grotesque',sans-serif;fill:var(--ink)">${tot}</text><text x="70" y="86" text-anchor="middle" style="font:600 10px Figtree,sans-serif;fill:var(--muted)">en el campo</text></svg>`}
+const durTxt=ms=>{const m=Math.max(0,Math.round(ms/60000));return m<60?`${m} min`:`${Math.floor(m/60)} h ${m%60} min`};
+function adminLive(){
+  const today=todayStr(),now=Date.now();const people=onCourse();const ord=S.orders.filter(o=>o.day===today);
+  const cnt=k=>people.filter(p=>p.kind===k).length;const nS=cnt('socio'),nV=cnt('visitante'),nI=cnt('invitado');
+  const sales=ord.reduce((a,o)=>a+o.total,0);const pend=ord.filter(o=>o.status!=='entregado').length;
+  const groups=activeRounds().filter(r=>r.date===today&&!r.groupOf).length;
+  const booked=S.tee.filter(t=>t.date===today).reduce((a,t)=>a+(t.players||[]).reduce((b,p)=>b+p.count,0),0);
+  const spend=uid=>ord.filter(o=>o.uid===uid).reduce((a,o)=>a+o.total,0);
+  // jugadores por hoyo
+  const perHole=Array(18).fill(0);people.forEach(p=>{if(p.hole)perHole[p.hole-1]++});
+  // consumo por hora
+  const hrs=[];for(let h=6;h<=18;h++)hrs.push(h);const byHr=hrs.map(h=>Math.round(ord.filter(o=>new Date(o.createdAt).getHours()===h).reduce((a,o)=>a+o.total,0)));
+  // más vendido
+  const items={};ord.forEach(o=>o.items.forEach(it=>{items[it.name]=items[it.name]||{q:0,t:0};items[it.name].q+=it.qty;items[it.name].t+=it.qty*it.price}));
+  const top=Object.entries(items).sort((a,b)=>b[1].t-a[1].t).slice(0,6);const topMax=top.length?top[0][1].t:1;
+  // últimos 7 días
+  const days=[...Array(7)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-6+i);return todayStr(d)});
+  const dl=days.map(d=>parseD(d).toLocaleDateString('es-PR',{weekday:'short'}).replace('.',''));
+  const rd=days.map(d=>S.rounds.filter(r=>r.date===d&&!r.groupOf).flatMap(peopleOfRound).concat(S.rounds.filter(r=>r.date===d&&r.groupOf).map(r=>isMember(r.uid)?'socio':'visitante')));
+  const dS=rd.map(a=>a.filter(k=>k==='socio').length),dO=rd.map(a=>a.filter(k=>k!=='socio').length);
+  const dSales=days.map(d=>Math.round(S.orders.filter(o=>o.day===d).reduce((a,o)=>a+o.total,0)));
+  const rows=people.slice().sort((a,b)=>a.hole-b.hole||String(a.name).localeCompare(b.name)).map(p=>{const mph=(now-(p.r.startedAt||now))/60000/Math.max(1,p.st.thru);const slow=p.st.thru>=3&&mph>16;
+    return `<tr><td><b>${esc(p.name)}</b><span class="kind ${p.kind}">${KIND[p.kind]}</span>${p.host?`<br><span class="small muted">con ${esc(nameOf(p.host))}</span>`:''}</td><td class="num pos">${p.hole}</td><td class="small">${esc(posText(p.r)||'–')}</td><td class="num">${p.st.thru}</td><td class="num ${parCls(p.st.toPar)}">${p.st.thru?toPar(p.st.toPar):'–'}</td><td class="num">${durTxt(now-(p.r.startedAt||now))}${slow?' <span class="badge live">Lento</span>':''}</td><td class="num">${p.uid?money(spend(p.uid)):'<span class="small muted">en cuenta del anfitrión</span>'}</td></tr>`}).join('');
+  const plist=Object.values(S.players).filter(p=>p.uid&&p.name&&!staffRole(p.uid)).sort((a,b)=>a.name.localeCompare(b.name));
+  return `<div class="row between" style="flex-wrap:wrap;gap:6px"><h2>En vivo</h2><span class="small muted"><span class="gpsdot on" style="display:inline-block;margin-right:6px"></span>Se actualiza solo. ${dLabel(today)}</span></div>
+  <div class="stats six" style="margin-top:12px">
+   <div class="stat"><b>${people.length}</b><span>En el campo</span></div><div class="stat"><b>${nS}</b><span>Socios</span></div><div class="stat"><b>${nV+nI}</b><span>Invitados y visitantes</span></div>
+   <div class="stat"><b>${groups}</b><span>Grupos jugando</span></div><div class="stat"><b>${money(sales).replace('.00','')}</b><span>Consumo hoy (${ord.length} pedidos)</span></div><div class="stat"><b>${pend}</b><span>Pedidos por entregar</span></div></div>
+  <div class="dash" style="margin-top:14px">
+   <div class="card mapbox"><h3 style="margin-bottom:8px">Dónde están</h3>${mapSvg()}<div class="legend" style="margin-top:6px"><span><i style="background:var(--sea)"></i>Jugadores</span><span><i style="background:var(--cart);border-radius:3px"></i>Carrito de comida</span></div></div>
+   <div style="display:grid;gap:14px;align-content:start">
+    <div class="card"><h3>Socios e invitados en el campo</h3><div class="row" style="margin-top:8px;gap:18px;flex-wrap:wrap">${donutSvg([['Socios',nS,'var(--fair)'],['Visitantes con la app',nV,'var(--sea)'],['Invitados sin la app',nI,'var(--flag)']])}
+      <div class="legend2" style="flex-direction:column"><span><i style="background:var(--fair)"></i>Socios: ${nS}</span><span><i style="background:var(--sea)"></i>Visitantes con la app: ${nV}</span><span><i style="background:var(--flag)"></i>Invitados sin la app: ${nI}</span><span>Reservados hoy: ${booked}</span></div></div></div>
+    <div class="card"><h3>Jugadores por hoyo</h3>${barsSvg(perHole,perHole.map((_,i)=>i+1),{label:'Jugadores por hoyo',h:110})}</div>
+   </div>
+   <div class="card span2"><h3 style="margin-bottom:8px">Quién está jugando</h3>${rows?`<div class="tbl-wrap"><table><thead><tr><th>Jugador</th><th class="num">Hoyo</th><th>Ubicación</th><th class="num">Jugados</th><th class="num">Score</th><th class="num">En el campo</th><th class="num">Consumo hoy</th></tr></thead><tbody>${rows}</tbody></table></div>`:'<p class="empty">Nadie está jugando en este momento.</p>'}</div>
+   <div class="card"><h3>Consumo por hora</h3><p class="small muted">Hoy, en dólares</p>${barsSvg(byHr,hrs.map(h=>((h+11)%12+1)+(h<12?'a':'p')),{label:'Consumo por hora',fmt:v=>'$'+v,color:'var(--flag)'})}</div>
+   <div class="card"><h3>Lo más vendido hoy</h3>${top.length?top.map(([n,v])=>`<div class="hbar"><span>${esc(n)}</span><i style="width:${Math.max(4,v.t/topMax*100)}%"></i><b class="num">${money(v.t).replace('.00','')}</b></div>`).join(''):'<p class="empty">Todavía no hay pedidos hoy.</p>'}<p class="small muted" style="margin-top:6px">Ticket promedio: ${ord.length?money(sales/ord.length):'–'}</p></div>
+   <div class="card"><h3>Jugadores últimos 7 días</h3>${barsSvg(dS,dl,{stack:dO,label:'Jugadores por día'})}<div class="legend2"><span><i style="background:var(--fair)"></i>Socios</span><span><i style="background:var(--sea)"></i>Invitados y visitantes</span></div></div>
+   <div class="card"><h3>Consumo últimos 7 días</h3>${barsSvg(dSales,dl,{fmt:v=>'$'+v,color:'var(--flag)',label:'Consumo por día'})}<p class="small muted">Total: ${money(dSales.reduce((a,b)=>a+b,0))}</p></div>
+   <div class="card span2"><h3>Socios del club</h3><p class="small muted" style="margin:4px 0 8px">Marca quién es socio. Quien tiene la app y no es socio cuenta como visitante.</p><div class="list">${plist.map(p=>{const m=isMember(p.uid);return `<div class="li"><b class="grow">${esc(p.name)}</b><span class="kind ${m?'socio':'visitante'}">${m?'Socio':'Visitante'}</span><button class="btn ${m?'ghost':'soft'} sm" data-act="memberToggle" data-v="${esc(p.uid)}">${m?'Quitar socio':'Marcar socio'}</button></div>`}).join('')||'<p class="empty">Todavía no hay jugadores registrados.</p>'}</div></div>
+  </div>`;
+}
+
+/* ============ Hojas (bottom sheets) ============ */
+const SHEETS={
+ modes(){const all={player:['Jugador','Reserva, juega, pide comida y ve el mapa.'],runner:['Carrito','Recibe pedidos, lleva bebidas y recoge la comida en la cocina.'],kitchen:['Cocina','Pantalla de tickets de comida, como la impresora de la cocina.'],admin:['Administración','En vivo, torneos, salidas, menú, campo y empleados.']};
+  return `<h2>Ver la app como</h2>${allowedModes().map(k=>`<button class="opt ${S.mode===k?'on':''}" data-act="setMode" data-v="${k}"><div class="grow"><b>${all[k][0]}</b><p class="small muted">${all[k][1]}</p></div></button>`).join('')}${S.demo?'':'<p class="small muted" style="margin-top:10px">Las áreas de Cocina y Carrito aparecen cuando la administración te asigna ese rol.</p>'}`},
+ editProfile(){const p=S.players[safe(S.uid)]||{};const idx=calcIndex(doneRounds(S.uid),p.handicap);
+  return `<h2>Editar perfil</h2><label class="field"><span>Nombre</span><input class="input" id="pN" value="${esc(p.name||S.meName||'')}" autocomplete="name"></label>
+  <div class="grid2"><label class="field"><span>Hándicap para torneos</span><input class="input" id="pH" type="number" step="0.1" value="${p.handicap??''}" placeholder="Ej. 12.4"></label>
+  <label class="field"><span>Salidas preferidas</span><select class="input" id="pT">${Object.entries(TEES).map(([k,t])=>`<option value="${k}" ${myTee()===k?'selected':''}>${t.name}</option>`).join('')}</select></label></div>
+  ${idx!==null?`<button class="link" style="margin-top:8px" data-act="useIdx" data-v="${idx}">Usar mi índice calculado (${idx.toFixed(1)})</button>`:''}
+  <button class="btn full" style="margin-top:14px" data-act="profileSave">Guardar perfil</button>
+  ${S.sbMode?`<div class="card" style="margin-top:14px;padding:12px"><p class="small muted">Tu ID de usuario${S.canEdit?' (eres administrador)':''}</p><p style="font-family:monospace;font-size:.85rem;word-break:break-all;margin-top:4px">${esc(S.uid)}</p><button class="btn ghost sm" style="margin-top:8px" data-act="copyId">Copiar ID</button></div>`:''}`},
+ round(id){const r=S.rounds.find(x=>x.id===id);if(!r)return '<p class="empty">Ronda no encontrada.</p>';const hs=holes();const st=roundStats(r);
+  const blk=(a,l)=>`<div class="tbl-wrap" style="margin-top:10px"><table class="sctbl"><thead><tr><th>Hoyo</th>${a.map(i=>`<th>${i+1}</th>`).join('')}<th>${l}</th></tr></thead><tbody>
+   <tr class="parrow"><td>Par</td>${a.map(i=>`<td>${hs[i].par}</td>`).join('')}<td>${a.reduce((x,i)=>x+hs[i].par,0)}</td></tr>
+   <tr><td>Golpes</td>${a.map(i=>{const s=r.scores[i];const d=s-hs[i].par;return `<td class="${s?(d<0?'under':d>0?'over':''):''}">${s||'–'}</td>`}).join('')}<td><b>${a.reduce((x,i)=>x+(r.scores[i]||0),0)}</b></td></tr>
+   <tr><td>Putts</td>${a.map(i=>`<td>${(r.putts||[])[i]||'–'}</td>`).join('')}<td>${a.reduce((x,i)=>x+((r.putts||[])[i]||0),0)}</td></tr></tbody></table></div>`;
+  return `<h2>${dLabel(r.date)}</h2><p class="muted" style="margin-top:4px">${st.gross} golpes (${toPar(st.toPar)}), salidas ${TEES[r.tee||'white'].name.toLowerCase()}</p>${blk([0,1,2,3,4,5,6,7,8],'Ida')}${blk([9,10,11,12,13,14,15,16,17],'Vta')}`},
+ bookTee(time){const t=S.tee.find(x=>x.id===S.teeDate+'_'+time);const taken=((t&&t.players)||[]).reduce((a,p)=>a+p.count,0);const free=4-taken;const g=grpList('tee');
+  return `<h2>${tLabel(time)}</h2><p class="muted">${dLabel(S.teeDate)}. ${free} lugar${free>1?'es':''} libre${free>1?'s':''}.</p>
+  <p class="small muted" style="margin-top:14px"><b>Tu grupo (${1+g.length})</b></p>${groupEditor(g,'tee',free-1)}
+  <label class="row" style="margin-top:14px;gap:10px"><input type="checkbox" id="bK" checked style="width:22px;height:22px"> Necesito carrito</label>
+  <button class="btn full" style="margin-top:18px" data-act="teeConfirm" data-v="${time}">Reservar para ${1+g.length}</button>`},
+ addGuest(target){return `<h2>Añadir invitado</h2><p class="muted small" style="margin-top:4px">Para quien juega contigo pero no tiene la app. Tú llevas su tarjeta.</p>
+  <label class="field"><span>Nombre</span><input class="input" id="gN" placeholder="Ej. Carlos Díaz" autocomplete="off"></label>
+  <label class="field"><span>Hándicap (opcional)</span><input class="input" id="gH" type="number" step="0.1" placeholder="Ej. 18"></label>
+  <div class="row" style="gap:8px;margin-top:16px"><button class="btn ghost grow" data-act="grpBack" data-v="${target}">Volver</button><button class="btn grow" data-act="grpGuestSave" data-v="${target}">Añadir</button></div>`},
+ addUser(target){const taken=new Set(grpList(target).filter(x=>x.type==='user').map(x=>x.uid));
+  const ps=Object.values(S.players).filter(p=>p.uid&&p.uid!==S.uid&&p.name&&!taken.has(p.uid)&&!String(p.uid).includes('runner')).sort((a,b)=>a.name.localeCompare(b.name));
+  return `<h2>Jugador con la app</h2><p class="muted small" style="margin-top:4px">La ronda se guarda en su perfil y ve su tarjeta en vivo desde su teléfono.</p>
+  <input class="input" style="margin-top:12px" placeholder="Buscar por nombre" data-input="uq" autocomplete="off">
+  <div class="list" style="margin-top:10px">${ps.length?ps.map(p=>{const busy=target==='round'&&S.rounds.some(r=>r.uid===p.uid&&r.status==='active');return `<div class="li pick" data-name="${esc(p.name.toLowerCase())}"><span class="avatar" style="display:grid;place-items:center">${esc(initials(p.uid))}</span><div class="grow"><b>${esc(p.name)}</b><p class="small muted">${busy?'Ya está jugando una ronda':'Hcp '+(p.handicap??'–')}</p></div><button class="btn sm" data-act="grpUserAdd" data-v="${target}|${esc(p.uid)}" ${busy?'disabled':''}>Añadir</button></div>`}).join(''):'<div class="empty">Todavía no hay otros jugadores con perfil en la app.</div>'}</div>
+  <button class="btn ghost full" style="margin-top:14px" data-act="grpBack" data-v="${target}">Volver</button>`},
+ lb(tid){return leaderboard(tid)},
+ hole(n){const hd=holes()[n-1];const here=activeRounds().filter(r=>liveHole(r)===n);const r=myRound();const runs=S.runners.filter(x=>x.hole===n&&Date.now()-(x.updatedAt||0)<6*3600e3);
+  return `<div class="holehead"><span class="holenum">${n}</span><div class="grow"><p><b>Par ${hd.par}</b></p><p class="muted small">${hd.yards} yardas</p></div></div>
+  <p style="margin-top:14px">${here.length?here.map(x=>esc(nameOf(x.uid))).join(', ')+(here.length>1?' están':' está')+' jugando este hoyo.':'Nadie está jugando este hoyo ahora.'}</p>
+  ${runs.length?'<p class="small" style="margin-top:6px">Hay un carrito de comida aquí.</p>':''}
+  ${S.mode==='runner'?`<button class="btn full" style="margin-top:16px;background:var(--cart)" data-act="runnerHere" data-v="${n}">Estoy en este hoyo</button>`:r&&r.currentHole!==n?`<button class="btn full" style="margin-top:16px" data-act="moveHole" data-v="${n}">Estoy en este hoyo</button>`:''}`},
+ confirmFinish(){const r=myRound();const n=r?18-played(r):0;return `<h2>¿Terminar la ronda?</h2><p class="muted" style="margin-top:6px">${n?`Te faltan ${n} hoyos por anotar. La ronda se guarda con lo que llevas.`:'Tu ronda se guardará en tu perfil.'}</p><div class="row" style="gap:8px;margin-top:16px"><button class="btn ghost grow" data-act="closeSheet">Seguir jugando</button><button class="btn grow" data-act="finishYes">Terminar</button></div>`},
+ confirmAbandon(){return `<h2>¿Descartar la ronda?</h2><p class="muted" style="margin-top:6px">Se borran los golpes anotados y no cuenta para torneos ni estadísticas.</p><div class="row" style="gap:8px;margin-top:16px"><button class="btn ghost grow" data-act="closeSheet">Volver</button><button class="btn grow" style="background:var(--danger)" data-act="abandonYes">Descartar</button></div>`}
+};
+
+/* ============ Acciones ============ */
+const openSheet=(k,v)=>{S.sheet={k,v};render()};
+const A={
+ tab(v){S.tab=v;S.sheet=null;window.scrollTo(0,0);render()},
+ modes(){openSheet('modes')}, profile(){openSheet('editProfile')},
+ hvMode(v){S.hvMode=v;render()}, hvReset(v){delete S.ball[+v];S.target=null;render()},
+ cSeg(v){S.cSeg=v;render()}, cTee(v){S.cTee=v;S.ball={};S.target=null;render()},
+ cHole(v){S.cHole=+v;S.target=null;render();const c=document.querySelector('.holechips .on');if(c)c.scrollIntoView({inline:'center',block:'nearest'})},
+ pSeg(v){S.pSeg=v;render()}, roundOpen(v){openSheet('round',v)}, useIdx(v){const i=$('#pH');if(i)i.value=v},
+ async markShot(pos,rem){const r=myRound();if(!r)return;const n=r.currentHole;const g=holeGeo(n);const all={...(r.shots||{})};const arr=[...(all[n]||[]),pos];all[n]=arr;
+   const prev=arr.length>1?arr[arr.length-2]:g.tees[r.tee||'white'];const left=rem!=null?rem:dist(pos,[g.gx,g.gy]);
+   if(await write(()=>Store.update('rounds/'+r.id,{shots:all,pos:{hole:n,x:pos[0],y:pos[1],rem:left,at:Date.now(),src:rem!=null?'gps':'mapa'}}))){delete S.ball[n];S.target=null;if(S.draft&&S.draft.hole===n)S.draft.s=arr.length+S.draft.p;toast(`Tiro ${arr.length}: ${dist(prev,pos)} yd. Te faltan ${left} yd.`);render()}},
+ async shotGps(){const r=myRound();if(!r)return;const gp=gpsHere(r.currentHole);if(!gp){toast('No hay GPS para este hoyo. Toca el mapa donde quedó la bola.');S.hvMode='shot';render();return}A.markShot([gp.x,gp.y],gp.rem)},
+ async shotUndo(){const r=myRound();if(!r)return;const n=r.currentHole;const all={...(r.shots||{})};const arr=[...(all[n]||[])];if(!arr.length)return;arr.pop();all[n]=arr;
+   await write(()=>Store.update('rounds/'+r.id,{shots:all}),'Tiro borrado');if(S.draft&&S.draft.hole===n&&arr.length)S.draft.s=arr.length+S.draft.p;render()},
+ gpsOn(){if(!navigator.geolocation){S.gpsErr='Este dispositivo no tiene GPS disponible.';render();return}if(S.gpsWatch!==null)return;
+   S.gpsWatch=navigator.geolocation.watchPosition(p=>{S.gps={lat:p.coords.latitude,lon:p.coords.longitude,acc:p.coords.accuracy||10,at:Date.now()};S.gpsErr=null;onGps()},
+   e=>{S.gpsWatch=null;S.gpsErr=e.code===1?'Permiso de ubicación denegado. Actívalo en el navegador.':'No se pudo leer el GPS aquí. Toca el mapa donde quedó la bola.';render()},{enableHighAccuracy:true,maximumAge:5000,timeout:20000});toast('Buscando señal GPS…')},
+ gpsHere(v){const [i,f]=v.split('|');if(!navigator.geolocation){toast('Este dispositivo no tiene GPS.');return}toast('Leyendo tu ubicación…');
+   navigator.geolocation.getCurrentPosition(p=>{const h=S.courseDraft.holes[+i];h[f]={lat:+p.coords.latitude.toFixed(6),lon:+p.coords.longitude.toFixed(6)};delete h[f+'Raw'];render();toast('Coordenada guardada en el borrador')},()=>toast('No se pudo leer el GPS. Pega las coordenadas desde Google Maps.'),{enableHighAccuracy:true,timeout:20000})},
+ fw(v){if(S.draft){S.draft.fw=S.draft.fw===+v?0:+v;render()}}, closeSheet(){S.sheet=null;render()},
+ setMode(v){S.mode=v;S.alerts=[];S.tab=NAVS[v][0][0];S.sheet=null;S.menuDraft=null;S.courseDraft=null;window.scrollTo(0,0);render()},
+ async profileSave(){const name=$('#pN').value.trim();const hcp=$('#pH').value;const tee=$('#pT').value;if(!name){toast('Escribe tu nombre.');return}
+  if(await write(()=>Store.set('players/'+safe(S.uid),{uid:S.uid,name:name.slice(0,60),handicap:hcp===''?0:Math.max(-10,Math.min(54,+hcp)),tee}),'Perfil guardado')){S.sheet=null;render()}},
+ teeDate(v){S.teeDate=v;render()}, teeBook(v){S.teeGroup=[];S.teeTime=v;openSheet('bookTee',v)},
+ async teeConfirm(time){const g=grpList('tee');const count=1+g.length,cart=$('#bK').checked;const guests=g.filter(x=>x.type==='guest').map(x=>x.name),buddies=g.filter(x=>x.type==='user').map(x=>x.uid);const id=S.teeDate+'_'+time,p='teetimes/'+id;
+  if(!(await Store.lock(p))){toast('Otra persona está reservando esta hora. Inténtalo en unos segundos.');return}
+  const cur=await Store.get(p);const ps=((cur&&cur.players)||[]).filter(x=>x.uid!==S.uid);const taken=ps.reduce((a,x)=>a+x.count,0);
+  if(taken+count>4){toast('Ese horario ya no tiene espacio. Escoge otro.');S.sheet=null;render();return}
+  if(await write(()=>Store.set(p,{date:S.teeDate,time,players:[...ps,{uid:S.uid,count,cart,guests,buddies}]}),`Reservado: ${tLabel(time)}`)){S.sheet=null;S.teeGroup=[];render()}},
+ async teeCancel(id){const p='teetimes/'+id;await Store.lock(p);const cur=await Store.get(p);if(!cur)return;const ps=(cur.players||[]).filter(x=>x.uid!==S.uid).map(x=>(x.buddies||[]).includes(S.uid)?{...x,buddies:x.buddies.filter(u=>u!==S.uid),count:Math.max(1,x.count-1)}:x);
+  await write(()=>ps.length?Store.set(p,{...cur,players:ps}):Store.del(p),'Listo, saliste de esa reserva')},
+ async tJoin(tid){await write(()=>Store.set('entries/'+safe(tid+'_'+S.uid),{tid,uid:S.uid,at:Date.now()}),'Inscripción confirmada')},
+ async tLeave(tid){await write(()=>Store.del('entries/'+safe(tid+'_'+S.uid)),'Inscripción cancelada')},
+ lb(v){openSheet('lb',v)}, lbAdmin(v){S.lbT=v;A.tab('ares')}, lbSel(v){S.lbT=v;render()},
+ async startRound(){const tid=$('#rT').value||null;const start=+$('#rS').value;const tee=($('#rTee')||{}).value||myTee();S.ball={};S.target=null;const id=gid();
+  if(tid&&S.rounds.some(r=>r.uid===S.uid&&r.tournamentId===tid&&r.status==='done')){toast('Ya entregaste tu tarjeta para este torneo.');return}
+  const grp=grpList('round');for(const g of grp.filter(x=>x.type==='user')){if(S.rounds.some(x=>x.uid===g.uid&&x.status==='active')){toast(`${nameOf(g.uid)} ya tiene una ronda en juego. Quítalo del grupo o pídele que la termine.`);return}}
+  const now=Date.now();const blank=()=>Array(18).fill(0);
+  const group=grp.map(g=>g.type==='guest'?{type:'guest',key:g.key,name:g.name,hcp:g.hcp,scores:blank()}:{type:'user',uid:g.uid,rid:gid()});
+  S.hvMode='shot';const ok=await write(()=>Store.set('rounds/'+id,{uid:S.uid,date:todayStr(),tournamentId:tid,startHole:start,currentHole:start,tee,shots:{},scores:blank(),putts:blank(),fw:blank(),group,status:'active',startedAt:now}),'¡Buena ronda!');
+  if(ok){for(const g of group.filter(x=>x.type==='user'))await Store.set('rounds/'+g.rid,{uid:g.uid,date:todayStr(),tournamentId:tid,startHole:start,currentHole:start,tee,shots:{},scores:blank(),putts:blank(),fw:blank(),status:'active',startedAt:now,recordedBy:S.uid,groupOf:id}).catch(()=>{});S.groupDraft=null}
+  S.deliverTo=null},
+ ostep(v){const i=v.lastIndexOf('|');const k=v.slice(0,i),d=v.slice(i+1);if(!S.draft||!(k in S.draft.o))return;S.draft.o[k]=Math.max(1,Math.min(15,S.draft.o[k]+(d==='+'?1:-1)));render()},
+ async memberToggle(uid){const m=isMember(uid);await write(()=>Store.set('data/admin/members/'+safe(uid),{uid,member:!m,at:Date.now()}),m?'Ya no aparece como socio':'Marcado como socio')},
+ grpGuest(t){openSheet('addGuest',t)}, grpUser(t){openSheet('addUser',t)},
+ grpBack(t){if(t==='tee')openSheet('bookTee',S.teeTime);else{S.sheet=null;render()}},
+ grpGuestSave(t){const name=($('#gN').value||'').trim().slice(0,40);if(!name){toast('Escribe el nombre del invitado.');return}grpList(t).push({type:'guest',key:gid(),name,hcp:$('#gH').value});A.grpBack(t)},
+ grpUserAdd(v){const i=v.indexOf('|');const t=v.slice(0,i),uid=v.slice(i+1);grpList(t).push({type:'user',uid});A.grpBack(t)},
+ grpDel(v){const [t,i]=v.split('|');grpList(t).splice(+i,1);if(t==='tee')openSheet('bookTee',S.teeTime);else render()},
+ step(v){const d=S.draft;if(!d)return;if(v==='s+')d.s=Math.min(15,d.s+1);if(v==='s-')d.s=Math.max(1,d.s-1);const r0=myRound();const ns=r0?((r0.shots||{})[d.hole]||[]).length:0;if(v==='p+'){d.p=Math.min(10,d.p+1);if(ns)d.s=ns+d.p}if(v==='p-'){d.p=Math.max(0,d.p-1);if(ns)d.s=ns+d.p}if(d.p>d.s)d.p=d.s;render()},
+ async holeSave(){const r=myRound();if(!r)return;const n=r.currentHole;const sc=[...r.scores],pu=[...(r.putts||Array(18).fill(0))];sc[n-1]=S.draft.s;pu[n-1]=S.draft.p;const fwa=[...(r.fw||Array(18).fill(0))];fwa[n-1]=S.draft.fw||0;
+  const seq=seqFrom(r.startHole||1);const next=seq[seq.indexOf(n)+1];
+  const o=S.draft.o||{};const group=(r.group||[]).map(g=>{if(g.type!=='guest')return g;const a=[...(g.scores||Array(18).fill(0))];a[n-1]=o[g.key]||0;return {...g,scores:a}});
+  await write(()=>Store.update('rounds/'+r.id,{scores:sc,putts:pu,fw:fwa,group,currentHole:next||n}));
+  for(const g of group.filter(x=>x.type==='user')){const lr=S.rounds.find(x=>x.id===g.rid);if(lr){const a=[...(lr.scores||Array(18).fill(0))];a[n-1]=o[g.uid]||0;await Store.update('rounds/'+g.rid,{scores:a,currentHole:next||n}).catch(()=>{})}}
+  S.draft=null;S.deliverTo=null;
+  if(!next)openSheet('confirmFinish');else window.scrollTo(0,0)},
+ async holePrev(){const r=myRound();if(!r)return;const seq=seqFrom(r.startHole||1);const i=seq.indexOf(r.currentHole);if(i>0){await write(()=>Store.update('rounds/'+r.id,{currentHole:seq[i-1]}));syncGroup(r,{currentHole:seq[i-1]});S.draft=null}},
+ async holeGo(v){const r=myRound();if(!r)return;await write(()=>Store.update('rounds/'+r.id,{currentHole:+v}));syncGroup(r,{currentHole:+v});S.draft=null;S.deliverTo=null},
+ async moveHole(v){const r=myRound();if(!r)return;await write(()=>Store.update('rounds/'+r.id,{currentHole:+v}),`Ahora estás en el hoyo ${v}`);S.draft=null;S.deliverTo=null;S.sheet=null;render()},
+ finishRound(){openSheet('confirmFinish')}, abandonRound(){openSheet('confirmAbandon')},
+ async finishYes(){const r=myRound();if(!r)return;S.sheet=null;const ok=await write(()=>Store.update('rounds/'+r.id,{status:'done',endedAt:Date.now()}),(r.group||[]).some(g=>g.type==='user')?'Ronda guardada en tu perfil y en el de tu grupo':'Ronda guardada en tu perfil');if(ok)await syncGroup(r,{status:'done',endedAt:Date.now()});render()},
+ async abandonYes(){const r=myRound();if(!r)return;S.sheet=null;for(const g of (r.group||[]).filter(x=>x.type==='user'))await Store.del('rounds/'+g.rid).catch(()=>{});await write(()=>Store.del('rounds/'+r.id),'Ronda descartada');render()},
+ orderHere(){const r=myRound();S.deliverTo=r?liveHole(r):0;A.tab('food')},
+ cartAdd(v){S.cart[v]=(S.cart[v]||0)+1;render()}, cartSub(v){S.cart[v]=Math.max(0,(S.cart[v]||0)-1);if(!S.cart[v])delete S.cart[v];render()},
+ async orderSend(){const items=menu().filter(i=>S.cart[i.id]).map(i=>({name:i.name,price:i.price,qty:S.cart[i.id],station:i.station}));if(!items.length)return;const kitchen=items.some(i=>i.station==='cocina')?'nuevo':null;
+  const total=Math.round(items.reduce((a,i)=>a+i.price*i.qty,0)*100)/100;const hole=+($('#oHole')?$('#oHole').value:S.deliverTo)||0;const note=(($('#oNote')||{}).value||'').slice(0,140);
+  if(await write(()=>Store.set('orders/'+gid(),{uid:S.uid,items,total,hole,note,status:'recibido',kitchen,day:todayStr(),createdAt:Date.now(),runner:null}),kitchen?'Pedido enviado. La comida ya está en la cocina.':'Pedido enviado al carrito')){S.cart={};S.note='';render()}},
+ hole(v){if(S.mode==='player'){S.cHole=+v;S.cSeg='hole';S.target=null;S.tab='course';S.sheet=null;window.scrollTo(0,0);render()}else openSheet('hole',+v)},
+ async runnerHere(v){const p='runners/'+safe(S.uid);await write(()=>Store.set(p,{uid:S.uid,hole:+v,updatedAt:Date.now()}));if(S.sheet){S.sheet=null;render()}},
+ async kStatus(v){const [id,st]=v.split('|');await write(()=>Store.update('orders/'+id,{kitchen:st,[st==='listo'?'readyAt':'cookAt']:Date.now()}),st==='listo'?'Avisamos al carrito':null)},
+ async wakeOn(){if(S.wake){try{await S.wake.release()}catch(e){}S.wake=null;S.wantWake=false;render();return}
+   try{S.wake=await navigator.wakeLock.request('screen');S.wantWake=true;S.wake.addEventListener('release',()=>{S.wake=null;scheduleRender()});toast('La pantalla se queda encendida')}catch(e){toast('Este navegador no deja mantener la pantalla encendida. En la app de .NET sí se puede.')}render()},
+ sunMode(){S.sun=!S.sun;document.documentElement.classList.toggle('sun',S.sun);if(S.sun)document.documentElement.setAttribute('data-theme','light');else document.documentElement.removeAttribute('data-theme');render()},
+ copyId(){try{navigator.clipboard.writeText(S.uid);toast('ID copiado')}catch(e){toast('Selecciona el ID y cópialo')}},
+ alertDel(v){S.alerts=S.alerts.filter(a=>a.id!==v);render()},
+ alertsOn(){S.alertsOn=true;try{const C=window.AudioContext||window.webkitAudioContext;if(C&&!S.ac)S.ac=new C();if(S.ac&&S.ac.resume)S.ac.resume()}catch(e){}
+   try{if('Notification' in window&&Notification.permission==='default')Notification.requestPermission().catch(()=>{})}catch(e){}beep();render()},
+ async demoOrder(){const M=menu();const pick=[M[Math.floor(Math.random()*5)],M[5+Math.floor(Math.random()*5)]];const items=pick.map(i=>({name:i.name,price:i.price,qty:1,station:i.station}));
+   const who=['demo-luis','demo-carmen','demo-jose'][Math.floor(Math.random()*3)];const r=S.rounds.find(x=>x.uid===who&&x.status==='active');
+   await Store.set('orders/'+gid(),{uid:who,items,total:items.reduce((a,i)=>a+i.price,0),hole:r?liveHole(r):0,note:Math.random()<.5?'Sin cebolla':'',status:'recibido',kitchen:'nuevo',day:todayStr(),createdAt:Date.now(),runner:null})},
+ async staffAdd(){const uid=$('#sfU').value,role=$('#sfR').value;if(!uid)return;await write(()=>Store.set('data/admin/staff/'+safe(uid),{uid,role,at:Date.now()}),`${nameOf(uid)} ahora es de ${ROLE_LABEL[role]}`)},
+ async staffDel(uid){await write(()=>Store.del('data/admin/staff/'+safe(uid)),'Empleado quitado')},
+ async oStatus(v){const [id,st]=v.split('|');const patch={status:st};if(st==='en camino'){patch.runner=S.uid;if(!S.runners.some(x=>x.id===safe(S.uid)))await Store.set('runners/'+safe(S.uid),{uid:S.uid,hole:0,updatedAt:Date.now()})}if(st==='entregado')patch.deliveredAt=Date.now();
+  await write(()=>Store.update('orders/'+id,patch),st==='entregado'?'Pedido entregado':null)},
+ async tCreate(){const name=$('#tN').value.trim(),date=$('#tD').value,max=+$('#tM').value||0,format=$('#tF').value;if(!name||!date){toast('Escribe el nombre y la fecha del torneo.');return}
+  if(await write(()=>Store.set('data/admin/tournaments/'+gid(),{name:name.slice(0,80),date,max,format,status:'abierto',createdAt:Date.now()}),'Torneo creado')){$('#tN').value=''}},
+ async tDelete(id){if(!confirm('¿Borrar este torneo? Las rondas jugadas se quedan en el perfil de cada jugador.'))return;await write(()=>Store.del('data/admin/tournaments/'+id),'Torneo borrado')},
+ aDate(v){S.adminDate=v;render()},
+ menuAdd(){S.menuDraft.push({id:gid(),cat:'Comida',station:'cocina',name:'Nuevo artículo',price:5});render()},
+ menuDel(i){S.menuDraft.splice(+i,1);render()},
+ async menuSave(){const items=S.menuDraft.filter(m=>m.name.trim()).map(m=>({id:m.id||gid(),cat:(m.cat||'Otros').trim(),station:m.station==='carrito'?'carrito':'cocina',name:m.name.trim(),price:Math.max(0,+m.price||0)}));await write(()=>Store.set('data/admin/config/menu',{items}),'Menú guardado');S.menuDraft=null;render()},
+ async courseSave(){const D=S.courseDraft;const ll=(h,f)=>{if(h[f+'Raw']!==undefined){const m=String(h[f+'Raw']).match(/(-?\d+(?:\.\d+)?)\s*[,\s]\s*(-?\d+(?:\.\d+)?)/);return m?{lat:+m[1],lon:+m[2]}:null}return h[f]||null};await write(()=>Store.set('data/admin/config/course',{holes:D.holes.map(h=>({par:+h.par,hcp:+h.hcp||1,hcpRed:+h.hcpRed||1,gold:+h.gold||0,yards:+h.yards||0,white:+h.white||0,red:+h.red||0,teeGps:ll(h,'teeGps'),greenGps:ll(h,'greenGps')})),ratings:Object.fromEntries(Object.entries(D.ratings).map(([k,v])=>[k,{rating:+v.rating||72,slope:+v.slope||113}]))}),'Campo guardado');S.courseDraft=null;render()}
+};
+const CH={
+ async staffRole(el){await write(()=>Store.update('data/admin/staff/'+safe(el.dataset.v),{role:el.value}),'Rol actualizado')},
+ async tStatus(el){await write(()=>Store.update('data/admin/tournaments/'+el.dataset.v,{status:el.value}),'Estado actualizado')},
+ deliver(el){S.deliverTo=+el.value}
+};
+const IN={uq(el){const q=el.value.trim().toLowerCase();document.querySelectorAll('.pick').forEach(r=>{r.style.display=!q||r.dataset.name.includes(q)?'':'none'})},note(el){S.note=el.value},mName(el){S.menuDraft[+el.dataset.v].name=el.value},mSt(el){S.menuDraft[+el.dataset.v].station=el.value},mCat(el){S.menuDraft[+el.dataset.v].cat=el.value},mPrice(el){S.menuDraft[+el.dataset.v].price=el.value},
+ cPar(el){S.courseDraft.holes[+el.dataset.v].par=+el.value},cF(el){S.courseDraft.holes[+el.dataset.v][el.dataset.f]=el.value},rF(el){S.courseDraft.ratings[el.dataset.v][el.dataset.f]=el.value},gF(el){S.courseDraft.holes[+el.dataset.v][el.dataset.f+'Raw']=el.value}};
+document.addEventListener('click',e=>{const sv=e.target.closest('svg.hv');if(!sv)return;const m=sv.getScreenCTM();if(!m)return;const pt=sv.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const q=pt.matrixTransform(m.inverse());const n=+sv.dataset.n;const pos=[Math.round(q.x),Math.round(+sv.dataset.top-q.y)];if(sv.dataset.play&&S.hvMode!=='measure'){A.markShot(pos);return}if(S.hvMode==='ball'&&!sv.dataset.play){S.ball[n]=pos;S.target=null}else S.target={n,x:pos[0],y:pos[1]};render()});
+document.addEventListener('click',e=>{const el=e.target.closest('[data-act]');if(!el||el.disabled)return;const f=A[el.dataset.act];if(f){e.preventDefault();f(el.dataset.v)}});
+document.addEventListener('visibilitychange',async()=>{if(document.visibilityState==='visible'&&S.wantWake&&!S.wake){try{S.wake=await navigator.wakeLock.request('screen');scheduleRender()}catch(e){}}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&S.sheet){S.sheet=null;render()}if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role=button][data-act]')){e.preventDefault();e.target.click()}});
+document.addEventListener('change',e=>{const el=e.target.closest('[data-change]');if(el&&CH[el.dataset.change])CH[el.dataset.change](el);const i=e.target.closest('[data-input]');if(i&&IN[i.dataset.input])IN[i.dataset.input](i)});
+document.addEventListener('input',e=>{const i=e.target.closest('[data-input]');if(i&&IN[i.dataset.input])IN[i.dataset.input](i)});
+setInterval(()=>{if(!S.sheet&&['food','runner','map','home','alive'].includes(S.tab))scheduleRender()},60000);
+
+/* ============ Demo ============ */
+function seedDemo(){
+  const today=todayStr();const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+  const ppl=[['demo-luis','Luis Rivera',8],['demo-carmen','Carmen Ortiz',14],['demo-jose','José Marrero',5],['demo-ana','Ana Colón',18]];
+  ppl.forEach(([id,name,h])=>Store._col('players').set(id,{uid:id,name,handicap:h}));
+  Store._col('players').set(S.uid,{uid:S.uid,name:'Invitado Demo',handicap:12,tee:'white'});
+  Store._col('data/admin/tournaments').set('t1',{name:'Copa Dorado del Mar',date:today,max:72,format:'neto',status:'en juego',createdAt:Date.now()});
+  const nx=new Date();nx.setDate(nx.getDate()+9);
+  Store._col('data/admin/tournaments').set('t2',{name:'Clásico de Otoño',date:todayStr(nx),max:48,format:'bruto',status:'abierto',createdAt:Date.now()});
+  const score=(n,sk)=>Array.from({length:18},(_,i)=>i<n?Math.max(2,DEFAULT_HOLES[i].par+[-1,0,0,0,1,1,1,2,2][rnd(0,8)]-(sk&&Math.random()<.2?1:0)):0);
+  [['demo-luis',7],['demo-carmen',4],['demo-jose',12]].forEach(([u,n],k)=>{Store._col('entries').set('t1_'+u,{tid:'t1',uid:u,at:Date.now()});
+    Store._col('rounds').set('r'+k,{uid:u,date:today,tournamentId:'t1',startHole:1,currentHole:n+1,scores:score(n,u==='demo-jose'),putts:Array.from({length:18},(_,i)=>i<n?rnd(1,3):0),status:'active',startedAt:Date.now()-n*9e5,pos:{hole:n+1,x:0,y:Math.round(DEFAULT_HOLES[n].yards*.55),rem:Math.round(DEFAULT_HOLES[n].yards*.45),at:Date.now()-(k+1)*70000,src:'gps'}})});
+  Store._col('entries').set('t1_'+S.uid,{tid:'t1',uid:S.uid,at:Date.now()});Store._col('entries').set('t1_demo-ana',{tid:'t1',uid:'demo-ana',at:Date.now()});
+  for(let k=0;k<8;k++){const d=new Date();d.setDate(d.getDate()-(k+1)*5);Store._col('rounds').set('m'+k,{uid:S.uid,date:todayStr(d),tournamentId:null,startHole:1,currentHole:18,tee:'white',scores:score(18,k<3),putts:Array.from({length:18},()=>[1,2,2,2,2,3][rnd(0,5)]),fw:Array.from({length:18},(_,i)=>DEFAULT_HOLES[i].par>=4?[1,2,2,2,3][rnd(0,4)]:0),status:'done',startedAt:d.getTime()})}
+  Store._col('runners').set('demo-runner',{uid:'demo-runner',hole:5,updatedAt:Date.now()});
+  Store._col('players').set('demo-runner',{uid:'demo-runner',name:'Pedro (carrito 1)'});Store._col('players').set('demo-cook',{uid:'demo-cook',name:'María (cocina)'});
+  Store._col('data/admin/staff').set('demo-runner',{uid:'demo-runner',role:'carrito'});Store._col('data/admin/staff').set('demo-cook',{uid:'demo-cook',role:'cocina'});
+  Store._col('orders').set('o1',{uid:'demo-carmen',items:[{name:'Agua',price:2,qty:2,station:'carrito'},{name:'Empanadillas de carne (3)',price:8,qty:1,station:'cocina'}],total:12,hole:4,note:'',status:'en camino',kitchen:'listo',day:today,createdAt:Date.now()-6e5,runner:'demo-runner'});
+  ['demo-luis','demo-jose','demo-ana',S.uid].forEach(u=>Store._col('data/admin/members').set(safe(u),{uid:u,member:true}));
+  const addG=(rid,name)=>{const r=Store._col('rounds').get(rid);if(!r)return;const n=r.scores.filter(x=>x>0).length;r.group=[{type:'guest',key:'g'+rid,name,hcp:'',scores:score(n)}]};addG('r0','Miguel Ortiz');addG('r1','Roberto Vega');
+  const M=DEFAULT_MENU,buyers=['demo-luis','demo-carmen','demo-jose','demo-ana',S.uid];
+  const mkItems=()=>{const a=[];const n=rnd(1,3);for(let i=0;i<n;i++){const m=M[rnd(0,M.length-1)];a.push({name:m.name,price:m.price,qty:rnd(1,2),station:m.station})}return a};
+  for(let i=0;i<9;i++){const it=mkItems();const t=Date.now()-(i+1)*38*60000;if(new Date(t).getDate()!==new Date().getDate())break;Store._col('orders').set('oh'+i,{uid:buyers[i%5],items:it,total:it.reduce((a,x)=>a+x.price*x.qty,0),hole:rnd(1,18),note:'',status:'entregado',kitchen:'listo',day:today,createdAt:t,runner:'demo-runner'})}
+  for(let d=1;d<=6;d++){const dt=new Date();dt.setDate(dt.getDate()-d);const ds=todayStr(dt);const nr=rnd(3,7);
+    for(let k=0;k<nr;k++){const u=ppl[k%4][0];const g=Math.random()<.5?[{type:'guest',key:'x'+d+k,name:'Invitado',hcp:'',scores:score(18)}]:[];Store._col('rounds').set('p'+d+'_'+k,{uid:u,date:ds,tournamentId:null,startHole:1,currentHole:18,tee:'white',scores:score(18),putts:Array(18).fill(2),fw:Array(18).fill(2),group:g,status:'done',startedAt:dt.getTime()})}
+    const no=rnd(4,10);for(let k=0;k<no;k++){const it=mkItems();Store._col('orders').set('od'+d+'_'+k,{uid:buyers[k%5],items:it,total:it.reduce((a,x)=>a+x.price*x.qty,0),hole:rnd(1,18),note:'',status:'entregado',day:ds,createdAt:dt.getTime(),runner:'demo-runner'})}}
+  Store._col('orders').set('o3',{uid:'demo-jose',items:[{name:'Cerveza local',price:4.5,qty:2,station:'carrito'}],total:9,hole:12,note:'',status:'recibido',kitchen:null,day:today,createdAt:Date.now()-9e4,runner:null});
+  Store._col('orders').set('o4',{uid:'demo-ana',items:[{name:'Mofongo con pollo',price:14,qty:1,station:'cocina'},{name:'Agua',price:2,qty:1,station:'carrito'}],total:16,hole:0,note:'Poco sal',status:'recibido',kitchen:'preparando',day:today,createdAt:Date.now()-5e5,runner:null});
+  Store._col('orders').set('o2',{uid:'demo-luis',items:[{name:'Sándwich cubano',price:12,qty:1,station:'cocina'}],total:12,hole:7,note:'Sin mostaza',status:'recibido',kitchen:'nuevo',day:today,createdAt:Date.now()-2e5,runner:null});
+  const tm=new Date();tm.setDate(tm.getDate()+1);
+  Store._col('teetimes').set(todayStr(tm)+'_0730',{date:todayStr(tm),time:'0730',players:[{uid:S.uid,count:2,cart:true},{uid:'demo-ana',count:1,cart:false}]});
+}
+
+/* ============ Arranque ============ */
+(async function boot(){
+  let db=null,user=null;
+  if(SUPABASE_URL&&SUPABASE_ANON_KEY){
+    try{if(!window.supabase)throw new Error('No cargó la librería de Supabase');await bootSupabase()}
+    catch(e){console.error(e);$('#app').innerHTML=`<div class="splash"><div><p><b>No se pudo conectar con la base de datos.</b></p><p class="small" style="margin-top:8px">${esc(e.message||e)}</p><p class="small" style="margin-top:8px">Revisa la URL y la clave de Supabase, y que las sesiones anónimas estén activadas.</p></div></div>`;return}
+  }else{
+  try{if(window.claude&&typeof claude.use==='function'){[db,user]=await Promise.all([withTimeout(claude.use('db'),6000),withTimeout(claude.use('user'),6000)])}}catch(e){}
+  Store.db=db;S.demo=!db;
+  if(user){S.userApi=user;try{S.uid=await user.id();const me=await user.me();S.meName=(me&&me.name)||'';S.canEdit=!!(await user.canEdit())}catch(e){}}
+  if(!S.uid||!db){S.demo=true;Store.db=null;S.uid=S.uid||'demo-yo';S.canEdit=true;seedDemo()}
+  }
+  const today=todayStr();
+  Store.sub('players',a=>{S.players=Object.fromEntries(a.map(p=>[p.id,p]));changed()});
+  Store.sub('teetimes',a=>{S.tee=a.filter(t=>t.date>=today);changed()},q=>q.where('date','>=',today));
+  const wk=new Date();wk.setDate(wk.getDate()-7);const weekAgo=todayStr(wk);
+  Store.sub('orders',onOrders,q=>q.where('day','>=',weekAgo));
+  Store.sub('data/admin/staff',a=>{S.staff=Object.fromEntries(a.map(m=>[m.id,m]));changed()});
+  Store.sub('data/admin/members',a=>{S.members=Object.fromEntries(a.map(m=>[m.id,m]));changed()});
+  Store.sub('rounds',a=>{S.rounds=a;changed()});
+  Store.sub('runners',a=>{S.runners=a;changed()});
+  Store.sub('data/admin/tournaments',a=>{S.tournaments=a;changed()});
+  Store.sub('entries',a=>{S.entries=a;changed()});
+  Store.subDoc('data/admin/config/course',d=>{S.course=d;changed()});
+  Store.subDoc('data/admin/config/menu',d=>{S.menu=d;changed()});
+  render();
+})();
+</script>
+</body>
+</html>
