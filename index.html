@@ -458,7 +458,7 @@ function renderLogin(){const L=LOGIN;if(!L)return;const m=L.mode;const app=$('#a
    </form>
    <p class="lgerr" id="lgErr" role="alert"></p>
    <p style="text-align:center">${m==='login'?'<button type="button" class="link" data-act="lgMode" data-v="forgot">¿Olvidaste tu contraseña?</button>':m!=='signup'&&m!=='reset'?'<button type="button" class="link" data-act="lgMode" data-v="login">Volver a iniciar sesión</button>':''}</p>
-  </div><p class="lgfoot">© 2026 LL Technology Service. Todos los derechos reservados.</p></div>
+  </div><p class="lgfoot">© 2026 LL Technology Service. Todos los derechos reservados.<br><span style="opacity:.7">Versión 2.1</span></p></div>
   <svg class="wave" viewBox="0 0 400 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50C60 20 120 80 200 50S330 20 400 45V110H0Z" fill="#0AA7E5" opacity=".55"/><path d="M0 75C70 50 130 100 210 75S340 55 400 72V110H0Z" fill="#BEE8F8" opacity=".5"/></svg></div>`;
   const f=$(m==='signup'?'#lgN':m==='reset'?'#lgP':'#lgE');if(f&&window.innerWidth>700)f.focus()}
 async function lgSubmit(){const L=LOGIN;if(!L||L.busy)return;const g=id=>{const e=$(id);return e?e.value:''};
@@ -483,6 +483,8 @@ async function bootSupabase(){
   const recovery=/type=recovery/.test(location.hash+location.search);
   SB=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
   let {data:{session}}=await SB.auth.getSession();
+  // las sesiones anónimas de la prueba anterior ya no sirven: se cierran y se pide login
+  if(session&&session.user&&session.user.is_anonymous){try{await SB.auth.signOut()}catch(e){}session=null}
   if(recovery&&session)session=await showLogin('reset');
   if(!session)session=await showLogin('login');
   LOGIN=null;$('#app').innerHTML='<div class="splash"><p>Entrando…</p></div>';
