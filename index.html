@@ -737,7 +737,7 @@ function renderLogin(){const L=LOGIN;if(!L)return;const m=L.mode;const app=$('#a
    </form>
    <p class="lgerr" id="lgErr" role="alert"></p>
    <p style="text-align:center">${m==='login'?'<button type="button" class="link" data-act="lgMode" data-v="forgot">¿Olvidaste tu contraseña?</button>':m!=='signup'&&m!=='reset'?'<button type="button" class="link" data-act="lgMode" data-v="login">Volver a iniciar sesión</button>':''}</p>
-  </div><p class="lgfoot">© 2026 LL Technology Service. Todos los derechos reservados.<br><span style="opacity:.7">Versión 2.3</span></p></div>
+  </div><p class="lgfoot">© 2026 LL Technology Service. Todos los derechos reservados.<br><span style="opacity:.7">Versión 2.4</span></p></div>
   <svg class="wave" viewBox="0 0 400 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50C60 20 120 80 200 50S330 20 400 45V110H0Z" fill="#0AA7E5" opacity=".55"/><path d="M0 75C70 50 130 100 210 75S340 55 400 72V110H0Z" fill="#BEE8F8" opacity=".5"/></svg></div>`;
   if(LANG==='en')trNode(app);
   const f=$(m==='signup'?'#lgN':m==='reset'?'#lgP':'#lgE');if(f&&window.innerWidth>700)f.focus()}
@@ -752,6 +752,7 @@ async function lgSubmit(){const L=LOGIN;if(!L||L.busy)return;const g=id=>{const 
     L.busy=true;btn.disabled=true;btn.textContent='Un momento…';
     if(L.mode==='login'){const r=await SB.auth.signInWithPassword({email,password:pass});if(r.error)throw r.error;L.resolve(r.data.session);return}
     if(L.mode==='signup'){const r=await SB.auth.signUp({email,password:pass,options:{data:{nombre:name},emailRedirectTo:back}});if(r.error)throw r.error;
+      if(r.data&&r.data.user&&Array.isArray(r.data.user.identities)&&r.data.user.identities.length===0)throw {message:'User already registered'};
       if(r.data.session){L.resolve(r.data.session);return}
       L.mode='login';L.email=email;L.msg='Te enviamos un correo para confirmar tu cuenta. Ábrelo y después inicia sesión aquí.';L.busy=false;renderLogin();return}
     if(L.mode==='forgot'){const r=await SB.auth.resetPasswordForEmail(email,{redirectTo:back});if(r.error)throw r.error;
